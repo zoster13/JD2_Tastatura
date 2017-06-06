@@ -12,7 +12,7 @@ namespace BookingApp.Models
     {   
         public virtual DbSet<AppUser> AppUsers { get; set; }
 
-        public BAContext() : base("name=BADB")
+        public BAContext() : base("name=JD2_Tastatura")
         {            
         }
 
