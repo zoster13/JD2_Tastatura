@@ -24,5 +24,10 @@ namespace BookingApp.Models
         {
             return new BAContext();
         }
+
+        public BAContext() : base("name=JD2_TastaturaDB")
+        {
+
+        }
     }
 }
