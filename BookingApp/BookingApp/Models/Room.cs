@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -12,6 +13,7 @@ namespace BookingApp.Models
         public int BedCount { get; set; }
         public string Description { get; set; }
         public double PricePerNight { get; set; }
+        [Required]
         public Accommodation Accommodation { get; set; }
         public ICollection<RoomReservations> RoomReservationss { get; set; }
 

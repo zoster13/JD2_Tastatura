@@ -94,7 +94,6 @@ C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\bin
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\bin\System.Web.Http.Owin.xml
-C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.csprojResolveAssemblyReference.cache
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.Migrations.Initial.resources
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.csproj.GenerateResource.Cache
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.dll

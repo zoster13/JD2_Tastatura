@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,8 +10,10 @@ namespace BookingApp.Models
     {
         public int Grade { get; set; }
         public string Text { get; set; }
-        public ICollection<Accommodation> Accommodations { get; set; }
-        public ICollection<User> Users { get; set; }
+        [Required]
+        public Accommodation Accommodation { get; set; }
+        [Required]
+        public User User { get; set; }
 
         public Comment()
         {
