@@ -3,7 +3,7 @@ namespace BookingApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class firstmig : DbMigration
+    public partial class DeployDB : DbMigration
     {
         public override void Up()
         {
@@ -25,9 +25,9 @@ namespace BookingApp.Migrations
                         Place_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AccommodationTypes", t => t.AccommodationType_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Users", t => t.Owner_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Places", t => t.Place_Id, cascadeDelete: true)
+                .ForeignKey("dbo.AccommodationTypes", t => t.AccommodationType_Id, cascadeDelete: false)
+                .ForeignKey("dbo.Users", t => t.Owner_Id, cascadeDelete: false)
+                .ForeignKey("dbo.Places", t => t.Place_Id, cascadeDelete: false)
                 .Index(t => t.AccommodationType_Id)
                 .Index(t => t.Owner_Id)
                 .Index(t => t.Place_Id);
@@ -80,8 +80,8 @@ namespace BookingApp.Migrations
                         User_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Rooms", t => t.Room_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Users", t => t.User_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Rooms", t => t.Room_Id, cascadeDelete: false)
+                .ForeignKey("dbo.Users", t => t.User_Id, cascadeDelete: false)
                 .Index(t => t.Room_Id)
                 .Index(t => t.User_Id);
             
@@ -106,10 +106,10 @@ namespace BookingApp.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        Region_Id = c.Int(),
+                        Region_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Regions", t => t.Region_Id)
+                .ForeignKey("dbo.Regions", t => t.Region_Id, cascadeDelete: false)
                 .Index(t => t.Region_Id);
             
             CreateTable(
@@ -118,10 +118,10 @@ namespace BookingApp.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        Country_Id = c.Int(),
+                        Country_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Countries", t => t.Country_Id)
+                .ForeignKey("dbo.Countries", t => t.Country_Id, cascadeDelete: false)
                 .Index(t => t.Country_Id);
             
             CreateTable(

@@ -198,5 +198,6 @@ C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\bin
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\bin\System.Web.Http.Owin.xml
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.dll
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.pdb
-C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.Migrations.firstmig.resources
+C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.csprojResolveAssemblyReference.cache
+C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.Migrations.DeployDB.resources
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.csproj.GenerateResource.Cache
