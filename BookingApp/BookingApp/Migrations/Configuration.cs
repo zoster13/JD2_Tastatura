@@ -1,6 +1,8 @@
 namespace BookingApp.Migrations
 {
+    using Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -14,18 +16,29 @@ namespace BookingApp.Migrations
 
         protected override void Seed(BookingApp.Models.BAContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            Region region = new Region();
+            region.Name = "Vojvodina";
+            region.Places = new List<Place>();
+           
+            Place place = new Place();
+            place.Name = "Novi Sad";
+            place.Region = region;
+            place.Accommodations = new List<Accommodation>();
+            region.Places.Add(place);
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            Place place2 = new Place();
+            place2.Name = "Backa Palanka";
+            place2.Region = region;
+            place2.Accommodations = new List<Accommodation>();
+            region.Places.Add(place2);
+
+            Country country = new Country();
+            country.Name = "Srbija";
+            country.Code = 123;
+            country.Regions = new List<Region>() { region };
+            region.Country = country;
+            
+            context.Countries.Add(country);
         }
     }
 }
