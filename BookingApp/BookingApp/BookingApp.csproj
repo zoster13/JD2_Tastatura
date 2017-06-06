@@ -260,14 +260,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706040304228_Initial.cs" />
-    <Compile Include="Migrations\201706040304228_Initial.Designer.cs">
-      <DependentUpon>201706040304228_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706060815502_Deploy database.cs" />
-    <Compile Include="Migrations\201706060815502_Deploy database.Designer.cs">
-      <DependentUpon>201706060815502_Deploy database.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\201706060837490_DeployDatabase.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accommodation.cs" />
     <Compile Include="Models\AccommodationType.cs" />
@@ -360,14 +353,6 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706040304228_Initial.resx">
-      <DependentUpon>201706040304228_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706060815502_Deploy database.resx">
-      <DependentUpon>201706060815502_Deploy database.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
