@@ -257,6 +257,7 @@
     <Compile Include="Controllers\AccommodationsController.cs" />
     <Compile Include="Controllers\AccommodationTypesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AppUsersController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\CountryController.cs" />
