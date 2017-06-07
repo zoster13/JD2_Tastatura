@@ -24,14 +24,14 @@ namespace BookingApp.Models
         public ICollection<Room> Rooms { get; set; }
         public ICollection<Comment> Comments { get; set; }
         [Required]
-        public User Owner { get; set; }
+        public AppUser Owner { get; set; }
 
         public Accommodation()
         {
 
         }
 
-        public Accommodation(int id, string name, string description, string address, double averageGrade, double longitude, double latitude, string imageURL, bool approved, Place place, AccommodationType accommodationType, User owner)
+        public Accommodation(int id, string name, string description, string address, double averageGrade, double longitude, double latitude, string imageURL, bool approved, Place place, AccommodationType accommodationType, AppUser owner)
         {
             this.Id = id;
             this.Name = name;

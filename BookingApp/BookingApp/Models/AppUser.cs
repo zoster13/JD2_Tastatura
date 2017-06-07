@@ -8,6 +8,25 @@ namespace BookingApp.Models
     public class AppUser
     {
         public int Id { get; set; }
-        public int FullName { get; set; }
+        public string FullName { get; set; }
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public ICollection<RoomReservations> RoomReservationss { get; set; }
+        public ICollection<Comment> Comments { get; set; }
+        public ICollection<Accommodation> Accommodations { get; set; }
+
+        public AppUser()
+        {
+
+        }
+
+        public AppUser(int id, string username, string email, string password)
+        {
+            this.Id = id;
+            this.Username = username;
+            this.Email = email;
+            this.Password = password;
+        }
     }
 }

@@ -12,6 +12,7 @@ using BookingApp.Models;
 
 namespace BookingApp.Controllers
 {
+    [Authorize(Roles = "Manager")]
     public class CountriesController : ApiController
     {
         private BAContext db = new BAContext();
