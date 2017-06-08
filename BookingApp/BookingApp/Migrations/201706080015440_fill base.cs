@@ -3,7 +3,7 @@ namespace BookingApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class DeployDB : DbMigration
+    public partial class fillbase : DbMigration
     {
         public override void Up()
         {
@@ -52,8 +52,8 @@ namespace BookingApp.Migrations
                         User_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Accommodations", t => t.Accommodation_Id, cascadeDelete: true)
-                .ForeignKey("dbo.AppUsers", t => t.User_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Accommodations", t => t.Accommodation_Id, cascadeDelete: false)
+                .ForeignKey("dbo.AppUsers", t => t.User_Id, cascadeDelete: false)
                 .Index(t => t.Accommodation_Id)
                 .Index(t => t.User_Id);
             
@@ -98,7 +98,7 @@ namespace BookingApp.Migrations
                         Accommodation_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Accommodations", t => t.Accommodation_Id, cascadeDelete: false)
+                .ForeignKey("dbo.Accommodations", t => t.Accommodation_Id, cascadeDelete: true)
                 .Index(t => t.Accommodation_Id);
             
             CreateTable(

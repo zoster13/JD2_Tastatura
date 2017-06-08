@@ -19,7 +19,11 @@ namespace BookingApp.Models
 
         public RoomReservations()
         {
-
+            this.StartDate = DateTime.Now;
+            this.EndDate = DateTime.Now;
+            this.Timestamp = DateTime.Now;
+            this.Room = new Room();
+            this.User = new AppUser();
         }
 
         public RoomReservations(DateTime startDate, DateTime endDate, DateTime timestamp)
@@ -27,6 +31,8 @@ namespace BookingApp.Models
             this.StartDate = startDate;
             this.EndDate = endDate;
             this.Timestamp = timestamp;
+            this.Room = new Room();
+            this.User = new AppUser();
         }
     }
 }

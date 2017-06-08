@@ -94,12 +94,8 @@ E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\Microsoft.Owin.Sec
 E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\Microsoft.Owin.Security.Twitter.xml
 E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\System.Web.Http.Owin.xml
-E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.csprojResolveAssemblyReference.cache
-E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.Migrations.Initial.resources
-E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.csproj.GenerateResource.Cache
 E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.dll
 E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.pdb
-E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.Migrations.Deploydatabase.resources
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.csprojResolveAssemblyReference.cache
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\bin\ApplicationInsights.config
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\bin\roslyn\csc.exe
@@ -236,3 +232,41 @@ C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\bin
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\bin\ru\System.Spatial.resources.dll
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\bin\zh-Hant\System.Spatial.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\Microsoft.Data.Edm.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\Microsoft.Data.OData.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\System.Spatial.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\System.Web.Http.OData.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\Microsoft.Data.Edm.xml
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\Microsoft.Data.OData.xml
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\System.Spatial.xml
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\System.Web.Http.OData.xml
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\de\Microsoft.Data.Edm.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\es\Microsoft.Data.Edm.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\fr\Microsoft.Data.Edm.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\it\Microsoft.Data.Edm.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\ja\Microsoft.Data.Edm.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\ko\Microsoft.Data.Edm.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\ru\Microsoft.Data.Edm.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\de\Microsoft.Data.OData.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\es\Microsoft.Data.OData.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\fr\Microsoft.Data.OData.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\it\Microsoft.Data.OData.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\ja\Microsoft.Data.OData.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\ko\Microsoft.Data.OData.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\ru\Microsoft.Data.OData.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\de\System.Spatial.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\es\System.Spatial.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\fr\System.Spatial.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\it\System.Spatial.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\ja\System.Spatial.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\ko\System.Spatial.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\ru\System.Spatial.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\zh-Hans\System.Spatial.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\bin\zh-Hant\System.Spatial.resources.dll
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.csprojResolveAssemblyReference.cache
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.Migrations.fillbase.resources
+E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.csproj.GenerateResource.Cache

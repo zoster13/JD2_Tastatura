@@ -28,12 +28,19 @@ namespace BookingApp.Models
 
         public Accommodation()
         {
-
+            this.Name = string.Empty;
+            this.Description = string.Empty;
+            this.Address = string.Empty;
+            this.ImageURL = string.Empty;
+            this.Place = new Place();
+            this.AccommodationType = new AccommodationType();
+            this.Rooms = new List<Room>();
+            this.Comments = new List<Comment>();
+            this.Owner = new AppUser();
         }
 
-        public Accommodation(int id, string name, string description, string address, double averageGrade, double longitude, double latitude, string imageURL, bool approved, Place place, AccommodationType accommodationType, AppUser owner)
+        public Accommodation(string name, string description, string address, double averageGrade, double longitude, double latitude, string imageURL, bool approved, Place place, AccommodationType accommodationType, AppUser owner)
         {
-            this.Id = id;
             this.Name = name;
             this.Description = description;
             this.Address = address;
@@ -45,6 +52,8 @@ namespace BookingApp.Models
             this.Place = place;
             this.AccommodationType = accommodationType;
             this.Owner = owner;
+            this.Rooms = new List<Room>();
+            this.Comments = new List<Comment>();
         }
     }
 }

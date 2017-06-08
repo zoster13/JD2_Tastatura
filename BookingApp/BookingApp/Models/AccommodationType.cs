@@ -13,13 +13,15 @@ namespace BookingApp.Models
 
         public AccommodationType()
         {
-
+            this.Name = string.Empty;
+            this.Accommodations = new List<Accommodation>();
         }
 
         public AccommodationType(int id, string name)
         {
             this.Id = id;
             this.Name = name;
+            this.Accommodations = new List<Accommodation>();
         }
     }
 }

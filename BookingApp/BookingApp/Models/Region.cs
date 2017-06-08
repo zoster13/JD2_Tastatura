@@ -16,7 +16,9 @@ namespace BookingApp.Models
 
         public Region()
         {
-
+            this.Name = string.Empty;
+            this.Country = new Country();
+            this.Places = new List<Place>();
         }
 
         public Region(int id, string name, Country country)
@@ -24,6 +26,7 @@ namespace BookingApp.Models
             this.Id = id;
             this.Name = name;
             this.Country = country;
+            this.Places = new List<Place>();
         }
     }
 }

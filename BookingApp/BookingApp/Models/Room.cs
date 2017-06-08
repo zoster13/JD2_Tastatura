@@ -19,17 +19,20 @@ namespace BookingApp.Models
 
         public Room()
         {
-
+            this.Description = string.Empty;
+            this.Accommodation = new Accommodation();
+            this.RoomReservationss = new List<RoomReservations>();
         }
 
-        public Room(int id, int roomNumber, int bedCount, string description, double pricePerNight, Accommodation accommodation)
+        public Room(int roomNumber, int bedCount, string description, double pricePerNight, Accommodation accommodation)
         {
-            this.Id = id;
             this.RoomNumber = roomNumber;
             this.BedCount = bedCount;
             this.Description = description;
             this.PricePerNight = pricePerNight;
             this.Accommodation = accommodation;
+            this.Accommodation = new Accommodation();
+            this.RoomReservationss = new List<RoomReservations>();
         }
     }
 }

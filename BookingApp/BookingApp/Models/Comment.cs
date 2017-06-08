@@ -18,13 +18,17 @@ namespace BookingApp.Models
 
         public Comment()
         {
-
+            this.Text = string.Empty;
+            this.Accommodation = new Accommodation();
+            this.User = new AppUser();
         }
 
         public Comment(int grade, string text)
         {
             this.Grade = grade;
             this.Text = text;
+            this.Accommodation = new Accommodation();
+            this.User = new AppUser();
         }
     }
 }
