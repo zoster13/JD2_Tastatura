@@ -1,0 +1,12 @@
+<h1>Accommodation</h1>
+<ul>
+      <li 
+        *ngFor="let accomm of accommodation">
+        <div>
+            <label> Id: </label> {{accomm.id}}.
+            <label> Name: </label> {{accomm.name}}
+            <a  [routerLink]="['/accommdetails', accomm.id]">Details</a>
+            <a  [routerLink]="['/rooms', accomm.id]">Rooms</a>
+        </div>
+    </li>
+</ul>

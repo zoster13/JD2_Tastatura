@@ -1,0 +1,32 @@
+import {Accommodation} from '../models/Accommodation';
+
+export const Accommodations : Accommodation[] = [
+    {   id:1,
+        name: 'Hotel Park', 
+        description: '',
+        address: '',
+        averageGrade: 1,
+        longitude: 1,
+        latitude: 1,
+        imageURL: '',
+        approved: false,
+        place: null,
+        accommodationType: null,
+        rooms: null,
+        comments: null,
+        owner: null},
+    {   id:2,
+        name: 'Vila Elena', 
+        description: '',
+        address: '',
+        averageGrade: 1,
+        longitude: 1,
+        latitude: 1,
+        imageURL: '',
+        approved: false,
+        place: null,
+        accommodationType: null,
+        rooms: null,
+        comments: null,
+        owner: null}
+]

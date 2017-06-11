@@ -1,0 +1,8 @@
+<h1>Accommodation details</h1>
+<div *ngIf="accommodation">
+      <div><label>id: </label>{{accommodation.id}}</div>
+      <div><label>Name: </label>{{accommodation.name}}</div>
+      <div><label>Description: </label>{{accommodation.description}}</div>
+      <br/>
+      <button (click)="goBack()">Back</button>
+</div>

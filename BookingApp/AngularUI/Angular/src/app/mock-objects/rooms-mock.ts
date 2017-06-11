@@ -1,0 +1,33 @@
+import {Room} from '../models/Room';
+import {Accommodations} from './accommodation-mock';
+
+export const Rooms : Room[] = [
+    {   id: 1,
+        roomNumber: 1,
+        bedCount: 3,
+        description: null,
+        pricePerNight: 100,
+        accommodation: Accommodations[0],
+        roomReservationss: null},
+    {   id: 2,
+        roomNumber: 2,
+        bedCount: 3,
+        description: null,
+        pricePerNight: 100,
+        accommodation: Accommodations[0],
+        roomReservationss: null},
+    {   id: 3,
+        roomNumber: 1,
+        bedCount: 3,
+        description: null,
+        pricePerNight: 100,
+        accommodation: Accommodations[1],
+        roomReservationss: null},
+    {   id: 4,
+        roomNumber: 2,
+        bedCount: 3,
+        description: null,
+        pricePerNight: 100,
+        accommodation: Accommodations[1],
+        roomReservationss: null},
+]

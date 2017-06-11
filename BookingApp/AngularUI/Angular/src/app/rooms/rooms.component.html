@@ -1,0 +1,12 @@
+<h1>Rooms</h1>
+<ul>
+      <li 
+        *ngFor="let room of rooms">
+        <div>
+            <label> Id: </label> {{room.id}}.
+        </div>
+    </li>
+</ul>
+
+<br/>
+<button (click)="goBack()">Back</button>
