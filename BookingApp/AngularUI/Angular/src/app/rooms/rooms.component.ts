@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params }   from '@angular/router';
-import { Location }                 from '@angular/common';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
 import { RoomsService } from '../services/rooms.service';
 import 'rxjs/add/operator/switchMap';
-
 import {Room} from '../models/Room';
 
 @Component({
@@ -15,16 +14,15 @@ import {Room} from '../models/Room';
 export class RoomsComponent {
 
     rooms: Room[];
-    idOfAccommodation : number;
 
     constructor(
       private roomsService: RoomsService,
       private route: ActivatedRoute,
-      private location: Location
-    ) {}
+      private location: Location) {
+
+      }
 
   ngOnInit(): void {
-    //this.getRooms();  
     this.route.params
     .switchMap((params: Params) => this.roomsService.getRooms(+params['id']))
     .subscribe(rooms => this.rooms = rooms);

@@ -290,10 +290,6 @@
     <Compile Include="Migrations\201706121647358_fill db.Designer.cs">
       <DependentUpon>201706121647358_fill db.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706121700115_fill comments.cs" />
-    <Compile Include="Migrations\201706121700115_fill comments.Designer.cs">
-      <DependentUpon>201706121700115_fill comments.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accommodation.cs" />
     <Compile Include="Models\AccommodationType.cs" />
@@ -389,9 +385,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706121647358_fill db.resx">
       <DependentUpon>201706121647358_fill db.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706121700115_fill comments.resx">
-      <DependentUpon>201706121700115_fill comments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

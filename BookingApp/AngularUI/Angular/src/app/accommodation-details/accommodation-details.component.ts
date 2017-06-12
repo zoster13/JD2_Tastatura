@@ -16,12 +16,12 @@ export class AccommodationDetailsComponent {
 
     accommodation: Accommodation;
 
-
     constructor(
-  private accommodationService: AccommodationService,
-  private route: ActivatedRoute,
-  private location: Location
-    ) {}
+      private accommodationService: AccommodationService,
+      private route: ActivatedRoute,
+      private location: Location) {
+
+      }
 
   ngOnInit(): void {
     this.route.params

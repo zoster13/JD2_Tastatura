@@ -263,10 +263,10 @@ C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\bin
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.csprojResolveAssemblyReference.cache
-C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.Migrations.fillbase.resources
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.csproj.GenerateResource.Cache
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.dll
 C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.pdb
 E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.Migrations.filldb.resources
 E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.csproj.GenerateResource.Cache
 E:\Fakultet\7. blok -\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.Migrations.fillcomments.resources
+C:\Users\radis\OneDrive\Documents\GitHub\JD2_Tastatura\BookingApp\BookingApp\obj\Debug\BookingApp.Migrations.filldb.resources

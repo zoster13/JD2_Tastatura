@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
 import {AccommodationService} from '../services/accommodation.service';
-
 import {Accommodation} from '../models/Accommodation';
-
 
 @Component({
   selector: 'accomm',
@@ -20,8 +17,8 @@ export class AccommodationComponent implements OnInit {
   }
 
   getAccommodation() : void {
-    this.accommodationService.getAccommodations().then(accommodations => this.accommodations = accommodations);
-    //debugger
+    this.accommodationService.getAccommodations()
+      .then(accommodations => this.accommodations = accommodations);
   }
 
   ngOnInit() : void {

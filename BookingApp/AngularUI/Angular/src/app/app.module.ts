@@ -4,7 +4,6 @@ import { FormsModule }   from '@angular/forms';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
-
 import { AppComponent } from './app.component';
 import { AccommodationComponent } from './accommodation/accommodation.component';
 import { AccommodationDetailsComponent } from './accommodation-details/accommodation-details.component';
