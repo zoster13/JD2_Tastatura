@@ -1,53 +1,53 @@
 import {Injectable} from '@angular/core';
-import {Country} from '../models/Country';
+import {Place} from '../models/Place';
 import {Headers, Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class CountriesService {
+export class RegionsService {
     
     private headers = new Headers({'Content-Type': 'application/json'});
-    private countriesUrl = 'http://localhost:54042/api/Countries';  // URL to web api
+    private placesUrl = 'http://localhost:54042/api/Places';  // URL to web api
 
     constructor(private http: Http) { }
 
-    getCountries() : Promise<Country[]> {
-        return this.http.get(this.countriesUrl)
+    getPlaces() : Promise<Place[]> {
+        return this.http.get(this.placesUrl)
                     .toPromise()
-                    .then(response => response.json() as Country[])
+                    .then(response => response.json() as Place[])
                     .catch(this.handleError);
     }
 
-    getCountry(id: number): Promise<Country> {
-        const url = `${this.countriesUrl}/${id}`;
+    getPlace(id: number): Promise<Place> {
+        const url = `${this.placesUrl}/${id}`;
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json() as Country)
+            .then(response => response.json() as Place)
             .catch(this.handleError);
     }
 
     delete(id: number): Promise<void> {
-        const url = `${this.countriesUrl}/${id}`;
+        const url = `${this.placesUrl}/${id}`;
         return this.http.delete(url, {headers: this.headers})
         .toPromise()
         .then(() => null)
         .catch(this.handleError);
     }
 
-    create(country: Country): Promise<Country> {
+    create(place: Place): Promise<Place> {
         return this.http
-        .post(this.countriesUrl, JSON.stringify(country), {headers: this.headers})
+        .post(this.placesUrl, JSON.stringify(place), {headers: this.headers})
         .toPromise()
-        .then(res => res.json() as Country)
+        .then(res => res.json() as Place)
         .catch(this.handleError);
     }
 
-    update(country: Country): Promise<Country> {
-        const url = `${this.countriesUrl}/${country.id}`;
+    update(place: Place): Promise<Place> {
+        const url = `${this.placesUrl}/${place.id}`;
         return this.http
-        .put(url, JSON.stringify(country), {headers: this.headers})
+        .put(url, JSON.stringify(place), {headers: this.headers})
         .toPromise()
-        .then(() => country)
+        .then(() => place)
         .catch(this.handleError);
     }
 

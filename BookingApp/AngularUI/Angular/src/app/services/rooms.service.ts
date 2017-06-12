@@ -3,8 +3,6 @@ import {Room} from '../models/Room';
 import {Headers, Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
-import {Rooms} from '../mock-objects/rooms-mock';
-
 @Injectable()
 export class RoomsService {
     
@@ -44,20 +42,20 @@ export class RoomsService {
         .catch(this.handleError);
     }
 
-    create(name: string): Promise<Room> {
+    create(room: Room): Promise<Room> {
         return this.http
-        .post(this.roomsUrl, JSON.stringify({name: name}), {headers: this.headers})
+        .post(this.roomsUrl, JSON.stringify(room), {headers: this.headers})
         .toPromise()
         .then(res => res.json() as Room)
         .catch(this.handleError);
     }
 
-    update(hero: Room): Promise<Room> {
-        const url = `${this.roomsUrl}/${hero.id}`;
+    update(room: Room): Promise<Room> {
+        const url = `${this.roomsUrl}/${room.id}`;
         return this.http
-        .put(url, JSON.stringify(hero), {headers: this.headers})
+        .put(url, JSON.stringify(room), {headers: this.headers})
         .toPromise()
-        .then(() => hero)
+        .then(() => room)
         .catch(this.handleError);
     }
 

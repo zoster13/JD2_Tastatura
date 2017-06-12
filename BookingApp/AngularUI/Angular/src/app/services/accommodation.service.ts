@@ -3,8 +3,6 @@ import {Accommodation} from '../models/Accommodation';
 import {Headers, Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
-import {Accommodations} from '../mock-objects/accommodation-mock';
-
 @Injectable()
 export class AccommodationService {
     
@@ -14,7 +12,6 @@ export class AccommodationService {
     constructor(private http: Http) { }
 
     getAccommodations() : Promise<Accommodation[]> {
-        //return Promise.resolve(Accommodations);
         return this.http.get(this.accommodationsUrl)
                     .toPromise()
                     .then(response => response.json() as Accommodation[] )
@@ -22,9 +19,6 @@ export class AccommodationService {
     }
 
     getAccommodation(id: number): Promise<Accommodation> {
-        // return this.getAccommodations()
-        //      .then(accomms => accomms.find(accomm => accomm.id === id));
-        
         const url = `${this.accommodationsUrl}/${id}`;
         return this.http.get(url)
             .toPromise()
@@ -40,20 +34,20 @@ export class AccommodationService {
         .catch(this.handleError);
     }
 
-    create(name: string): Promise<Accommodation> {
+    create(accommodation: Accommodation): Promise<Accommodation> {
         return this.http
-        .post(this.accommodationsUrl, JSON.stringify({name: name}), {headers: this.headers})
+        .post(this.accommodationsUrl, JSON.stringify(accommodation), {headers: this.headers})
         .toPromise()
         .then(res => res.json() as Accommodation)
         .catch(this.handleError);
     }
 
-    update(hero: Accommodation): Promise<Accommodation> {
-        const url = `${this.accommodationsUrl}/${hero.id}`;
+    update(accommodation: Accommodation): Promise<Accommodation> {
+        const url = `${this.accommodationsUrl}/${accommodation.id}`;
         return this.http
-        .put(url, JSON.stringify(hero), {headers: this.headers})
+        .put(url, JSON.stringify(accommodation), {headers: this.headers})
         .toPromise()
-        .then(() => hero)
+        .then(() => accommodation)
         .catch(this.handleError);
     }
 

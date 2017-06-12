@@ -1,53 +1,53 @@
 import {Injectable} from '@angular/core';
-import {Country} from '../models/Country';
+import {Comment} from '../models/Comment';
 import {Headers, Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class CountriesService {
+export class CommentsService {
     
     private headers = new Headers({'Content-Type': 'application/json'});
-    private countriesUrl = 'http://localhost:54042/api/Countries';  // URL to web api
+    private commentsUrl = 'http://localhost:54042/api/Comments';  // URL to web api
 
     constructor(private http: Http) { }
 
-    getCountries() : Promise<Country[]> {
-        return this.http.get(this.countriesUrl)
+    getComments() : Promise<Comment[]> {
+        return this.http.get(this.commentsUrl)
                     .toPromise()
-                    .then(response => response.json() as Country[])
+                    .then(response => response.json() as Comment[])
                     .catch(this.handleError);
     }
 
-    getCountry(id: number): Promise<Country> {
-        const url = `${this.countriesUrl}/${id}`;
+    getComment(id: number): Promise<Comment> {
+        const url = `${this.commentsUrl}/${id}`;
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json() as Country)
+            .then(response => response.json() as Comment)
             .catch(this.handleError);
     }
 
     delete(id: number): Promise<void> {
-        const url = `${this.countriesUrl}/${id}`;
+        const url = `${this.commentsUrl}/${id}`;
         return this.http.delete(url, {headers: this.headers})
         .toPromise()
         .then(() => null)
         .catch(this.handleError);
     }
 
-    create(country: Country): Promise<Country> {
+    create(comment: Comment): Promise<Comment> {
         return this.http
-        .post(this.countriesUrl, JSON.stringify(country), {headers: this.headers})
+        .post(this.commentsUrl, JSON.stringify(comment), {headers: this.headers})
         .toPromise()
-        .then(res => res.json() as Country)
+        .then(res => res.json() as Comment)
         .catch(this.handleError);
     }
 
-    update(country: Country): Promise<Country> {
-        const url = `${this.countriesUrl}/${country.id}`;
+    update(comment: Comment): Promise<Comment> {
+        const url = `${this.commentsUrl}/${comment.id}`;
         return this.http
-        .put(url, JSON.stringify(country), {headers: this.headers})
+        .put(url, JSON.stringify(comment), {headers: this.headers})
         .toPromise()
-        .then(() => country)
+        .then(() => comment)
         .catch(this.handleError);
     }
 
