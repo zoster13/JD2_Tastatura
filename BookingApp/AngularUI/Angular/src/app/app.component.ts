@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import {OnInit} from '@angular/core';
+import {NgForm} from '@angular/forms';
+
 import {CountriesService} from './services/countries.service';
 import {Country} from './models/Country';
+import {LogIn} from './models/Log-in';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +14,19 @@ import {Country} from './models/Country';
 export class AppComponent implements OnInit{
   title = 'Booking App';
   countries : Country[];
+  isLoggedIn: boolean;
 
   constructor(private countriesService:CountriesService) {
 
+  }
+
+  onSubmit(login: LogIn, form: NgForm) {
+    this.isLoggedIn = true;
+    form.reset();
+  }
+
+  logOut() {
+    this.isLoggedIn = false;
   }
 
   getCountries() : void {

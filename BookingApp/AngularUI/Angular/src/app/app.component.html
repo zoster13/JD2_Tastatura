@@ -1,4 +1,8 @@
-<a routerLink="/accommodation">Accommodation</a>
+<div *ngIf="isLoggedIn">
+    <a routerLink="/accommodation">Accommodation</a>
+</div>
 
 <router-outlet></router-outlet>
+
+
     
