@@ -28,7 +28,7 @@ export class AccommodationService {
         const url = `${this.accommodationsUrl}/${id}`;
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data as Accommodation)
+            .then(response => response.json() as Accommodation)
             .catch(this.handleError);
     }
 
@@ -44,7 +44,7 @@ export class AccommodationService {
         return this.http
         .post(this.accommodationsUrl, JSON.stringify({name: name}), {headers: this.headers})
         .toPromise()
-        .then(res => res.json().data as Accommodation)
+        .then(res => res.json() as Accommodation)
         .catch(this.handleError);
     }
 

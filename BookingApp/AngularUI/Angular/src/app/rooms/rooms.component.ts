@@ -15,6 +15,7 @@ import {Room} from '../models/Room';
 export class RoomsComponent {
 
     rooms: Room[];
+    idOfAccommodation : number;
 
     constructor(
       private roomsService: RoomsService,
@@ -23,13 +24,16 @@ export class RoomsComponent {
     ) {}
 
   ngOnInit(): void {
-    this.getRooms();  
+    //this.getRooms();  
+    this.route.params
+    .switchMap((params: Params) => this.roomsService.getRooms(+params['id']))
+    .subscribe(rooms => this.rooms = rooms);
   }
 
-  getRooms() : void {
-    this.roomsService.getRooms().then(rooms => this.rooms = rooms);
-    //debugger
-  }
+  // getRooms() : void {
+  //   this.roomsService.getRooms().then(rooms => this.rooms = rooms);
+  //   //debugger
+  // }
 
   goBack(): void {
     this.location.back();

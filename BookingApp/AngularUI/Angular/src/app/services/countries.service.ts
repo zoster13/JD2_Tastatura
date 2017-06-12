@@ -24,7 +24,7 @@ export class CountriesService {
         const url = `${this.countriesUrl}/${id}`;
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data as Country)
+            .then(response => response.json() as Country)
             .catch(this.handleError);
     }
 

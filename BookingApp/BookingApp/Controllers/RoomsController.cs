@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BookingApp.Models;
+using System.Web.Http.OData;
 
 namespace BookingApp.Controllers
 {
@@ -23,16 +24,20 @@ namespace BookingApp.Controllers
         }
 
         // GET: api/Rooms/5
-        [ResponseType(typeof(Room))]
+        //[ResponseType(typeof(Room))]
+        [EnableQuery]
         public IHttpActionResult GetRoom(int id)
         {
-            Room room = db.Rooms.Find(id);
-            if (room == null)
-            {
-                return NotFound();
-            }
+            //Room room = db.Rooms.Find(id);
+            //if (room == null)
+            //{
+            //    return NotFound();
+            //}
 
-            return Ok(room);
+            //return Ok(room);
+
+            return Ok(db.Rooms.AsQueryable().Where(r => r.Accommodation.Id == id));
+
         }
 
         // PUT: api/Rooms/5

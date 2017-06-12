@@ -16,9 +16,9 @@ export class LoginComponent {
 
     constructor(private location: Location, public router: Router) {}
 
-  onSubmit(login: LogIn, form: NgForm) {
-    this.isLoggedIn = true;
-    form.reset();
-    this.router.navigate(['/mainpage']);
-  }
+    onSubmit(login: LogIn, form: NgForm) {
+      this.isLoggedIn = true;
+      form.reset();
+      this.router.navigate(['/mainpage']);
+    }
 }

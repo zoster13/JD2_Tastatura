@@ -13,8 +13,16 @@ export class RoomsService {
 
     constructor(private http: Http) { }
 
-    getRooms() : Promise<Room[]> {
+    getAllRooms() : Promise<Room[]> {
         return this.http.get(this.roomsUrl)
+                    .toPromise()
+                    .then(response => response.json() as Room[])
+                    .catch(this.handleError);
+    }
+
+    getRooms(id : number) : Promise<Room[]> {
+        const url = `${this.roomsUrl}/${id}`;
+        return this.http.get(url)
                     .toPromise()
                     .then(response => response.json() as Room[])
                     .catch(this.handleError);
