@@ -7,13 +7,13 @@ namespace BookingApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class fillbase : IMigrationMetadata
+    public sealed partial class filldb : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(fillbase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(filldb));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706080015440_fill base"; }
+            get { return "201706121647358_fill db"; }
         }
         
         string IMigrationMetadata.Source

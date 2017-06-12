@@ -112,15 +112,7 @@ namespace BookingApp.Migrations
             country3.Name = "Grcka";
             country3.Code = 789;
 
-            context.Countries.Add(country1);
-            context.Countries.Add(country2);
-            context.Countries.Add(country3);
-
-            context.SaveChanges();
-
-            country1 = context.Countries.Where(c => c.Name == "Srbija").FirstOrDefault();
-            country2 = context.Countries.Where(c => c.Name == "Spanija").FirstOrDefault();
-            country3 = context.Countries.Where(c => c.Name == "Grcka").FirstOrDefault();
+            //*******************************************************
 
             Region region1 = new Region();
             region1.Name = "Vojvodina";
@@ -138,17 +130,7 @@ namespace BookingApp.Migrations
             region4.Name = "Atika";
             region4.Country = country3;
 
-            context.Regions.Add(region1);
-            context.Regions.Add(region2);
-            context.Regions.Add(region3);
-            context.Regions.Add(region4);
-
-            context.SaveChanges();
-
-            region1 = context.Regions.Where(c => c.Name == "Vojvodina").Include("Country").FirstOrDefault();
-            region2 = context.Regions.Where(c => c.Name == "Katalonija").Include("Country").FirstOrDefault();
-            region3 = context.Regions.Where(c => c.Name == "Makedonija").Include("Country").FirstOrDefault();
-            region4 = context.Regions.Where(c => c.Name == "Atika").Include("Country").FirstOrDefault();
+            //********************************************************
 
             Place place1 = new Place();
             place1.Name = "Novi Sad";
@@ -170,49 +152,20 @@ namespace BookingApp.Migrations
             place5.Name = "Atina";
             place5.Region = region4;
 
-            context.Places.AddOrUpdate(place1);
-            context.Places.AddOrUpdate(place2);
-            context.Places.AddOrUpdate(place3);
-            context.Places.AddOrUpdate(place4);
-            context.Places.AddOrUpdate(place5);
-
-            context.SaveChanges();
+            //*********************************************************************************
 
             AccommodationType accommType1 = new AccommodationType() { Name = "Hotel" };
             AccommodationType accommType2 = new AccommodationType() { Name = "Motel" };
             AccommodationType accommType3 = new AccommodationType() { Name = "Vila" };
             AccommodationType accommType4 = new AccommodationType() { Name = "Kamp" };
-            context.AccommodationTypes.AddOrUpdate(accommType1);
-            context.AccommodationTypes.AddOrUpdate(accommType2);
-            context.AccommodationTypes.AddOrUpdate(accommType3);
-            context.AccommodationTypes.AddOrUpdate(accommType4);
 
-            place1 = context.Places.Where(c => c.Name == "Novi Sad").FirstOrDefault();
-            place1.Region = region1;
-            place2 = context.Places.Where(c => c.Name == "Backa Palanka").FirstOrDefault();
-            place2.Region = region1;
-            place3 = context.Places.Where(c => c.Name == "Barselona").FirstOrDefault();
-            place3.Region = region2;
-            place4 = context.Places.Where(c => c.Name == "Solun").FirstOrDefault();
-            place4.Region = region3;
-            place5 = context.Places.Where(c => c.Name == "Atina").FirstOrDefault();
-            place5.Region = region4;
+            //****************************************************************************************
 
-            Accommodation accomm1 = new Accommodation("Hotel Park", "Hotel sa 5 zvezdica.", "Novosadskog sajma 35", 4.4, 0.0, 0.0, "nepoznato", false, place1, accommType1, new AppUser());
-            Accommodation accomm2 = new Accommodation("Fontana", "Opis...", "Jugoslovenske Armije 11", 4.3, 0.0, 0.0, "nepoznato", false, place2, accommType1, new AppUser());
-            Accommodation accomm3 = new Accommodation("Vila Elena", "Opis...", "18, Heracleous St", 4.7, 0.0, 0.0, "nepoznato", false, place5, accommType3, new AppUser());
-            context.Accommodations.AddOrUpdate(accomm1);
-            context.Accommodations.AddOrUpdate(accomm2);
-            context.Accommodations.AddOrUpdate(accomm3);
+            Accommodation accomm1 = new Accommodation(1, "Hotel Park", "Hotel sa 5 zvezdica.", "Novosadskog sajma 35", 4.4, 0.0, 0.0, "nepoznato", false, place1, accommType1, new AppUser());
+            Accommodation accomm2 = new Accommodation(2, "Fontana", "Opis...", "Jugoslovenske Armije 11", 4.3, 0.0, 0.0, "nepoznato", false, place2, accommType1, new AppUser());
+            Accommodation accomm3 = new Accommodation(3, "Vila Elena", "Opis...", "18, Heracleous St", 4.7, 0.0, 0.0, "nepoznato", false, place5, accommType3, new AppUser());
 
-            context.SaveChanges();
-
-            accomm1 = context.Accommodations.Where(c => c.Name == "Hotel Park").FirstOrDefault();
-            accomm1.Place = place1;
-            accomm2 = context.Accommodations.Where(c => c.Name == "Fontana").FirstOrDefault();
-            accomm1.Place = place2;
-            accomm3 = context.Accommodations.Where(c => c.Name == "Vila Elena").FirstOrDefault();
-            accomm1.Place = place5;
+            //******************************************************************************************************************
 
             Room room1 = new Room(1, 2, "opis...", 60, accomm1);
             Room room2 = new Room(2, 3, "opis...", 80, accomm1);

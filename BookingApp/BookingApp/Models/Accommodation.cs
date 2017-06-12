@@ -39,8 +39,9 @@ namespace BookingApp.Models
             this.Owner = new AppUser();
         }
 
-        public Accommodation(string name, string description, string address, double averageGrade, double longitude, double latitude, string imageURL, bool approved, Place place, AccommodationType accommodationType, AppUser owner)
+        public Accommodation(int id, string name, string description, string address, double averageGrade, double longitude, double latitude, string imageURL, bool approved, Place place, AccommodationType accommodationType, AppUser owner)
         {
+            this.Id = id;
             this.Name = name;
             this.Description = description;
             this.Address = address;

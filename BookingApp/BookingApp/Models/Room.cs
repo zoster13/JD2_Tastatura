@@ -31,7 +31,6 @@ namespace BookingApp.Models
             this.Description = description;
             this.PricePerNight = pricePerNight;
             this.Accommodation = accommodation;
-            this.Accommodation = new Accommodation();
             this.RoomReservationss = new List<RoomReservations>();
         }
     }

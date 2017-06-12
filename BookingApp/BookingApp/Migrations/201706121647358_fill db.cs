@@ -3,7 +3,7 @@ namespace BookingApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class fillbase : DbMigration
+    public partial class filldb : DbMigration
     {
         public override void Up()
         {
