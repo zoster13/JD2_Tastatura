@@ -17,15 +17,18 @@ export class RoomsComponent {
     rooms: Room[];
 
     constructor(
-  private roomsService: RoomsService,
-  private route: ActivatedRoute,
-  private location: Location
+      private roomsService: RoomsService,
+      private route: ActivatedRoute,
+      private location: Location
     ) {}
 
   ngOnInit(): void {
-    this.route.params
-    .switchMap((params: Params) => this.roomsService.getRooms(+params['id']))
-    .subscribe(rooms => this.rooms = rooms);
+    this.getRooms();  
+  }
+
+  getRooms() : void {
+    this.roomsService.getRooms().then(rooms => this.rooms = rooms);
+    //debugger
   }
 
   goBack(): void {

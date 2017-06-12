@@ -3,7 +3,9 @@
       <li 
         *ngFor="let room of rooms">
         <div>
-            <label> Id: </label> {{room.id}}.
+            <label> Id: </label> {{room.Id}}
+            <label> Bed Count: </label> {{room.Count}}
+            <label> Price per night: </label> {{room.Price}}
         </div>
     </li>
 </ul>

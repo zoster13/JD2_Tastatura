@@ -13,7 +13,7 @@ using System.Web.Http.OData;
 
 namespace BookingApp.Controllers
 {
-    [Authorize(Roles = "Manager")]
+    //[Authorize(Roles = "Manager")]
     public class CountriesController : ApiController
     {
         private BAContext db = new BAContext();
