@@ -10,15 +10,18 @@ import { AccommodationDetailsComponent } from './accommodation-details/accommoda
 import { RoomsComponent } from './rooms/rooms.component';
 import { LoginComponent } from './login/login.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
+import {CommentsComponent} from './comments/comments.component';
 
 import {CountriesService} from './services/countries.service';
 import {AccommodationService} from './services/accommodation.service';
 import {RoomsService} from './services/rooms.service';
+import {CommentsService} from './services/comments.service';
 
 const ChildRoutes = [
    {path: "accommodation", component: AccommodationComponent},
    {path: "accommdetails/:id", component: AccommodationDetailsComponent},
-   {path: "rooms/:id", component: RoomsComponent}
+   {path: "rooms/:id", component: RoomsComponent},
+   {path: "comments/:id", component: CommentsComponent}
   ]
 
 const Routes = [
@@ -35,6 +38,7 @@ const Routes = [
     AccommodationDetailsComponent,
     RoomsComponent,
     LoginComponent,
+    CommentsComponent,
     MainpageComponent
   ],
   imports: [
@@ -45,7 +49,8 @@ const Routes = [
   ],
   providers: [CountriesService, 
   AccommodationService,
-  RoomsService],
+  RoomsService,
+  CommentsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

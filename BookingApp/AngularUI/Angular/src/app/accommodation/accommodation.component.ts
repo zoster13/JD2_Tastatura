@@ -13,7 +13,7 @@ export class AccommodationComponent implements OnInit {
   accommodations: Accommodation[];
 
   constructor(private accommodationService:AccommodationService) {
-
+    
   }
 
   getAccommodation() : void {
