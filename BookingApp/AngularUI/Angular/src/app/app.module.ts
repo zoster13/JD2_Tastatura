@@ -16,6 +16,7 @@ import {CountriesService} from './services/countries.service';
 import {AccommodationService} from './services/accommodation.service';
 import {RoomsService} from './services/rooms.service';
 import {CommentsService} from './services/comments.service';
+import {AuthenticationService} from './services/authentication.service';
 
 const ChildRoutes = [
    {path: "accommodation", component: AccommodationComponent},
@@ -50,7 +51,8 @@ const Routes = [
   providers: [CountriesService, 
   AccommodationService,
   RoomsService,
-  CommentsService],
+  CommentsService,
+  AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
