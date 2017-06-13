@@ -28,13 +28,13 @@ Add Accommodation
     <div>
         <label for="Latitude">Choose place: </label>
         <select>
-            <option *ngFor="let place of places" ngModel>{{place.Name}}</option>
+            <option *ngFor="let p of places">{{p.Name}}</option>
         </select>
     </div>
     <div>
         <label for="Latitude">Choose accommodation type: </label>
         <select>
-            <option *ngFor="let accommtype of accommTypes" ngModel>{{accommtype.Name}}</option>
+            <option *ngFor="let accommtype of accommTypes">{{accommtype.Name}}</option>
         </select>
     </div>
     <!--div>

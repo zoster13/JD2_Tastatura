@@ -50,7 +50,7 @@ export class AddAccommodationComponent implements OnInit {
   }
 
   onSubmitAccomm(accomm: Accommodation, form: NgForm) {
-
+      this.accomService.create(accomm);
     }
 
     onSubmitRoom(room: Room, form: NgForm) {
