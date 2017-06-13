@@ -1,5 +1,12 @@
 <a routerLink="/mainpage/accommodation">App Name</a>
 <a routerLink="/mainpage/accommodation">Accommodation</a>
-<button (click)="logOut()">Log Out</button>
+<div *ngIf="isLoggedIn">
+    <a routerLink="/mainpage/addaccomm">Add Accommodation</a>
+    <p>Ime Prezime</p>
+    <button (click)="logOut()">Log Out</button>
+</div>
+<div *ngIf="!isLoggedIn">
+    <button (click)="logIn()">Log In</button>
+</div>
 
 <router-outlet></router-outlet>

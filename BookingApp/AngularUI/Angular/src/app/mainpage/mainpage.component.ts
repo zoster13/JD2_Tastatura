@@ -16,6 +16,12 @@ export class MainpageComponent {
     constructor(private location: Location, public router: Router) {}
 
     logOut(){
-        this.router.navigate(["/login"]);
+        this.isLoggedIn = false;
+        this.router.navigate(["/mainpage"]);
+    }
+
+    logIn(){
+        this.isLoggedIn = true;
+        this.router.navigate(["mainpage/login"]);
     }
 }

@@ -4,7 +4,7 @@ import {Headers, Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class RegionsService {
+export class PlacesService {
     
     private headers = new Headers({'Content-Type': 'application/json'});
     private placesUrl = 'http://localhost:54042/api/Places';  // URL to web api

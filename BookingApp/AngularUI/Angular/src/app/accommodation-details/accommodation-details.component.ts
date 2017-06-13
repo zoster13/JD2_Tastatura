@@ -12,7 +12,7 @@ import {Accommodation} from '../models/Accommodation';
   styleUrls: ['./accommodation-details.component.css'],
 })
 
-export class AccommodationDetailsComponent {
+export class AccommodationDetailsComponent implements OnInit {
 
     accommodation: Accommodation;
 
