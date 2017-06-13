@@ -11,25 +11,29 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { LoginComponent } from './login/login.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import {CommentsComponent} from './comments/comments.component';
+import {AddAccommodationComponent} from './add-accommodation/add-accommodation.component';
 
 import {CountriesService} from './services/countries.service';
 import {AccommodationService} from './services/accommodation.service';
 import {RoomsService} from './services/rooms.service';
 import {CommentsService} from './services/comments.service';
+import {PlacesService} from './services/places.service';
+import {AccommodationTypesService} from './services/accommodation-types.service';
 import {AuthenticationService} from './services/authentication.service';
 
 const ChildRoutes = [
    {path: "accommodation", component: AccommodationComponent},
    {path: "accommdetails/:id", component: AccommodationDetailsComponent},
    {path: "rooms/:id", component: RoomsComponent},
-   {path: "comments/:id", component: CommentsComponent}
+   {path: "comments/:id", component: CommentsComponent},
+   {path: "login", component: LoginComponent},
+   {path: "addaccomm", component: AddAccommodationComponent}
   ]
 
 const Routes = [
-  //{path: "mainpage/accommodation", component: AccommodationComponent},
   {path: "login", component: LoginComponent},
   {path: "mainpage", component: MainpageComponent, children: ChildRoutes},
-  {path: '', redirectTo: "/login", pathMatch: 'full'}
+  {path: '', redirectTo: "/mainpage", pathMatch: 'full'}
 ]
 
 @NgModule({
@@ -40,7 +44,8 @@ const Routes = [
     RoomsComponent,
     LoginComponent,
     CommentsComponent,
-    MainpageComponent
+    MainpageComponent, 
+    AddAccommodationComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +57,8 @@ const Routes = [
   AccommodationService,
   RoomsService,
   CommentsService,
+  PlacesService,
+  AccommodationTypesService,
   AuthenticationService],
   bootstrap: [AppComponent]
 })

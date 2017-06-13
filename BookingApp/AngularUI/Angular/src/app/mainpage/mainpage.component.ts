@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Location }                 from '@angular/common';
 
 import {LogIn} from '../models/Log-in';
+import {AuthenticationService} from '../services/authentication.service';
 
 @Component({
   selector: 'main-page',
@@ -11,17 +12,19 @@ import {LogIn} from '../models/Log-in';
 })
 
 export class MainpageComponent {
-    isLoggedIn: boolean;
 
-    constructor(private location: Location, public router: Router) {}
+    constructor(private location: Location, public router: Router,
+    private authenticationService: AuthenticationService) {}
 
     logOut(){
-        this.isLoggedIn = false;
-        this.router.navigate(["/mainpage"]);
+        this.authenticationService.logout();
     }
 
     logIn(){
-        this.isLoggedIn = true;
         this.router.navigate(["mainpage/login"]);
+    }
+
+    isLoggedIn(): boolean {
+        return this.authenticationService.isLoggedIn();
     }
 }

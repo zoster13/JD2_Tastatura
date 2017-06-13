@@ -1,11 +1,11 @@
-<a routerLink="/mainpage/accommodation">App Name</a>
-<a routerLink="/mainpage/accommodation">Accommodation</a>
-<div *ngIf="isLoggedIn">
-    <a routerLink="/mainpage/addaccomm">Add Accommodation</a>
-    <p>Ime Prezime</p>
-    <button (click)="logOut()">Log Out</button>
+<div *ngIf="isLoggedIn()">
+    <a routerLink="/mainpage/accommodation">App Name</a>
+    <a routerLink="/mainpage/accommodation">Accommodation</a>
+        <a routerLink="/mainpage/addaccomm">Add Accommodation</a>
+        <p>Ime Prezime</p>
+        <button (click)="logOut()">Log Out</button>
 </div>
-<div *ngIf="!isLoggedIn">
+<div *ngIf="!isLoggedIn()">
     <button (click)="logIn()">Log In</button>
 </div>
 

@@ -60,4 +60,15 @@ export class AuthenticationService {
         this.token = null;
         localStorage.removeItem('currentUser');
     }
+
+    isLoggedIn(): boolean{
+        if (localStorage.getItem('currentUser') === null){
+            return false;
+        }
+        else{
+            return true;
+        }
+
+
+    }
 }
