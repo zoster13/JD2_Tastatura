@@ -74,6 +74,12 @@ namespace BookingApp.Controllers
         [ResponseType(typeof(Accommodation))]
         public IHttpActionResult PostAccommodation(Accommodation accommodation)
         {
+            Place place = db.Places.FirstOrDefault(p => p.Id == accommodation.Place.Id);
+            AccommodationType accommType = db.AccommodationTypes.FirstOrDefault(at => at.Id == accommodation.AccommodationType.Id);
+
+            accommodation.Place = place;
+            accommodation.AccommodationType = accommType;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
