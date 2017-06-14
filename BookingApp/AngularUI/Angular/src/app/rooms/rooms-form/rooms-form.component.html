@@ -1,0 +1,31 @@
+<div>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value, f)">
+    <div>
+      <label for="Name">Room number: </label>
+      <input type="text" name="RoomNumber" ngModel>
+    </div>
+    <div>
+      <label for="Description">BedCount: </label>
+      <input type="text" name="BedCount" ngModel>
+    </div>
+    <div>
+      <label for="Address">Address: </label>
+      <input type="text" name="Address" ngModel>
+    </div>
+    <div>
+      <label for="Longitude">Description: </label>
+      <input type="text" name="Description" ngModel>
+    </div>
+    <div>
+      <label for="Latitude">Price per night: </label>
+      <input type="text" name="PricePerNight" ngModel>
+    </div>
+    <div>
+        <label for="Owner">Choose accommodation: </label>
+        <select name="Accommodation" ngModel>
+            <option *ngFor="let accomm of accommodation" value="{{accomm.Id}}">{{accomm.Name}}</option>
+        </select>
+    </div>
+    <input type="submit" value="Add Room">
+  </form>
+</div>

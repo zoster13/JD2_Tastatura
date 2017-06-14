@@ -1,0 +1,12 @@
+<ul>
+      <li 
+        *ngFor="let room of rooms">
+        <div>
+            <label> Room number: </label> {{room.RoomNumber}}.
+            <label> Bed count: </label> {{room.BedCount}}.
+            <label> Description: </label> {{room.Description}}.
+            <label> Price per night: </label> {{room.PricePerNight}}.
+            <label> Accommodation: </label> {{room.Accommodation.Name}}.
+        </div>
+    </li>
+</ul>

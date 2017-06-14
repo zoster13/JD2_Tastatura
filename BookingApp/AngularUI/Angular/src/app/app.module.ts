@@ -7,12 +7,15 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AccommodationMainComponent } from './accommodation/accommodation-main/accommodation-main.component';
 import { AccommodationDetailsComponent } from './accommodation/accommodation-details/accommodation-details.component';
-import { RoomsFormComponent } from './rooms-form/rooms-form.component';
+import { RoomsFormComponent } from './rooms/rooms-form/rooms-form.component';
+import { RoomsMainComponent } from './rooms/rooms-main/rooms-main.component';
+import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
 import { LoginComponent } from './login/login.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import {CommentsComponent} from './comments/comments.component';
 import {AccommodationFormComponent} from './accommodation/accommodation-form/accommodation-form.component';
 import {AccommodationListComponent} from './accommodation/accommodation-list/accommodation-list.component';
+import {RegionsMainComponent} from './regions/regions-main/regions-main.component';
 
 import {CountriesService} from './services/countries.service';
 import {AccommodationService} from './services/accommodation.service';
@@ -30,8 +33,20 @@ const ChildRoutesAccomm = [
    {path: "accommdetails/:id", component: AccommodationDetailsComponent}
   ]
 
+const ChildRoutesRooms = [
+   {path: "roomform", component: RoomsFormComponent},
+   {path: "roomlist", component: RoomsListComponent}
+  ]
+
+const ChildRoutesRegions = [
+   {path: "regionform", component: RoomsFormComponent},
+   {path: "regionlist", component: RoomsListComponent}
+  ]
+
 const ChildRoutesMain = [
    {path: "accommodation", component: AccommodationMainComponent, children: ChildRoutesAccomm},
+   {path: "rooms", component: RoomsMainComponent, children: ChildRoutesRooms},
+   {path: "regions", component: RegionsMainComponent, children: ChildRoutesRegions},
    {path: "login", component: LoginComponent}
   ]
 
@@ -51,7 +66,10 @@ const Routes = [
     MainpageComponent, 
     AccommodationFormComponent,
     AccommodationListComponent,
-    RoomsFormComponent
+    RoomsFormComponent,
+    RoomsMainComponent,
+    RoomsListComponent,
+    RegionsMainComponent
   ],
   imports: [
     BrowserModule,
