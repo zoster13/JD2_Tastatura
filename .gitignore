@@ -6,3 +6,6 @@ BookingApp/.vs/config/applicationhost.config
 BookingApp/.vs/config/applicationhost.config
 BookingApp/BookingApp/Web.config
 BookingApp/.vs/BookingApp/v14/.suo
+BookingApp/BookingApp/Web.config
+*.config
+BookingApp/AngularUI/Angular/src/app/app.module.ts
