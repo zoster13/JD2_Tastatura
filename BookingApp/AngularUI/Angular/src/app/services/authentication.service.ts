@@ -15,32 +15,31 @@ export class AuthenticationService {
     constructor(private http: Http, public router:Router) {
         // set token if saved in local storage
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        this.token = currentUser && currentUser.token;
+        if(currentUser != null)
+        {
+            this.token = currentUser.token;
+        }
     }
 
     login(username: string, password: string): Observable<boolean> {
         
         this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
-
         var options = new RequestOptions();
         options.headers = this.headers;
 
        return this.http.post('http://localhost:54042/oauth/token', `username=${username}&password=${password}&grant_type=password`, options)
             .map((response: Response) => {
                 
-                debugger
-                if (response.status === 400 || response.statusText==='Bad Request') {
-                    return false;
-                }
-                else
-                {
                     let token = response.json().access_token;
                     if (token) {
                         // set token property
                         this.token = token;
 
+                        //set user role
+                        var role = response.headers.get('role');
+
                         // store username and jwt token in local storage to keep user logged in between page refreshes
-                        localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
+                        localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token, role : role }));
 
                         // return true to indicate successful login
                         return true;
@@ -48,8 +47,7 @@ export class AuthenticationService {
                         // return false to indicate failed login
                         return false;
                     }
-                }
-            })
+                })
             .catch((error) => {
                 return Observable.of(false);
             });
