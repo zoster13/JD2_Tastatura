@@ -1,12 +1,15 @@
-<ul>
-      <li 
-        *ngFor="let accommodation of accommodations">
-        <div>
-            <label> Id: </label> {{accommodation.Id}}.
-            <label> Name: </label> {{accommodation.Name}}
-            <a  [routerLink]="['/mainpage/accommodation/accommdetails', accommodation.Id]">Details</a>
-            <a  [routerLink]="['/mainpage/accommodation/rooms', accommodation.Id]">Rooms</a>
-            <a  [routerLink]="['/mainpage/accommodation/comments', accommodation.Id]">Comments</a>
-        </div>
-    </li>
+<ul class="list">
+    <div >
+        <li *ngFor="let accommodation of accommodations;">
+            <div class="list">
+                <label> Id: </label> {{accommodation.Id}}.
+                <label> Name: </label> {{accommodation.Name}}
+                <a  [routerLink]="['/mainpage/accommodation/accommdetails', accommodation.Id]">Details</a>
+                <a  [routerLink]="['/mainpage/accommodation/rooms', accommodation.Id]">Rooms</a>
+                <a  [routerLink]="['/mainpage/accommodation/comments', accommodation.Id]">Comments</a>
+            </div>
+            <div class="listseparator">
+            </div>
+        </li>
+    </div>
 </ul>

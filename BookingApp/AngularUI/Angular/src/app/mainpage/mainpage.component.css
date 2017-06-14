@@ -1,0 +1,127 @@
+ul.top {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px; 
+}
+
+ul.bottom {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    bottom: 0%; 
+}
+
+li.left {
+    float: left;
+}
+
+li.right {
+    float: right;
+}
+
+li.left {
+    float: bottom;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
+li a#appname {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 60px 0px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+li a#ime {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 90px;
+    text-decoration: none;
+}
+
+li a#rightmost {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px 0px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+li a.active:hover {
+    background-color: #111;
+    color: white;
+    text-decoration:none;
+    
+}
+
+li a.notactive:hover {
+    color: white;
+    text-decoration:none;
+}
+
+div.main {
+    position: absolute;
+    top: 80px;
+    right: 310px;
+    width: 900px;
+    height: 88%;
+    border-left: 2px solid #333;
+    border-right: 2px solid #333;
+    background-image: linear-gradient(rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.5) 51%);
+}
+
+div.background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 1150px;
+    background-image: url('../../assets/images/background1.jpg');
+    background-size: cover;
+}
+
+div.menuborder {
+    position: absolute;
+    top: 20px;
+    left: 0px;
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    background-size: cover;
+}
+
+div.bottomborder {
+    position: absolute;
+    bottom: 0%;
+    left: 0px;
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    background-size: cover;
+}

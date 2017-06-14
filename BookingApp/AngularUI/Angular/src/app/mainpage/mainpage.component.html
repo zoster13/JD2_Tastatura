@@ -1,18 +1,38 @@
-<div *ngIf="isLoggedIn()">
-    <a routerLink="/mainpage/accommodation">App Name</a>
-    <a routerLink="/mainpage/accommodation">Accommodation</a>
-    <a routerLink="/mainpage/rooms">Rooms</a>
-    <a routerLink="/mainpage/country">Countries</a>   
-    <a routerLink="/mainpage/regions">Regions</a>
-    <a routerLink="/mainpage/places">Places</a>
-    <a routerLink="/mainpage/accommtypes">Accommodation Types</a>
-    <a routerLink="/mainpage/comments">Comments</a>
-    <p>Ime Prezime</p>
-    <button (click)="logOut()">Log Out</button>
-</div>
-<div *ngIf="!isLoggedIn()">
-    <button (click)="logIn()">Log In</button>
-</div>
+<div class="background">
++    <div class="main">
++        <router-outlet></router-outlet>
++    </div>
++    <div class="menuborder">
++        <ul class="top">
++            <li class="left"><a id="appname" class="notactive">booking company...</a></li>
++            <li class="left"><a class="active" routerLink="/mainpage/accommodation">Accommodation</a></li>
++            <div *ngIf="isLoggedIn()">
++                <li class="left"><a class="active" routerLink="/mainpage/rooms">Rooms</a></li>
++                <li class="left"><a class="active" routerLink="/mainpage/country">Countries</a></li>   
++                <li class="left"><a class="active" routerLink="/mainpage/regions">Regions</a></li>
++                <li class="left"><a class="active" routerLink="/mainpage/places">Places</a></li>
++                <li class="left"><a class="active" routerLink="/mainpage/accommtypes">Accommodation Types</a></li>
++                <li class="left"><a class="active" routerLink="/mainpage/comments">Comments</a></li>
++            </div>
++            <li class="right"><a id="rightmost" class="notactive"></a></li>
++            <div *ngIf="!isLoggedIn()">
++                <li class="right"><a class="active" routerLink="/mainpage/login">Log In</a></li>
++            </div>
++            <div *ngIf="isLoggedIn()">
++                <li class="right"><a class="active" routerLink="/mainpage" (click)="logOut()">Log Out</a></li>
++                <li class="right"><a id="ime" class="notactive">Ime Prezime</a></li>
++            </div>
++            
++        </ul>
++    </div>
++    <div class="bottomborder">
++    </div>
++    <div>
++        <ul class="bottom">
++            <li class="right"><a class="notactive">Copy Right</a></li>
++        </ul>
++    </div>
++</div>
 
   <div style="width:50%; margin: 0 auto">
     <map [mapInfo]="mapInfo"></map>
