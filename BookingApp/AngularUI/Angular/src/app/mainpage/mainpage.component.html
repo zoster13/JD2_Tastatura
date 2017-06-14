@@ -1,9 +1,14 @@
 <div *ngIf="isLoggedIn()">
     <a routerLink="/mainpage/accommodation">App Name</a>
-    <a routerLink="/mainpage/accommodation">Accommodation</a>
-        <a routerLink="/mainpage/addaccomm">Add Accommodation</a>
-        <p>Ime Prezime</p>
-        <button (click)="logOut()">Log Out</button>
+    <a routerLink="/mainpage/accommodation/accommlist">Accommodation</a>
+    <a routerLink="/mainpage/rooms">Rooms</a>
+    <a routerLink="/mainpage/places">Places</a>
+    <a routerLink="/mainpage/countries">Countries</a>
+    <a routerLink="/mainpage/regions">Regions</a>
+    <a routerLink="/mainpage/accommtypes">Accommodation Types</a>
+    <a routerLink="/mainpage/comments">Comments</a>
+    <p>Ime Prezime</p>
+    <button (click)="logOut()">Log Out</button>
 </div>
 <div *ngIf="!isLoggedIn()">
     <button (click)="logIn()">Log In</button>

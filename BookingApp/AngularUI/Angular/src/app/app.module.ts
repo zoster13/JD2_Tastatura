@@ -7,11 +7,12 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AccommodationComponent } from './accommodation/accommodation.component';
 import { AccommodationDetailsComponent } from './accommodation-details/accommodation-details.component';
-import { RoomsComponent } from './rooms/rooms.component';
+import { RoomsComponent } from './rooms-form/rooms-form.component';
 import { LoginComponent } from './login/login.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import {CommentsComponent} from './comments/comments.component';
-import {AddAccommodationComponent} from './add-accommodation/add-accommodation.component';
+import {AccommodationFormComponent} from './accommodation-form/accommodation-form.component';
+import {AccommodationListComponent} from './accommodation-list/accommodation-list.component';
 
 import {CountriesService} from './services/countries.service';
 import {AccommodationService} from './services/accommodation.service';
@@ -21,18 +22,26 @@ import {PlacesService} from './services/places.service';
 import {AccommodationTypesService} from './services/accommodation-types.service';
 import {AuthenticationService} from './services/authentication.service';
 
-const ChildRoutes = [
-   {path: "accommodation", component: AccommodationComponent},
+const ChildRoutesAccomm = [
+   {path: "accommform", component: AccommodationComponent},
+   {path: "accommlist", component: AccommodationListComponent}
+  ]
+
+const ChildRoutesMain = [
+   {path: "accommodation", component: AccommodationComponent, children: ChildRoutesAccomm},
    {path: "accommdetails/:id", component: AccommodationDetailsComponent},
    {path: "rooms/:id", component: RoomsComponent},
    {path: "comments/:id", component: CommentsComponent},
    {path: "login", component: LoginComponent},
-   {path: "addaccomm", component: AddAccommodationComponent}
+   {path: "addaccomm", component: AccommodationFormComponent},
+   {path: "rooms", component: RoomsComponent}
   ]
+
+
 
 const Routes = [
   {path: "login", component: LoginComponent},
-  {path: "mainpage", component: MainpageComponent, children: ChildRoutes},
+  {path: "mainpage", component: MainpageComponent, children: ChildRoutesMain},
   {path: '', redirectTo: "/mainpage", pathMatch: 'full'}
 ]
 
@@ -45,7 +54,8 @@ const Routes = [
     LoginComponent,
     CommentsComponent,
     MainpageComponent, 
-    AddAccommodationComponent
+    AccommodationFormComponent,
+    AccommodationListComponent
   ],
   imports: [
     BrowserModule,

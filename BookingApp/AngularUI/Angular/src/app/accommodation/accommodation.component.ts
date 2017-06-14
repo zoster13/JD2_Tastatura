@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import {AccommodationService} from '../services/accommodation.service';
 import {Accommodation} from '../models/Accommodation';
 
@@ -8,22 +10,6 @@ import {Accommodation} from '../models/Accommodation';
   styleUrls: ['./accommodation.component.css'],
 })
 
-export class AccommodationComponent implements OnInit {
-
-  accommodations: Accommodation[];
-
-  constructor(private accommodationService:AccommodationService) {
-    
-  }
-
-  getAccommodation() : void {
-    this.accommodationService.getAccommodations()
-      .then(accommodations => this.accommodations = accommodations);
-      debugger
-  }
-
-  ngOnInit() : void {
-    this.getAccommodation();
-  }
+export class AccommodationComponent {
 
 }

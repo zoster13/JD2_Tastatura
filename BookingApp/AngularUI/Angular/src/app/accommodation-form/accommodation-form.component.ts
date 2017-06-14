@@ -12,17 +12,16 @@ import {AccommodationService} from '../services/accommodation.service';
 import {RoomsService} from '../services/rooms.service';
 
 @Component({
-  selector: 'add-accomm',
-  templateUrl: './add-accommodation.component.html',
-  styleUrls: ['./add-accommodation.component.css'],
+  selector: 'accomm-form',
+  templateUrl: './accommodation-form.component.html',
+  styleUrls: ['./accommodation-form.component.css'],
 })
 
-export class AddAccommodationComponent implements OnInit {
+export class AccommodationFormComponent implements OnInit {
 
   places: Place[];
   accommTypes: AccommodationType [];
   users: AppUser [];
-  rooms: Room [];
   accommodation: Accommodation;
   place: number;
 
@@ -32,7 +31,6 @@ export class AddAccommodationComponent implements OnInit {
   private roomsService: RoomsService
   ) 
   {
-    this.rooms = [];
     this.accommodation = new Accommodation();
     this.accommodation.rooms = [];
   }
@@ -62,17 +60,8 @@ export class AddAccommodationComponent implements OnInit {
       this.accommodation.place.id = accomm.Place;
       this.accommodation.accommodationType = new AccommodationType();
       this.accommodation.accommodationType.id = accomm.AccommodationType;
-      this.accommodation.rooms = this.rooms;
 
-      debugger
       this.accomService.create(this.accommodation);
-      
-    }
-
-    onSubmitRoom(room: Room, form: NgForm) {
-      this.rooms.push(room);
-      this.accommodation.rooms.push(room);
-      debugger
-      form.reset();
+      form.resetForm();
     }
 }

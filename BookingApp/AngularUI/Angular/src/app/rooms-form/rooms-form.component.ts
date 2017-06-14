@@ -7,8 +7,8 @@ import {Room} from '../models/Room';
 
 @Component({
   selector: 'rooms',
-  templateUrl: './rooms.component.html',
-  styleUrls: ['./rooms.component.css'],
+  templateUrl: './rooms-form.component.html',
+  styleUrls: ['./rooms-form.component.css'],
 })
 
 export class RoomsComponent {
