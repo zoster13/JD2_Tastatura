@@ -1,12 +1,13 @@
+Lista
 <ul>
       <li 
         *ngFor="let accommodation of accommodations">
         <div>
             <label> Id: </label> {{accommodation.Id}}.
             <label> Name: </label> {{accommodation.Name}}
-            <a  [routerLink]="['/mainpage/accommdetails', accommodation.Id]">Details</a>
-            <a  [routerLink]="['/mainpage/rooms', accommodation.Id]">Rooms</a>
-            <a  [routerLink]="['/mainpage/comments', accommodation.Id]">Comments</a>
+            <a  [routerLink]="['/mainpage/accommodation/accommdetails', accommodation.Id]">Details</a>
+            <a  [routerLink]="['/mainpage/accommodation/rooms', accommodation.Id]">Rooms</a>
+            <a  [routerLink]="['/mainpage/accommodation/comments', accommodation.Id]">Comments</a>
         </div>
     </li>
 </ul>

@@ -24,18 +24,16 @@ import {AuthenticationService} from './services/authentication.service';
 import {AppUsersService} from './services/appuser.service';
 
 const ChildRoutesAccomm = [
-   {path: "accommform", component: AccommodationComponent},
-   {path: "accommlist", component: AccommodationListComponent}
+   {path: "accommform", component: AccommodationFormComponent},
+   {path: "accommlist", component: AccommodationListComponent},
+   {path: "rooms/:id", component: RoomsComponent},
+   {path: "comments/:id", component: CommentsComponent},
+   {path: "accommdetails/:id", component: AccommodationDetailsComponent}
   ]
 
 const ChildRoutesMain = [
    {path: "accommodation", component: AccommodationComponent, children: ChildRoutesAccomm},
-   {path: "accommdetails/:id", component: AccommodationDetailsComponent},
-   {path: "rooms/:id", component: RoomsComponent},
-   {path: "comments/:id", component: CommentsComponent},
-   {path: "login", component: LoginComponent},
-   {path: "addaccomm", component: AccommodationFormComponent},
-   {path: "rooms", component: RoomsComponent}
+   {path: "login", component: LoginComponent}
   ]
 
 const Routes = [

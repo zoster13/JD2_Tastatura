@@ -12,4 +12,7 @@ import {Accommodation} from '../models/Accommodation';
 
 export class AccommodationComponent {
 
+  constructor(private router: Router) {
+    
+  }
 }

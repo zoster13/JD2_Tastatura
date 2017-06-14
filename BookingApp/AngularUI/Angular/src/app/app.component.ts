@@ -37,7 +37,7 @@ export class AppComponent implements OnInit{
   }
 
   getAppUsers() : void {
-    this.appusersService.getAppUsers().then(appusers => {this.appusers = appusers; debugger});
+    this.appusersService.getAppUsers().then(appusers => this.appusers = appusers);
   }
 
   ngOnInit() : void {

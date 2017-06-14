@@ -18,7 +18,6 @@ export class CountryComponent implements OnInit {
 
   getCountries() : void {
     this.countriesService.getCountries().then(countries => this.countries = countries);
-    debugger
   }
 
   ngOnInit() : void {

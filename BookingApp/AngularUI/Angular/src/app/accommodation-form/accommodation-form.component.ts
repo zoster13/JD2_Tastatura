@@ -10,6 +10,7 @@ import {PlacesService} from '../services/places.service';
 import {AccommodationTypesService} from '../services/accommodation-types.service';
 import {AccommodationService} from '../services/accommodation.service';
 import {RoomsService} from '../services/rooms.service';
+import {AppUsersService} from '../services/appuser.service';
 
 @Component({
   selector: 'accomm-form',
@@ -24,20 +25,25 @@ export class AccommodationFormComponent implements OnInit {
   users: AppUser [];
   accommodation: Accommodation;
   place: number;
-
+  owners: AppUser[]
+;
   constructor(private placesService:PlacesService,
   private accommTypeService: AccommodationTypesService,
   private accomService: AccommodationService,
-  private roomsService: RoomsService
+  private roomsService: RoomsService,
+  private appUsersService: AppUsersService
   ) 
   {
     this.accommodation = new Accommodation();
     this.accommodation.rooms = [];
+    this.accommodation.owner = new AppUser();
+    this.owners = [];
   }
 
   ngOnInit(): void {
     this.getPlaces();
     this.getAccommTypes();
+    this.getAccommOwners();
   }
 
   getPlaces() : void {
@@ -50,6 +56,11 @@ export class AccommodationFormComponent implements OnInit {
       .then(accommTypes => this.accommTypes = accommTypes);
   }
 
+  getAccommOwners() : void {
+    this.appUsersService.getAppUsers()
+      .then(owners => {this.owners = owners; debugger});
+  }
+
   onSubmitAccomm(accomm: any, form: NgForm) {
       this.accommodation.name = accomm.Name;
       this.accommodation.description = accomm.Description;  
@@ -60,6 +71,7 @@ export class AccommodationFormComponent implements OnInit {
       this.accommodation.place.id = accomm.Place;
       this.accommodation.accommodationType = new AccommodationType();
       this.accommodation.accommodationType.id = accomm.AccommodationType;
+      this.accommodation.owner.id = accomm.Owner;
 
       this.accomService.create(this.accommodation);
       form.resetForm();
