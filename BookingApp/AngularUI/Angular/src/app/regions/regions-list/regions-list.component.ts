@@ -4,9 +4,9 @@ import {RegionsService} from '../../services/regions.service';
 import {Region} from '../../models/Region';
 
 @Component({
-  selector: 'accomm',
-  templateUrl: './accommodation-list.component.html',
-  styleUrls: ['./accommodation-list.component.css'],
+  selector: 'regions-list',
+  templateUrl: './regions-list.component.html',
+  styleUrls: ['./regions-list.component.css'],
 })
 
 export class RegionsListComponent implements OnInit {

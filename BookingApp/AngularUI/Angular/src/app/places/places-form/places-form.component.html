@@ -1,0 +1,15 @@
+<div>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value, f)">
+    <div>
+      <label for="Latitude">Name: </label>
+      <input type="text" name="Name" ngModel>
+    </div>
+    <div>
+        <label for="Owner">Choose region: </label>
+        <select name="Region" ngModel>
+            <option *ngFor="let region of regions" value="{{region.Id}}">{{region.Name}}</option>
+        </select>
+    </div>
+    <input type="submit" value="Add Place">
+  </form>
+</div>

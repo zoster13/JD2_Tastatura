@@ -1,0 +1,9 @@
+<ul>
+      <li 
+        *ngFor="let place of places">
+        <div>
+            <label> Name: </label> {{place.Name}}
+            <label> Region: </label> {{place.Region.Name}}
+        </div>
+    </li>
+</ul>

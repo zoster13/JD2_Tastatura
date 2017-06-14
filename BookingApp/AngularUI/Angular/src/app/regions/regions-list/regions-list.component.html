@@ -1,0 +1,9 @@
+<ul>
+      <li 
+        *ngFor="let region of regions">
+        <div>
+            <label> Name: </label> {{region.Name}}
+            <label> Country: </label> {{region.Country.Name}}
+        </div>
+    </li>
+</ul>

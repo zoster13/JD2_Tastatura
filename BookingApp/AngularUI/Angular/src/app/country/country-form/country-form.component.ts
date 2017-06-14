@@ -13,7 +13,7 @@ import {CountriesService} from '../../services/countries.service';
 
 export class CountryFormComponent implements OnInit {
 
-  county: Country;
+  country: Country;
 
   constructor(private countriesService: CountriesService,private router: Router) {
 
@@ -24,10 +24,10 @@ export class CountryFormComponent implements OnInit {
   }
 
   onSubmit(country: any, form: NgForm) {
-      debugger
-      this.countriesService.create(this.county);
+    this.country = new Country();
+    this.country.name = country.Name;
+    this.country.code = country.Code;
+      this.countriesService.create(this.country);
       form.resetForm();
-
-      this.router.navigate(["mainpage"]);
     }
 }

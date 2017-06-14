@@ -4,7 +4,7 @@ import {AccommodationService} from '../../services/accommodation.service';
 import {Accommodation} from '../../models/Accommodation';
 
 @Component({
-  selector: 'accomm',
+  selector: 'accomm-list',
   templateUrl: './accommodation-list.component.html',
   styleUrls: ['./accommodation-list.component.css'],
 })

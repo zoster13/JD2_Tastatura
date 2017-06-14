@@ -9,7 +9,7 @@ import {Room} from '../../models/Room';
 import {Accommodation} from '../../models/Accommodation';
 
 @Component({
-  selector: 'rooms',
+  selector: 'rooms-form',
   templateUrl: './rooms-form.component.html',
   styleUrls: ['./rooms-form.component.css'],
 })
@@ -45,9 +45,7 @@ export class RoomsFormComponent {
       this.room.accommodation = new Accommodation();
       this.room.accommodation.id = room.Accommodation;
 
-debugger
       this.roomsService.create(this.room);
       form.resetForm();
-      this.router.navigate(["mainpage/rooms/roomlist"]);
   }
 }

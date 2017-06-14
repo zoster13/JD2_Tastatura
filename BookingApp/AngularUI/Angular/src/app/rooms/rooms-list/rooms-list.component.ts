@@ -4,7 +4,7 @@ import {RoomsService} from '../../services/rooms.service';
 import {Room} from '../../models/Room';
 
 @Component({
-  selector: 'accomm',
+  selector: 'rooms-list',
   templateUrl: './rooms-list.component.html',
   styleUrls: ['./rooms-list.component.css'],
 })
