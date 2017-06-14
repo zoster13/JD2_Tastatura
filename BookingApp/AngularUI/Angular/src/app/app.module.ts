@@ -21,6 +21,7 @@ import {CommentsService} from './services/comments.service';
 import {PlacesService} from './services/places.service';
 import {AccommodationTypesService} from './services/accommodation-types.service';
 import {AuthenticationService} from './services/authentication.service';
+import {AppUsersService} from './services/appuser.service';
 
 const ChildRoutesAccomm = [
    {path: "accommform", component: AccommodationComponent},
@@ -36,8 +37,6 @@ const ChildRoutesMain = [
    {path: "addaccomm", component: AccommodationFormComponent},
    {path: "rooms", component: RoomsComponent}
   ]
-
-
 
 const Routes = [
   {path: "login", component: LoginComponent},
@@ -64,12 +63,16 @@ const Routes = [
     HttpModule
   ],
   providers: [CountriesService, 
-  AccommodationService,
-  RoomsService,
-  CommentsService,
-  PlacesService,
-  AccommodationTypesService,
-  AuthenticationService],
-  bootstrap: [AppComponent]
+    AccommodationService,
+    RoomsService,
+    CommentsService,
+    PlacesService,
+    AccommodationTypesService,
+    AuthenticationService,
+    AppUsersService
+    ],
+  bootstrap: [
+    AppComponent
+    ]
 })
 export class AppModule { }
