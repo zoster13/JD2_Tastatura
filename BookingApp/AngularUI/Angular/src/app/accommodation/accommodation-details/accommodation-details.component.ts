@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 import { Location }                 from '@angular/common';
-import { AccommodationService } from '../services/accommodation.service';
+import { AccommodationService } from '../../services/accommodation.service';
 import 'rxjs/add/operator/switchMap';
 
-import {Accommodation} from '../models/Accommodation';
+import {Accommodation} from '../../models/Accommodation';
 
 @Component({
   selector: 'accomm-details',

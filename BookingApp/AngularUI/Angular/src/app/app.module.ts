@@ -5,14 +5,14 @@ import { RouterModule, Routes, Router } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { AccommodationComponent } from './accommodation/accommodation.component';
-import { AccommodationDetailsComponent } from './accommodation-details/accommodation-details.component';
-import { RoomsComponent } from './rooms-form/rooms-form.component';
+import { AccommodationMainComponent } from './accommodation/accommodation-main/accommodation-main.component';
+import { AccommodationDetailsComponent } from './accommodation/accommodation-details/accommodation-details.component';
+import { RoomsFormComponent } from './rooms-form/rooms-form.component';
 import { LoginComponent } from './login/login.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import {CommentsComponent} from './comments/comments.component';
-import {AccommodationFormComponent} from './accommodation-form/accommodation-form.component';
-import {AccommodationListComponent} from './accommodation-list/accommodation-list.component';
+import {AccommodationFormComponent} from './accommodation/accommodation-form/accommodation-form.component';
+import {AccommodationListComponent} from './accommodation/accommodation-list/accommodation-list.component';
 
 import {CountriesService} from './services/countries.service';
 import {AccommodationService} from './services/accommodation.service';
@@ -26,13 +26,12 @@ import {AppUsersService} from './services/appuser.service';
 const ChildRoutesAccomm = [
    {path: "accommform", component: AccommodationFormComponent},
    {path: "accommlist", component: AccommodationListComponent},
-   {path: "rooms/:id", component: RoomsComponent},
    {path: "comments/:id", component: CommentsComponent},
    {path: "accommdetails/:id", component: AccommodationDetailsComponent}
   ]
 
 const ChildRoutesMain = [
-   {path: "accommodation", component: AccommodationComponent, children: ChildRoutesAccomm},
+   {path: "accommodation", component: AccommodationMainComponent, children: ChildRoutesAccomm},
    {path: "login", component: LoginComponent}
   ]
 
@@ -45,14 +44,14 @@ const Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    AccommodationComponent,
+    AccommodationMainComponent,
     AccommodationDetailsComponent,
-    RoomsComponent,
     LoginComponent,
     CommentsComponent,
     MainpageComponent, 
     AccommodationFormComponent,
-    AccommodationListComponent
+    AccommodationListComponent,
+    RoomsFormComponent
   ],
   imports: [
     BrowserModule,

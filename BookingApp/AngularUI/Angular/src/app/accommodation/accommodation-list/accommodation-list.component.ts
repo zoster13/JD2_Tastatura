@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {AccommodationService} from '../services/accommodation.service';
-import {Accommodation} from '../models/Accommodation';
+import {AccommodationService} from '../../services/accommodation.service';
+import {Accommodation} from '../../models/Accommodation';
 
 @Component({
   selector: 'accomm',

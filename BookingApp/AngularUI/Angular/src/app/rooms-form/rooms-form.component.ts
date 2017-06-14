@@ -11,7 +11,7 @@ import {Room} from '../models/Room';
   styleUrls: ['./rooms-form.component.css'],
 })
 
-export class RoomsComponent {
+export class RoomsFormComponent {
 
     rooms: Room[];
 
