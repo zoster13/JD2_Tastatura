@@ -16,6 +16,8 @@ import {CommentsComponent} from './comments/comments.component';
 import {AccommodationFormComponent} from './accommodation/accommodation-form/accommodation-form.component';
 import {AccommodationListComponent} from './accommodation/accommodation-list/accommodation-list.component';
 import {RegionsMainComponent} from './regions/regions-main/regions-main.component';
+import {CountryFormComponent} from './country/country-form/country-form.component';
+import {CountryMainComponent} from './country/country-main/country-main.component';
 
 import {CountriesService} from './services/countries.service';
 import {AccommodationService} from './services/accommodation.service';
@@ -33,6 +35,10 @@ const ChildRoutesAccomm = [
    {path: "accommdetails/:id", component: AccommodationDetailsComponent}
   ]
 
+const ChildRoutesCountry = [
+   {path: "countryform", component: CountryFormComponent}
+  ]
+
 const ChildRoutesRooms = [
    {path: "roomform", component: RoomsFormComponent},
    {path: "roomlist", component: RoomsListComponent}
@@ -45,6 +51,7 @@ const ChildRoutesRegions = [
 
 const ChildRoutesMain = [
    {path: "accommodation", component: AccommodationMainComponent, children: ChildRoutesAccomm},
+   {path: "country", component: CountryMainComponent, children: ChildRoutesCountry},
    {path: "rooms", component: RoomsMainComponent, children: ChildRoutesRooms},
    {path: "regions", component: RegionsMainComponent, children: ChildRoutesRegions},
    {path: "login", component: LoginComponent}
@@ -69,7 +76,9 @@ const Routes = [
     RoomsFormComponent,
     RoomsMainComponent,
     RoomsListComponent,
-    RegionsMainComponent
+    RegionsMainComponent,
+    CountryFormComponent,
+    CountryMainComponent
   ],
   imports: [
     BrowserModule,
