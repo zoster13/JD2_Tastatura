@@ -26,15 +26,15 @@ Add Accommodation
         <input type="file" id="accomPicture" name="imageUrl" value="Choose Image" ngModel/>
     </div>
     <div>
-        <label for="Latitude">Choose place: </label>
-        <select>
-            <option *ngFor="let p of places">{{p.Name}}</option>
+        <label for="Place">Choose place: </label>
+        <select name="Place" ngModel>
+            <option *ngFor="let p of places" value="{{p.Id}}">{{p.Name}}</option>
         </select>
     </div>
     <div>
-        <label for="Latitude">Choose accommodation type: </label>
-        <select>
-            <option *ngFor="let accommtype of accommTypes">{{accommtype.Name}}</option>
+        <label for="AccommodationType">Choose accommodation type: </label>
+        <select name="AccommodationType" ngModel>
+            <option *ngFor="let accommtype of accommTypes" value="{{accommtype.Id}}">{{accommtype.Name}}</option>
         </select>
     </div>
     <!--div>
@@ -63,7 +63,7 @@ Add Accommodation
     <div>
         <div>
             <h1>Add rooms</h1>
-            <form #f="ngForm" (ngSubmit)="onSubmitRoom(f.value, f)">
+            <form #f1="ngForm" (ngSubmit)="onSubmitRoom(f1.value, f1)">
                 <div>
                     <label for="RoomNumber">Room number:</label>
                     <input type="text" name="roomNumber" ngModel>
