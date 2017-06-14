@@ -38,6 +38,11 @@ import {AuthenticationService} from './services/authentication.service';
 import {AppUsersService} from './services/appuser.service';
 import {RegionsService} from './services/regions.service';
 
+//Maps
+import { MapComponent } from './map/map.component';
+import { AgmCoreModule } from '@agm/core';
+
+
 const ChildRoutesAccomm = [
    {path: "accommform", component: AccommodationFormComponent},
    {path: "accommlist", component: AccommodationListComponent},
@@ -89,6 +94,7 @@ const Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    MapComponent,
     AccommodationMainComponent,
     AccommodationDetailsComponent,
     LoginComponent,
@@ -116,7 +122,9 @@ const Routes = [
     BrowserModule,
     RouterModule.forRoot(Routes),
     FormsModule,
-    HttpModule
+    HttpModule,
+    //prilikom import-a mape prosleđujemo Google API key koji dobijamo preko google konzole
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
   ],
   providers: [CountriesService, 
     AccommodationService,

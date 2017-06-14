@@ -5,6 +5,8 @@ import { Location }                 from '@angular/common';
 import {LogIn} from '../models/Log-in';
 import {AuthenticationService} from '../services/authentication.service';
 
+import {MapInfo} from "../map/map-info.model"
+
 @Component({
   selector: 'main-page',
   templateUrl: './mainpage.component.html',
@@ -13,8 +15,16 @@ import {AuthenticationService} from '../services/authentication.service';
 
 export class MainpageComponent {
 
-    constructor(private location: Location, public router: Router,
-    private authenticationService: AuthenticationService) {}
+      mapInfo: MapInfo;
+
+    constructor(private location: Location, 
+                public router: Router,
+                private authenticationService: AuthenticationService) {
+        
+        this.mapInfo = new MapInfo(45.242268, 19.842954,
+          "assets/ftn.png",
+          "Jugodrvo" , "" , "http://ftn.uns.ac.rs/691618389/fakultet-tehnickih-nauka");
+    }
 
     logOut(){
         this.authenticationService.logout();

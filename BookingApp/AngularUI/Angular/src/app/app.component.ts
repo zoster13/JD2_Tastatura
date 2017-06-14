@@ -19,7 +19,8 @@ export class AppComponent implements OnInit{
   isLoggedIn: boolean;
   appusers : AppUser[];
 
-  constructor(private countriesService:CountriesService,private appusersService:AppUsersService) {
+  constructor(private countriesService:CountriesService,
+              private appusersService:AppUsersService) {
 
   }
 
