@@ -37,6 +37,7 @@ import {AccommodationTypesService} from './services/accommodation-types.service'
 import {AuthenticationService} from './services/authentication.service';
 import {AppUsersService} from './services/appuser.service';
 import {RegionsService} from './services/regions.service';
+import { AccommodationFilterComponent} from './accommodation/accommodation-filter/accommodation-filter.component';
 
 //Maps
 import { MapComponent } from './map/map.component';
@@ -117,7 +118,8 @@ const Routes = [
     PlacesFormComponent,
     AccommodationTypesMainComponent,
     AccommodationTypesListComponent,
-    AccommodationTypesFormComponent
+    AccommodationTypesFormComponent,
+    AccommodationFilterComponent
   ],
   imports: [
     BrowserModule,
