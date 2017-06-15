@@ -4,8 +4,9 @@
     </div>
     <div class="menuborder">
         <ul class="top">
-            <li class="left"><a id="appname" class="notactive">Booking App</a></li>
+            <li class="left"><a id="appname" class="notactive" routerLink="/mainpage">Booking App</a></li>
             <li class="left"><a class="active" routerLink="/mainpage/accommodation/accommlist">Accommodation</a></li>
+            <li class="left"><a class="active" routerLink="/mainpage/map">Google Map</a></li>
             <div *ngIf="isLoggedIn()">
                 <li class="left"><a class="active" routerLink="/mainpage/rooms">Rooms</a></li>
                 <li class="left"><a class="active" routerLink="/mainpage/country">Countries</a></li>   

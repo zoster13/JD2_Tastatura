@@ -2,9 +2,8 @@
     <!-- Kreiramo mapu -->
     <agm-map [latitude]="defaultInfo.centerLat" [longitude]="defaultInfo.centerLong" [zoom]="18">
     
-    <template *ngFor="let mapInfo of accomodationsMapInfo;">
         <!-- Postavljamo markere -->
-        <agm-marker [latitude]="mapInfo.centerLat" [longitude]="mapInfo.centerLong" [title]="mapInfo.title"
+        <agm-marker *ngFor="let mapInfo of accomodationsMapInfo;" [latitude]="mapInfo.centerLat" [longitude]="mapInfo.centerLong" [title]="mapInfo.title"
         [label]="mapInfo.label">
 
           <!-- Svakom markeru dodajemo info-window (Nije obavezno!)-->
@@ -17,7 +16,6 @@
             <a [href]="mapInfo.link">See the site.</a>
           </agm-info-window>
         </agm-marker>
-     </template>
     </agm-map>
   </div>
   

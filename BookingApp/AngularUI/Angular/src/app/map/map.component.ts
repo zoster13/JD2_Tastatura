@@ -13,8 +13,8 @@ import {AccommodationService} from '../services/accommodation.service';
 export class MapComponent implements OnInit {
 
   defaultInfo : MapInfo;
-  accomodationsMapInfo: MapInfo[];
-  accomodations : Accommodation[];
+  accomodationsMapInfo: MapInfo[] = [];
+  accomodations : Accommodation[] = [];
 
   constructor(private accommodationService: AccommodationService) { 
       
@@ -27,7 +27,8 @@ export class MapComponent implements OnInit {
   }
 
   private getAccommodations() : void {
-        this.accommodationService.getAccommodations().then(accommodations => this.accomodations = accommodations);
+        this.accommodationService.getAccommodations().then(accommodations => {this.accomodations = accommodations; 
+                                                                              this.doMapping();});
       }      
 
   private doMapping() : void {
@@ -36,21 +37,18 @@ export class MapComponent implements OnInit {
         for(let accommodation of this.accomodations) {
             var mapInfo : MapInfo;
             
-            debugger
-            
-            mapInfo = new MapInfo(accommodation.latitude,
-                                  accommodation.longitude,
+            mapInfo = new MapInfo(accommodation["Latitude"],
+                                  accommodation["Longitude"],
                                   "assets/ftn.png",
                                   "Jugodrvo" , 
                                   "" , 
                                   "http://ftn.uns.ac.rs/691618389/fakultet-tehnickih-nauka");
 
-            this.accomodationsMapInfo.push(mapInfo);                    
+            this.accomodationsMapInfo.push(mapInfo);
         }
   }
 
   ngOnInit() : void {
         this.getAccommodations();
-        this.doMapping();
   }
 }
