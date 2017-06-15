@@ -27,6 +27,11 @@ export class AccommodationFormComponent implements OnInit {
   accommodation: Accommodation;
   place: number;
   owners: AppUser[]
+
+  uriParts: string [];
+  isUpdate: boolean;
+  currentAccommodation: Accommodation;
+  stringCurrAccomm: string;
 ;
   constructor(private placesService:PlacesService,
   private accommTypeService: AccommodationTypesService,
@@ -40,12 +45,33 @@ export class AccommodationFormComponent implements OnInit {
     this.accommodation.rooms = [];
     this.accommodation.owner = new AppUser();
     this.owners = [];
+
+    this.isUpdate = false;
+    this.currentAccommodation = new Accommodation();
+    this.currentAccommodation.place = new Place();
+    this.currentAccommodation.accommodationType = new AccommodationType();
+    this.currentAccommodation.owner = new AppUser();
   }
 
   ngOnInit(): void {
     this.getPlaces();
     this.getAccommTypes();
     this.getAccommOwners();
+
+    this.uriParts =  this.router.url.split('/');
+
+    if(this.uriParts[this.uriParts.length - 1] === 'update'){
+      this.isUpdate = true;
+      this.stringCurrAccomm = localStorage.getItem('updateAccommodation');
+      debugger
+    }
+    else{
+      this.isUpdate = false;
+      this.currentAccommodation = new Accommodation();
+      this.currentAccommodation.place = new Place();
+      this.currentAccommodation.accommodationType = new AccommodationType();
+      this.currentAccommodation.owner = new AppUser();
+    }
   }
 
   getPlaces() : void {

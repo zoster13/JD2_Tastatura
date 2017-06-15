@@ -26,7 +26,7 @@ ul.tabmenu {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: white;
+    background-color: #333;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     width: 78%;
     position: absolute;
@@ -39,7 +39,7 @@ ul.list {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: white;
+    background-color: transparent;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     width: 78%;
     position: absolute;
@@ -48,7 +48,14 @@ ul.list {
 }
 
 div.list{
-    border: 10px solid #333;
+    height: 150px;
+    background-image: linear-gradient(rgba(255,255,255,0.9) 100%, rgba(255,255,255,0.9) 100%);
+    border: 2px solid #333;
+}
+
+div.listseparator{
+    height: 15px;
+    background-color: transparent;
 }
 
 li.left {
@@ -65,14 +72,14 @@ li.left {
 
 li a.menu {
     display: block;
-    color: #333;
+    color: white;
     text-align: center;
     padding: 10px 16px;
     text-decoration: none;
 }
 
-li a:hover {
-    background-color: #333;
+li a.active:hover {
+    background-color: #111;
     color: white;
     text-decoration:none;
     

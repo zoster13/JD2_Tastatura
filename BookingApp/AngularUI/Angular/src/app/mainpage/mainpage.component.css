@@ -93,7 +93,7 @@ div.main {
     height: 88%;
     border-left: 2px solid #333;
     border-right: 2px solid #333;
-    background-image: linear-gradient(rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.5) 51%);
+    background-image: linear-gradient(rgba(255,255,255,0.5) 20%, rgba(255,255,255,0.5) 60%);
 }
 
 div.background {

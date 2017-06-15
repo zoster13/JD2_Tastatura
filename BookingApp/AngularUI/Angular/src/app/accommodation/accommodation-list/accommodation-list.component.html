@@ -4,7 +4,7 @@
             <div class="list">
                 <label> Id: </label> {{accommodation.Id}}.
                 <label> Name: </label> {{accommodation.Name}}
-                <a  [routerLink]="['/mainpage/accommodation/accommdetails', accommodation.Id]">Details</a>
+                <a (click)="update(accommodation.Id)"  [routerLink]="['/mainpage/accommodation/update']" >Update</a>
                 <a  [routerLink]="['/mainpage/accommodation/rooms', accommodation.Id]">Rooms</a>
                 <a  [routerLink]="['/mainpage/accommodation/comments', accommodation.Id]">Comments</a>
             </div>
