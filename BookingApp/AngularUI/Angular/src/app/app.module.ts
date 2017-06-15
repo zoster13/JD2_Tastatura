@@ -40,7 +40,7 @@ import {RegionsService} from './services/regions.service';
 
 //Maps
 import { MapComponent } from './map/map.component';
-//import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule } from '@agm/core';
 
 
 const ChildRoutesAccomm = [
@@ -76,6 +76,7 @@ const ChildRoutesAccommTypes = [
   ]
 
 const ChildRoutesMain = [
+   {path: "map", component: MapComponent},
    {path: "accommodation", component: AccommodationMainComponent, children: ChildRoutesAccomm},
    {path: "country", component: CountryMainComponent, children: ChildRoutesCountry},
    {path: "rooms", component: RoomsMainComponent, children: ChildRoutesRooms},
@@ -94,7 +95,7 @@ const Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    //MapComponent,
+    MapComponent,
     AccommodationMainComponent,
     AccommodationDetailsComponent,
     LoginComponent,
@@ -124,7 +125,7 @@ const Routes = [
     FormsModule,
     HttpModule,
     //prilikom import-a mape prosleđujemo Google API key koji dobijamo preko google konzole
-    //AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
   ],
   providers: [CountriesService, 
     AccommodationService,
