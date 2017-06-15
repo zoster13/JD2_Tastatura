@@ -30,27 +30,26 @@ export class AccommodationFormComponent implements OnInit {
 
   uriParts: string [];
   isUpdate: boolean;
-  currentAccommodation: Accommodation;
-  stringCurrAccomm: string;
-  
+  temp: any;
+;
   constructor(private placesService:PlacesService,
-              private accommTypeService: AccommodationTypesService,
-              private accomService: AccommodationService,
-              private roomsService: RoomsService,
-              private appUsersService: AppUsersService,
-              private router: Router) {
-      
-      this.accommodation = new Accommodation();
-      this.accommodation.rooms = [];
-      this.accommodation.owner = new AppUser();
-      this.owners = [];
-
-      this.isUpdate = false;
-      this.currentAccommodation = new Accommodation();
-      this.currentAccommodation.place = new Place();
-      this.currentAccommodation.accommodationType = new AccommodationType();
-      this.currentAccommodation.owner = new AppUser();
-    }
+  private accommTypeService: AccommodationTypesService,
+  private accomService: AccommodationService,
+  private roomsService: RoomsService,
+  private appUsersService: AppUsersService,
+  private router: Router
+  ) 
+  {
+    this.accommodation = new Accommodation();
+    this.accommodation.rooms = [];
+    this.accommodation.owner = new AppUser();
+    this.accommodation.name = '';
+    this.accommodation.description = '';
+    this.accommodation.address = '';
+    this.accommodation.longitude = 0;
+    this.accommodation.latitude = 0;
+    this.owners = [];
+  }
 
   ngOnInit(): void {
     this.getPlaces();
@@ -61,15 +60,22 @@ export class AccommodationFormComponent implements OnInit {
 
     if(this.uriParts[this.uriParts.length - 1] === 'update'){
       this.isUpdate = true;
-      this.stringCurrAccomm = localStorage.getItem('updateAccommodation');
-      debugger
+      
+      this.temp = JSON.parse(localStorage.getItem('updateAccommodation'));
+      this.accommodation.name = this.temp.name;
+      this.accommodation.description = this.temp.description;
+      this.accommodation.address = this.temp.address;
+      this.accommodation.longitude = this.temp.longitude;
+      this.accommodation.latitude = this.temp.latitude;
     }
-    else {
+    else{
       this.isUpdate = false;
-      this.currentAccommodation = new Accommodation();
-      this.currentAccommodation.place = new Place();
-      this.currentAccommodation.accommodationType = new AccommodationType();
-      this.currentAccommodation.owner = new AppUser();
+
+      this.accommodation.name = '';
+      this.accommodation.description = '';
+      this.accommodation.address = '';
+      this.accommodation.longitude = 0;
+      this.accommodation.latitude = 0;
     }
   }
 

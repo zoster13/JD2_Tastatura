@@ -47,8 +47,4 @@ export class AccommodationListComponent implements OnInit {
   approved: this.temp.Approved, place: this.temp.Place.Id, accommtype: this.temp.AccommodationType.Id,
   owner: this.temp.Owner.Id}));
 }
-
-send(){
-  debugger
-}
 }
