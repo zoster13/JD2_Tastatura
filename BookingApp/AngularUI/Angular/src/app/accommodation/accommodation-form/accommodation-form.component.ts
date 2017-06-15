@@ -62,6 +62,7 @@ export class AccommodationFormComponent implements OnInit {
       this.isUpdate = true;
       
       this.temp = JSON.parse(localStorage.getItem('updateAccommodation'));
+      this.accommodation.id = this.temp.id;
       this.accommodation.name = this.temp.name;
       this.accommodation.description = this.temp.description;
       this.accommodation.address = this.temp.address;
@@ -106,7 +107,13 @@ export class AccommodationFormComponent implements OnInit {
       this.accommodation.accommodationType.id = accomm.AccommodationType;
       this.accommodation.owner.id = accomm.Owner;
 
-      this.accomService.create(this.accommodation);
+      if(!this.isUpdate){
+          this.accomService.create(this.accommodation);
+      }
+      else{
+          this.accomService.update(this.accommodation);
+      }
+      
       form.resetForm();
 
       this.router.navigate(["mainpage/accommodation/accommlist"]);

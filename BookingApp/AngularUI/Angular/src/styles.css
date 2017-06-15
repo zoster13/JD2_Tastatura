@@ -84,3 +84,8 @@ li a.active:hover {
     text-decoration:none;
     
 }
+
+label{
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
