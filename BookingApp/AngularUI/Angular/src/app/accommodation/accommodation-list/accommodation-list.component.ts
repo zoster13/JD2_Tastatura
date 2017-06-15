@@ -22,13 +22,13 @@ export class AccommodationListComponent implements OnInit {
   private location: Location) {
   }
 
-  getAccommodation() : void {
+  getAccommodations() : void {
     this.accommodationService.getAccommodations()
       .then(accommodations => this.accommodations = accommodations);
   }
 
   ngOnInit() : void {
-    this.getAccommodation();
+    this.getAccommodations();
   }
 
   update(accommId: number){

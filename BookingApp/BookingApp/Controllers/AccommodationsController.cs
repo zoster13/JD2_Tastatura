@@ -20,7 +20,7 @@ namespace BookingApp.Controllers
         // GET: api/Accommodations
         public IQueryable<Accommodation> GetAccommodations()
         {
-            return db.Accommodations;
+            return db.Accommodations.AsQueryable();
         }
 
         // GET: api/Accommodations/5
