@@ -13,6 +13,8 @@ import {AuthenticationService} from '../services/authentication.service';
 
 export class MainpageComponent implements OnInit {
 
+    currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
     constructor(private location: Location, 
                 public router: Router,
                 private authenticationService: AuthenticationService) {

@@ -32,26 +32,25 @@ export class AccommodationFormComponent implements OnInit {
   isUpdate: boolean;
   currentAccommodation: Accommodation;
   stringCurrAccomm: string;
-;
+  
   constructor(private placesService:PlacesService,
-  private accommTypeService: AccommodationTypesService,
-  private accomService: AccommodationService,
-  private roomsService: RoomsService,
-  private appUsersService: AppUsersService,
-  private router: Router
-  ) 
-  {
-    this.accommodation = new Accommodation();
-    this.accommodation.rooms = [];
-    this.accommodation.owner = new AppUser();
-    this.owners = [];
+              private accommTypeService: AccommodationTypesService,
+              private accomService: AccommodationService,
+              private roomsService: RoomsService,
+              private appUsersService: AppUsersService,
+              private router: Router) {
+      
+      this.accommodation = new Accommodation();
+      this.accommodation.rooms = [];
+      this.accommodation.owner = new AppUser();
+      this.owners = [];
 
-    this.isUpdate = false;
-    this.currentAccommodation = new Accommodation();
-    this.currentAccommodation.place = new Place();
-    this.currentAccommodation.accommodationType = new AccommodationType();
-    this.currentAccommodation.owner = new AppUser();
-  }
+      this.isUpdate = false;
+      this.currentAccommodation = new Accommodation();
+      this.currentAccommodation.place = new Place();
+      this.currentAccommodation.accommodationType = new AccommodationType();
+      this.currentAccommodation.owner = new AppUser();
+    }
 
   ngOnInit(): void {
     this.getPlaces();
@@ -65,7 +64,7 @@ export class AccommodationFormComponent implements OnInit {
       this.stringCurrAccomm = localStorage.getItem('updateAccommodation');
       debugger
     }
-    else{
+    else {
       this.isUpdate = false;
       this.currentAccommodation = new Accommodation();
       this.currentAccommodation.place = new Place();

@@ -42,6 +42,7 @@ export class LoginComponent {
             .subscribe(result => {
                 if (result === true) {
                     this.router.navigate(['/mainpage']);
+                    window.location.reload();
                 } else {
                     alert('Username or password is incorrect');
                     this.router.navigate(['mainpage/login']);

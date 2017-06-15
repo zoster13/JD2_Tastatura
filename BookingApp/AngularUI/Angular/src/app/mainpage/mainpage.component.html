@@ -4,7 +4,7 @@
     </div>
     <div class="menuborder">
         <ul class="top">
-            <li class="left"><a id="appname" class="notactive">booking company...</a></li>
+            <li class="left"><a id="appname" class="notactive">Booking App</a></li>
             <li class="left"><a class="active" routerLink="/mainpage/accommodation/accommlist">Accommodation</a></li>
             <div *ngIf="isLoggedIn()">
                 <li class="left"><a class="active" routerLink="/mainpage/rooms">Rooms</a></li>
@@ -20,7 +20,7 @@
             </div>
             <div *ngIf="isLoggedIn()">
                 <li class="right"><a class="active" routerLink="/mainpage" (click)="logOut()">Log Out</a></li>
-                <li class="right"><a id="ime" class="notactive">Ime Prezime</a></li>
+                <li class="right"><a id="ime" class="notactive">{{currentUser.username}}</a></li>
             </div>
             
         </ul>

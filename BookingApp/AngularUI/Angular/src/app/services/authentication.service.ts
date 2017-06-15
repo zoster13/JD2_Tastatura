@@ -66,7 +66,5 @@ export class AuthenticationService {
         else{
             return true;
         }
-
-
     }
 }
