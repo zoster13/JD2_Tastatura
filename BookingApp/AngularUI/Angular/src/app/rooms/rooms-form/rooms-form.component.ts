@@ -19,6 +19,10 @@ export class RoomsFormComponent {
     accommodation: Accommodation[];
     room: Room;
 
+    uriParts: string [];
+    isUpdate: boolean;
+    temp: any;
+
     constructor(
       private accommService: AccommodationService,
       private roomsService: RoomsService,
@@ -26,10 +30,40 @@ export class RoomsFormComponent {
       private location: Location) {
 
         this.room = new Room();
+        this.room.bedCount = 0;
+        this.room.roomNumber = 0;
+        this.room.pricePerNight = 0;
+        this.room.description = '';
+        this.room.accommodation = new Accommodation();
+        this.room.roomReservationss = [];
       }
 
   ngOnInit(): void {
     this.getAccommodation();
+
+    this.uriParts =  this.router.url.split('/');
+
+    if(this.uriParts[this.uriParts.length - 1] === 'update'){
+      this.isUpdate = true;
+      
+      this.temp = JSON.parse(localStorage.getItem('updateRoom'));
+      this.room.id = this.temp.id;
+      this.room.bedCount = this.temp.bedcount;
+      this.room.roomNumber = this.temp.roomnumber;
+      this.room.pricePerNight = this.temp.pricepernight;
+      this.room.description = this.temp.description;
+    }
+    else{
+      this.isUpdate = false;
+
+      this.room = new Room();
+      this.room.bedCount = 0;
+      this.room.roomNumber = 0;
+      this.room.pricePerNight = 0;
+      this.room.description = '';
+      this.room.accommodation = new Accommodation();
+      this.room.roomReservationss = [];
+    }
   }
 
   getAccommodation() : void {
@@ -45,7 +79,13 @@ export class RoomsFormComponent {
       this.room.accommodation = new Accommodation();
       this.room.accommodation.id = room.Accommodation;
 
-      this.roomsService.create(this.room);
+      if(!this.isUpdate){
+          this.roomsService.create(this.room);
+      }
+      else{
+          this.roomsService.update(this.room);
+      }
+
       form.resetForm();
   }
 }

@@ -1,8 +1,12 @@
-<ul>
-      <li 
-        *ngFor="let accommtype of accommtypes">
-        <div>
-            <label> Name: </label> {{accommtype.Name}}
-        </div>
-    </li>
+<ul class="list">
+    <div>
+        <li *ngFor="let accommtype of accommtypes">
+            <div class="list">
+                <label> Name: </label> {{accommtype.Name}}
+                <a (click)="update(accommtype.Id)"  [routerLink]="['/mainpage/accommtypes/update']" >Update</a>
+            </div>
+            <div class="listseparator">
+            </div>
+        </li>
+    </div>
 </ul>

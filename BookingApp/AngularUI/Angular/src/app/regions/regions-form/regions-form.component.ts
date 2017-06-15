@@ -19,6 +19,10 @@ export class RegionsFormComponent {
     countries: Country[];
     region: Region;
 
+    uriParts: string [];
+    isUpdate: boolean;
+    temp: any;
+
     constructor(
       private countryService: CountriesService,
       private regionsService: RegionsService,
@@ -27,10 +31,26 @@ export class RegionsFormComponent {
 
         this.region = new Region();
         this.region.country = new Country();
+        this.region.name = '';
       }
 
   ngOnInit(): void {
     this.getCountries();
+
+    this.uriParts =  this.router.url.split('/');
+
+    if(this.uriParts[this.uriParts.length - 1] === 'update'){
+      this.isUpdate = true;
+      
+      this.temp = JSON.parse(localStorage.getItem('updateRegion'));
+      this.region.id = this.temp.id;
+      this.region.name = this.temp.name;
+    }
+    else{
+      this.isUpdate = false;
+
+      this.region.name = '';
+    }
   }
 
   getCountries() : void {
@@ -41,7 +61,13 @@ export class RegionsFormComponent {
       this.region.name = region.Name;
       this.region.country.id = region.Country;
 
-      this.regionsService.create(this.region);
+      if(!this.isUpdate){
+          this.regionsService.create(this.region);
+      }
+      else{
+          this.regionsService.update(this.region);
+      }
+
       form.resetForm();
   }
 }

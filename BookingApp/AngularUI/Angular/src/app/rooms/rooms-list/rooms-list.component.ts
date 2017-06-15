@@ -12,6 +12,8 @@ import {Room} from '../../models/Room';
 export class RoomsListComponent implements OnInit {
 
   rooms: Room[];
+  room: Room;
+  temp: any;
 
   constructor(private roomsService:RoomsService,
   private router: Router) {
@@ -25,6 +27,21 @@ export class RoomsListComponent implements OnInit {
 
   ngOnInit() : void {
     this.getRooms();
+  }
+
+  update(roomId: number){
+    this.room = new Room();
+    for(var i = 0; i < this.rooms.length; i++){
+      this.temp = this.rooms[i];
+      if(this.temp.Id == roomId){
+          break;
+      }
+    }
+    localStorage.setItem('updateRoom', JSON.stringify({ id: this.temp.Id, 
+                    roomnumber: this.temp.RoomNumber,
+                    bedcount : this.temp.BedCount, 
+                    description: this.temp.Description, 
+                    pricepernight: this.temp.PricePerNight}));
   }
 
 }

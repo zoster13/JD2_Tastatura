@@ -12,6 +12,8 @@ import {Place} from '../../models/Place';
 export class PlacesListComponent implements OnInit {
 
   places: Place[];
+  place: Place;
+  temp: any;
 
   constructor(private placesService:PlacesService,
   private router: Router) {
@@ -27,4 +29,15 @@ export class PlacesListComponent implements OnInit {
     this.getPlaces();
   }
 
+update(placeId: number){
+    this.place = new Place();
+    for(var i = 0; i < this.places.length; i++){
+      this.temp = this.places[i];
+      if(this.temp.Id == placeId){
+          break;
+      }
+    }
+    localStorage.setItem('updatePlace', JSON.stringify({ id: this.temp.Id, 
+                    name: this.temp.Name}));
+  }
 }

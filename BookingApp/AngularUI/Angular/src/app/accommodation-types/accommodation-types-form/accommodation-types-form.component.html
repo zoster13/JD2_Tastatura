@@ -1,9 +1,14 @@
-<div>
+<div class="formborder" id="roomformborder">
     <form #f="ngForm" (ngSubmit)="onSubmit(f.value, f)">
         <div>
             <label for="Name">Name: </label>
-            <input type="text" name="Name" ngModel>
+            <input type="text" name="Name" [value]="accommtype.name">
         </div>
-        <input type="submit" value="Add Accommodation Type">
+        <div *ngIf="!isUpdate">
+        <input type="submit" value="Add">
+    </div>
+    <div *ngIf="isUpdate">
+        <input type="submit" value="Update">
+    </div>
     </form>
 </div>

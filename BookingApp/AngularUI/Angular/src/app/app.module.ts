@@ -53,27 +53,32 @@ const ChildRoutesAccomm = [
 
 const ChildRoutesCountry = [
    {path: "countryform", component: CountryFormComponent},
-   {path: "countrylist", component: CountryListComponent}
+   {path: "countrylist", component: CountryListComponent},
+   {path: "update", component: CountryFormComponent}
   ]
 
 const ChildRoutesRooms = [
    {path: "roomform", component: RoomsFormComponent},
-   {path: "roomlist", component: RoomsListComponent}
+   {path: "roomlist", component: RoomsListComponent},
+   {path: "update", component: RoomsFormComponent}
   ]
 
 const ChildRoutesRegions = [
    {path: "regionlist", component: RegionsListComponent},
-   {path: "regionform", component: RegionsFormComponent}
+   {path: "regionform", component: RegionsFormComponent},
+   {path: "update", component: RegionsFormComponent}
   ]
 
 const ChildRoutesPlaces = [
    {path: "placelist", component: PlacesListComponent},
-   {path: "placeform", component: PlacesFormComponent}
+   {path: "placeform", component: PlacesFormComponent},
+   {path: "update", component: PlacesFormComponent}
   ]
 
 const ChildRoutesAccommTypes = [
    {path: "accommtypeslist", component: AccommodationTypesListComponent},
-   {path: "accommtypesform", component: AccommodationTypesFormComponent}
+   {path: "accommtypesform", component: AccommodationTypesFormComponent},
+   {path: "update", component: AccommodationTypesFormComponent}
   ]
 
 const ChildRoutesMain = [

@@ -1,9 +1,11 @@
-<ul>
-      <li 
-        *ngFor="let country of countries">
-        <div>
+<ul class="list">
+      <li *ngFor="let country of countries">
+        <div class="list">
             <label> Name: </label> {{country.Name}}
             <label> Code: </label> {{country.Code}}
+            <a (click)="update(country.Id)"  [routerLink]="['/mainpage/country/update']" >Update</a>
+        </div>
+        <div class="listseparator">
         </div>
     </li>
 </ul>

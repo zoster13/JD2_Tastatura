@@ -12,6 +12,8 @@ import {Country} from '../../models/Country';
 export class CountryListComponent implements OnInit {
 
   countries: Country[];
+  country: Country;
+  temp: any;
 
   constructor(private countryService:CountriesService,
   private router: Router) {
@@ -25,6 +27,19 @@ export class CountryListComponent implements OnInit {
 
   ngOnInit() : void {
     this.getCountries();
+  }
+
+   update(countryId: number){
+    this.country = new Country();
+    for(var i = 0; i < this.countries.length; i++){
+      this.temp = this.countries[i];
+      if(this.temp.Id == countryId){
+          break;
+      }
+    }
+    localStorage.setItem('updateCountry', JSON.stringify({ id: this.temp.Id, 
+                    name: this.temp.Name,
+                    code : this.temp.Code}));
   }
 
 }

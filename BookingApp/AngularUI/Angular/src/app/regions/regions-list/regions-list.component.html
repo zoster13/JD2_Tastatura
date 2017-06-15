@@ -1,9 +1,13 @@
-<ul>
-      <li 
-        *ngFor="let region of regions">
-        <div>
-            <label> Name: </label> {{region.Name}}
-            <label> Country: </label> {{region.Country.Name}}
-        </div>
-    </li>
+<ul class="list">
+    <div>
+        <li *ngFor="let region of regions">
+            <div class="list">
+                <label> Name: </label> {{region.Name}}
+                <label> Country: </label> {{region.Country.Name}}
+                <a (click)="update(region.Id)"  [routerLink]="['/mainpage/regions/update']" >Update</a>
+            </div>
+            <div class="listseparator">
+            </div>
+        </li>
+    </div>
 </ul>

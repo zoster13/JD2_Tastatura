@@ -12,6 +12,8 @@ import {AccommodationType} from '../../models/AccommodationType';
 export class AccommodationTypesListComponent implements OnInit {
 
   accommtypes: AccommodationType[];
+  accommtype: AccommodationType;
+  temp: any;
 
   constructor(private accommTypesService:AccommodationTypesService,
   private router: Router) {
@@ -27,4 +29,15 @@ export class AccommodationTypesListComponent implements OnInit {
     this.getAccomTypes();
   }
 
+update(accommtypeId: number){
+    this.accommtype = new AccommodationType();
+    for(var i = 0; i < this.accommtypes.length; i++){
+      this.temp = this.accommtypes[i];
+      if(this.temp.Id == accommtypeId){
+          break;
+      }
+    }
+    localStorage.setItem('updateAccommodation', JSON.stringify({ id: this.temp.Id, 
+                    name: this.temp.Name}));
+  }
 }

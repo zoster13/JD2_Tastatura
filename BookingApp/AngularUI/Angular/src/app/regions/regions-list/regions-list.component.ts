@@ -12,6 +12,8 @@ import {Region} from '../../models/Region';
 export class RegionsListComponent implements OnInit {
 
   regions: Region[];
+  region: Region;
+  temp: any;
 
   constructor(private regionsService:RegionsService,
   private router: Router) {
@@ -25,6 +27,18 @@ export class RegionsListComponent implements OnInit {
 
   ngOnInit() : void {
     this.getRegions();
+  }
+
+  update(regionId: number){
+    this.region = new Region();
+    for(var i = 0; i < this.regions.length; i++){
+      this.temp = this.regions[i];
+      if(this.temp.Id == regionId){
+          break;
+      }
+    }
+    localStorage.setItem('updateRegion', JSON.stringify({ id: this.temp.Id, 
+                    name: this.temp.Name}));
   }
 
 }

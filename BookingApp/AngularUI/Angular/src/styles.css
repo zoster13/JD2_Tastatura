@@ -8,9 +8,24 @@ div.tabheader{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+div.text{
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 div#accommtabheader{
     position: absolute;
     left: 35%;
+}
+
+div#shorttabheader{
+    position: absolute;
+    left: 45%;
+}
+
+div#longtabheader{
+    position: absolute;
+    left: 30%;
 }
 
 div.formborder{

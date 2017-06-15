@@ -1,9 +1,11 @@
-<ul>
-      <li 
-        *ngFor="let place of places">
-        <div>
+<ul class="list">
+      <li *ngFor="let place of places">
+        <div class="list">
             <label> Name: </label> {{place.Name}}
             <label> Region: </label> {{place.Region.Name}}
+            <a (click)="update(place.Id)"  [routerLink]="['/mainpage/places/update']" >Update</a>
+        </div>
+        <div class="listseparator">
         </div>
     </li>
 </ul>
