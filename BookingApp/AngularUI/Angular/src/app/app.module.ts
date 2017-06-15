@@ -76,6 +76,7 @@ const ChildRoutesAccommTypes = [
   ]
 
 const ChildRoutesMain = [
+   {path: "map", component: MapComponent},
    {path: "accommodation", component: AccommodationMainComponent, children: ChildRoutesAccomm},
    {path: "country", component: CountryMainComponent, children: ChildRoutesCountry},
    {path: "rooms", component: RoomsMainComponent, children: ChildRoutesRooms},

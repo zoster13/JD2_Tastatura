@@ -20,13 +20,13 @@ export class AccommodationListComponent implements OnInit {
     this.top = 500;
   }
 
-  getAccommodation() : void {
+  getAccommodations() : void {
     this.accommodationService.getAccommodations()
       .then(accommodations => this.accommodations = accommodations);
   }
 
   ngOnInit() : void {
-    this.getAccommodation();
+    this.getAccommodations();
   }
 
   getTop() : string {
