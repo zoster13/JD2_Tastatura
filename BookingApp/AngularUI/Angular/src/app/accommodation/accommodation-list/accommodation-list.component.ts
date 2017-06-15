@@ -39,12 +39,17 @@ export class AccommodationListComponent implements OnInit {
           break;
       }
     }
-    localStorage.setItem('updateAccommodation', 
-    JSON.stringify({ id: this.temp.Id, name: this.temp.Name,
-      description : this.temp.Description, address: this.temp.Address, 
-      avaragegrade: this.temp.AverageGrade, longitude: this.temp.Longitude,
-    latitude: this.temp.Latitude, imageUrl: this.temp.ImageURL,
-  approved: this.temp.Approved, place: this.temp.Place.Id, accommtype: this.temp.AccommodationType.Id,
-  owner: this.temp.Owner.Id}));
-}
+    localStorage.setItem('updateAccommodation', JSON.stringify({ id: this.temp.Id, 
+                    name: this.temp.Name,
+                    description : this.temp.Description, 
+                    address: this.temp.Address, 
+                    avaragegrade: this.temp.AverageGrade, 
+                    longitude: this.temp.Longitude,
+                    latitude: this.temp.Latitude, 
+                    imageUrl: this.temp.ImageURL,
+                    approved: this.temp.Approved, 
+                    place: this.temp.Place.Id, 
+                    accommtype: this.temp.AccommodationType.Id,
+                    owner: this.temp.Owner.Id}));
+  }
 }
