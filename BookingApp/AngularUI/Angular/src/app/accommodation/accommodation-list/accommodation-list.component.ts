@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import {AccommodationService} from '../../services/accommodation.service';
 import {Accommodation} from '../../models/Accommodation';
+import {AccommodationFilterPipe} from '../../search/search.component';
 
 @Component({
   selector: 'accomm-list',

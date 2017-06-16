@@ -1,6 +1,11 @@
 <ul class="list">
+    <div>
+        <label for="Name">Name: </label>
+        <input type="text" [(ngModel)]="nameTerm" id="search" placeholder="Search to type">
+    </div>
+
     <div >
-        <li *ngFor="let accommodation of accommodations;">
+        <li *ngFor="let accommodation of accommodations | AccommodationFilterPipe: nameTerm">
             <div class="list">
                 <label> Id: </label> {{accommodation.Id}}.
                 <label> Name: </label> {{accommodation.Name}}

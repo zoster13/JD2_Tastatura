@@ -37,12 +37,12 @@ import {AccommodationTypesService} from './services/accommodation-types.service'
 import {AuthenticationService} from './services/authentication.service';
 import {AppUsersService} from './services/appuser.service';
 import {RegionsService} from './services/regions.service';
-import { AccommodationFilterComponent} from './accommodation/accommodation-filter/accommodation-filter.component';
 
 //Maps
 import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
 
+import { AccommodationFilterPipe } from './search/search.component';
 
 const ChildRoutesAccomm = [
    {path: "accommform", component: AccommodationFormComponent},
@@ -126,7 +126,7 @@ const Routes = [
     AccommodationTypesMainComponent,
     AccommodationTypesListComponent,
     AccommodationTypesFormComponent,
-    AccommodationFilterComponent
+    AccommodationFilterPipe
   ],
   imports: [
     BrowserModule,
