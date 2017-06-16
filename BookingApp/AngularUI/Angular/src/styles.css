@@ -36,6 +36,12 @@ div.formborder{
     background-image: linear-gradient(rgba(255,255,255,0.9) 100%, rgba(255,255,255,0.9) 100%);
 }
 
+div.image{
+    background-color: red;
+    height: 100px;
+    width: 100px;
+}
+
 ul.tabmenu {
     list-style-type: none;
     margin: 0;
@@ -103,4 +109,9 @@ li a.active:hover {
 label{
     color: #333;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+img.accommimage{
+    height: 100px;
+    width: 100px;
 }

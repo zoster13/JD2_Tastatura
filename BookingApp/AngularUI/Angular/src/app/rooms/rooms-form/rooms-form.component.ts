@@ -27,6 +27,7 @@ export class RoomsFormComponent {
       private accommService: AccommodationService,
       private roomsService: RoomsService,
       private router: Router,
+      private routeActive: ActivatedRoute,
       private location: Location) {
 
         this.room = new Room();
@@ -42,16 +43,14 @@ export class RoomsFormComponent {
     this.getAccommodation();
 
     this.uriParts =  this.router.url.split('/');
-
-    if(this.uriParts[this.uriParts.length - 1] === 'update'){
-      this.isUpdate = true;
       
-      this.temp = JSON.parse(localStorage.getItem('updateRoom'));
-      this.room.id = this.temp.id;
-      this.room.bedCount = this.temp.bedcount;
-      this.room.roomNumber = this.temp.roomnumber;
-      this.room.pricePerNight = this.temp.pricepernight;
-      this.room.description = this.temp.description;
+      if(this.uriParts[this.uriParts.length - 2] === 'update'){
+        this.routeActive.params
+        .switchMap((params: Params) => this.roomsService.getRoom(+params['id']))
+        .subscribe(room => this.room = room);
+
+        this.isUpdate = true;
+      
     }
     else{
       this.isUpdate = false;
@@ -87,5 +86,7 @@ export class RoomsFormComponent {
       }
 
       form.resetForm();
+
+      this.router.navigate(["mainpage/rooms/roomlist"]);
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute, Params} from '@angular/router';
 import { Country } from '../../models/Country';
 import {NgForm} from '@angular/forms';
 
@@ -18,7 +18,9 @@ export class CountryFormComponent implements OnInit {
   isUpdate: boolean;
   temp: any;
 
-  constructor(private countriesService: CountriesService,private router: Router) {
+  constructor(private countriesService: CountriesService,
+  private router: Router,
+  private routeActive: ActivatedRoute) {
       this.country = new Country();
       this.country.name = '';
       this.country.code = 0;
@@ -27,13 +29,12 @@ export class CountryFormComponent implements OnInit {
   ngOnInit(): void {
     this.uriParts =  this.router.url.split('/');
 
-    if(this.uriParts[this.uriParts.length - 1] === 'update'){
+    if(this.uriParts[this.uriParts.length - 2] === 'update'){
+        this.routeActive.params
+        .switchMap((params: Params) => this.countriesService.getCountry(+params['id']))
+        .subscribe(country => this.country = country);
+
       this.isUpdate = true;
-      
-      this.temp = JSON.parse(localStorage.getItem('updateCountry'));
-      this.country.id = this.temp.id;
-      this.country.name = this.temp.name;
-      this.country.code = this.temp.code;
     }
     else{
       this.isUpdate = false;
@@ -45,7 +46,6 @@ export class CountryFormComponent implements OnInit {
   }
 
   onSubmit(country: any, form: NgForm) {
-    this.country = new Country();
     this.country.name = country.Name;
     this.country.code = country.Code;
 

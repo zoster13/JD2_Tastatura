@@ -37,11 +37,6 @@ export class RoomsListComponent implements OnInit {
           break;
       }
     }
-    localStorage.setItem('updateRoom', JSON.stringify({ id: this.temp.Id, 
-                    roomnumber: this.temp.RoomNumber,
-                    bedcount : this.temp.BedCount, 
-                    description: this.temp.Description, 
-                    pricepernight: this.temp.PricePerNight}));
   }
 
 }

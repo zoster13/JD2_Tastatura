@@ -3,7 +3,7 @@
         <div class="list">
             <label> Name: </label> {{country.Name}}
             <label> Code: </label> {{country.Code}}
-            <a (click)="update(country.Id)"  [routerLink]="['/mainpage/country/update']" >Update</a>
+            <a (click)="update(country.Id)"  [routerLink]="['/mainpage/country/update', country.Id]" >Update</a>
         </div>
         <div class="listseparator">
         </div>

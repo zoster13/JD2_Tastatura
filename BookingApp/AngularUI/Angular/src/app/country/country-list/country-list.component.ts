@@ -37,9 +37,6 @@ export class CountryListComponent implements OnInit {
           break;
       }
     }
-    localStorage.setItem('updateCountry', JSON.stringify({ id: this.temp.Id, 
-                    name: this.temp.Name,
-                    code : this.temp.Code}));
   }
 
 }

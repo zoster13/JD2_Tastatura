@@ -37,7 +37,5 @@ update(accommtypeId: number){
           break;
       }
     }
-    localStorage.setItem('updateAccommodation', JSON.stringify({ id: this.temp.Id, 
-                    name: this.temp.Name}));
   }
 }

@@ -27,6 +27,7 @@ export class PlacesFormComponent {
       private placesService: PlacesService,
       private regionsService: RegionsService,
       private router: Router,
+      private routeActive: ActivatedRoute,
       private location: Location) {
 
         this.place = new Place();
@@ -39,12 +40,12 @@ export class PlacesFormComponent {
 
     this.uriParts =  this.router.url.split('/');
 
-    if(this.uriParts[this.uriParts.length - 1] === 'update'){
-      this.isUpdate = true;
-      
-      this.temp = JSON.parse(localStorage.getItem('updatePlace'));
-      this.place.id = this.temp.id;
-      this.place.name = this.temp.name;
+    if(this.uriParts[this.uriParts.length - 2] === 'update'){
+        this.routeActive.params
+        .switchMap((params: Params) => this.placesService.getPlace(+params['id']))
+        .subscribe(place => this.place = place);
+
+        this.isUpdate = true;
     }
     else{
       this.isUpdate = false;
@@ -58,8 +59,11 @@ export class PlacesFormComponent {
   }
 
   onSubmit(place: any, form: NgForm):void{
+    debugger
       this.place.name = place.Name;
+      this.place.region = new Region();
       this.place.region.id = place.Region;
+      debugger
 
       if(!this.isUpdate){
           this.placesService.create(this.place);
@@ -68,5 +72,7 @@ export class PlacesFormComponent {
           this.placesService.update(this.place);
       }
       form.resetForm();
+
+      this.router.navigate(["mainpage/places/placelist"]);
   }
 }

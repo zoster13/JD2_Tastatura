@@ -24,6 +24,8 @@ export class AccommodationService {
             .toPromise()
             .then(response => response.json() as Accommodation)
             .catch(this.handleError);
+            
+
     }
 
     delete(id: number): Promise<void> {
@@ -43,7 +45,7 @@ export class AccommodationService {
     }
 
     update(accommodation: Accommodation): Promise<Accommodation> {
-        const url = `${this.accommodationsUrl}/${accommodation.id}`;
+        const url = `${this.accommodationsUrl}/${accommodation["Id"]}`;
         return this.http
         .put(url, JSON.stringify(accommodation), {headers: this.headers})
         .toPromise()

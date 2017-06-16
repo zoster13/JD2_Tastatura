@@ -2,19 +2,19 @@
     <form #f="ngForm" (ngSubmit)="onSubmit(f.value, f)">
     <div>
       <label for="Name">Room number: </label>
-      <input type="text" name="RoomNumber" [value]="room.roomNumber">
+      <input type="text" name="RoomNumber" [ngModel]="room.RoomNumber">
     </div>
     <div>
       <label for="Description">BedCount: </label>
-      <input type="text" name="BedCount" [value]="room.bedCount">
+      <input type="text" name="BedCount" [ngModel]="room.BedCount">
     </div>
     <div>
       <label for="Longitude">Description: </label>
-      <input type="text" name="Description" [value]="room.description">
+      <input type="text" name="Description" [ngModel]="room.Description">
     </div>
     <div>
       <label for="Latitude">Price per night: </label>
-      <input type="text" name="PricePerNight" [value]="room.pricePerNight">
+      <input type="text" name="PricePerNight" [ngModel]="room.PricePerNight">
     </div>
     <div>
         <label for="Owner">Choose accommodation: </label>
