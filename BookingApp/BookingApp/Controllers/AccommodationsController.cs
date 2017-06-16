@@ -81,11 +81,14 @@ namespace BookingApp.Controllers
         [ResponseType(typeof(Accommodation))]
         public IHttpActionResult PostAccommodation(Accommodation accommodation)
         {
-            Place place = db.Places.FirstOrDefault(p => p.Id == accommodation.Place.Id);
+            Place place = db.Places.Where(p => p.Id == accommodation.Place.Id).Include("Region").FirstOrDefault();
+            place.Region = db.Regions.Where(r => r.Id == place.Region.Id).Include("Country").FirstOrDefault();
             AccommodationType accommType = db.AccommodationTypes.FirstOrDefault(at => at.Id == accommodation.AccommodationType.Id);
+            AppUser user = db.AppUsers.FirstOrDefault(o => o.Id == accommodation.Owner.Id);
 
             accommodation.Place = place;
             accommodation.AccommodationType = accommType;
+            accommodation.Owner = user;
 
             if (!ModelState.IsValid)
             {

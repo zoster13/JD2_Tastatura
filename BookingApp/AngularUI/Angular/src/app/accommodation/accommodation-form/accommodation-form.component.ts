@@ -109,7 +109,6 @@ export class AccommodationFormComponent implements OnInit {
   }
 
   onSubmitAccomm(accomm: any, form: NgForm) {
-      debugger
       this.accommodation.name = accomm.Name;
       this.accommodation.description = accomm.Description;  
       this.accommodation.address = accomm.Address;
@@ -121,7 +120,6 @@ export class AccommodationFormComponent implements OnInit {
       this.accommodation.accommodationType.id = accomm.AccommodationType;
       this.accommodation.owner = new AppUser();
       this.accommodation.owner.id = accomm.Owner;
-      debugger
 
       if(!this.isUpdate){
           this.accomService.create(this.accommodation);

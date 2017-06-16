@@ -32,7 +32,7 @@
     </div>
     <div>
         <label for="AccommodationType">Choose accommodation type: </label>
-        <select name="AccommodationType">
+        <select name="AccommodationType" ngModel>
             <option *ngFor="let accommtype of accommTypes" value="{{accommtype.Id}}">{{accommtype.Name}}</option>
         </select>
     </div>
