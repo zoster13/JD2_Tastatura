@@ -29,14 +29,4 @@ export class RoomsListComponent implements OnInit {
     this.getRooms();
   }
 
-  update(roomId: number){
-    this.room = new Room();
-    for(var i = 0; i < this.rooms.length; i++){
-      this.temp = this.rooms[i];
-      if(this.temp.Id == roomId){
-          break;
-      }
-    }
-  }
-
 }

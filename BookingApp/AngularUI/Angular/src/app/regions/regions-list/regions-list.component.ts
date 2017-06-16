@@ -29,16 +29,4 @@ export class RegionsListComponent implements OnInit {
     this.getRegions();
   }
 
-  update(regionId: number){
-    this.region = new Region();
-    for(var i = 0; i < this.regions.length; i++){
-      this.temp = this.regions[i];
-      if(this.temp.Id == regionId){
-          break;
-      }
-    }
-    localStorage.setItem('updateRegion', JSON.stringify({ id: this.temp.Id, 
-                    name: this.temp.Name}));
-  }
-
 }

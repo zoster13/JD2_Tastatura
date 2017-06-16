@@ -63,7 +63,6 @@ export class PlacesFormComponent {
       this.place.name = place.Name;
       this.place.region = new Region();
       this.place.region.id = place.Region;
-      debugger
 
       if(!this.isUpdate){
           this.placesService.create(this.place);

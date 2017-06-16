@@ -28,16 +28,4 @@ export class PlacesListComponent implements OnInit {
   ngOnInit() : void {
     this.getPlaces();
   }
-
-update(placeId: number){
-    this.place = new Place();
-    for(var i = 0; i < this.places.length; i++){
-      this.temp = this.places[i];
-      if(this.temp.Id == placeId){
-          break;
-      }
-    }
-    localStorage.setItem('updatePlace', JSON.stringify({ id: this.temp.Id, 
-                    name: this.temp.Name}));
-  }
 }

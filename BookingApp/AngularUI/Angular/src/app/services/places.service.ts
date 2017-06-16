@@ -43,7 +43,7 @@ export class PlacesService {
     }
 
     update(place: Place): Promise<Place> {
-        const url = `${this.placesUrl}/${place.id}`;
+        const url = `${this.placesUrl}/${place["Id"]}`;
         return this.http
         .put(url, JSON.stringify(place), {headers: this.headers})
         .toPromise()
