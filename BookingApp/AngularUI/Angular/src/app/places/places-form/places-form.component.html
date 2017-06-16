@@ -2,7 +2,7 @@
     <form #f="ngForm" (ngSubmit)="onSubmit(f.value, f)">
     <div>
       <label for="Latitude">Name: </label>
-      <input type="text" name="Name" [value]="place.name">
+      <input type="text" name="Name" [ngModel]="place.name">
     </div>
     <div>
         <label for="Owner">Choose region: </label>
