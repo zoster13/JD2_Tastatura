@@ -19,7 +19,8 @@ export class RoomsService {
     }
 
     getRooms(id : number) : Promise<Room[]> {
-        const url = `${this.roomsUrl}/${id}`;
+        debugger
+        const url = `${this.roomsUrl}/?$filter=Accommodation/Id eq ${id}`;
         return this.http.get(url)
                     .toPromise()
                     .then(response => response.json() as Room[])
