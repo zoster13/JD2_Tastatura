@@ -51,7 +51,8 @@ export class RoomsService {
     }
 
     update(room: Room): Promise<Room> {
-        const url = `${this.roomsUrl}/${room.id}`;
+        debugger
+        const url = `${this.roomsUrl}/${room["Id"]}`;
         return this.http
         .put(url, JSON.stringify(room), {headers: this.headers})
         .toPromise()

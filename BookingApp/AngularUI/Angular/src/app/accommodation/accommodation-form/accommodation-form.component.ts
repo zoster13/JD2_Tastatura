@@ -1,11 +1,12 @@
 import { Component, OnInit, ChangeDetectorRef   } from '@angular/core';
-import {Router} from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Place } from '../../models/Place';
 import { Room } from '../../models/Room';
 import {AccommodationType} from '../../models/AccommodationType';
 import {Accommodation} from '../../models/Accommodation';
 import {AppUser} from '../../models/AppUser';
 import {NgForm} from '@angular/forms';
+import 'rxjs/add/operator/switchMap';
 
 import {PlacesService} from '../../services/places.service';
 import {AccommodationTypesService} from '../../services/accommodation-types.service';
@@ -40,6 +41,7 @@ export class AccommodationFormComponent implements OnInit {
   private accomService: AccommodationService,
   private roomsService: RoomsService,
   private appUsersService: AppUsersService,
+  private routeActive: ActivatedRoute,
   private router: Router,
   private changeDetectorRef: ChangeDetectorRef
   ) 
@@ -62,19 +64,22 @@ export class AccommodationFormComponent implements OnInit {
 
     this.uriParts =  this.router.url.split('/');
 
-    if(this.uriParts[this.uriParts.length - 1] === 'update'){
+    if(this.uriParts[this.uriParts.length - 2] === 'update'){
+        this.routeActive.params
+        .switchMap((params: Params) => this.accomService.getAccommodation(+params['id']))
+        .subscribe(accomm => this.accommodation = accomm);
       this.isUpdate = true;
       
-      this.temp = JSON.parse(localStorage.getItem('updateAccommodation'));
-      this.accommodation.id = this.temp.id;
-      this.accommodation.name = this.temp.name;
-      this.accommodation.description = this.temp.description;
-      this.accommodation.address = this.temp.address;
-      this.accommodation.longitude = this.temp.longitude;
-      this.accommodation.latitude = this.temp.latitude;
-      this.accommodation.imageURL = this.temp.imageURL;
-      this.fileSrcs = [];
-      this.fileSrcs.push(this.accommodation.imageURL);
+    //   this.temp = JSON.parse(localStorage.getItem('updateAccommodation'));
+    //   this.accommodation.id = this.temp.id;
+    //   this.accommodation.name = this.temp.name;
+    //   this.accommodation.description = this.temp.description;
+    //   this.accommodation.address = this.temp.address;
+    //   this.accommodation.longitude = this.temp.longitude;
+    //   this.accommodation.latitude = this.temp.latitude;
+    //   this.accommodation.imageURL = this.temp.imageURL;
+    //   this.fileSrcs = [];
+    //   this.fileSrcs.push(this.accommodation.imageURL);
     }
     else{
       this.isUpdate = false;
@@ -104,6 +109,7 @@ export class AccommodationFormComponent implements OnInit {
   }
 
   onSubmitAccomm(accomm: any, form: NgForm) {
+      debugger
       this.accommodation.name = accomm.Name;
       this.accommodation.description = accomm.Description;  
       this.accommodation.address = accomm.Address;
@@ -113,12 +119,15 @@ export class AccommodationFormComponent implements OnInit {
       this.accommodation.place.id = accomm.Place;
       this.accommodation.accommodationType = new AccommodationType();
       this.accommodation.accommodationType.id = accomm.AccommodationType;
+      this.accommodation.owner = new AppUser();
       this.accommodation.owner.id = accomm.Owner;
+      debugger
 
       if(!this.isUpdate){
           this.accomService.create(this.accommodation);
       }
       else{
+          debugger
           this.accomService.update(this.accommodation);
       }
       

@@ -2,13 +2,13 @@
     <form #f="ngForm" (ngSubmit)="onSubmit(f.value, f)">
         <div>
             <label for="Name">Name: </label>
-            <input type="text" name="Name" [ngModel]="country.name">
+            <input type="text" name="Name" [ngModel]="country.Name">
         </div>
         <div>
             <label for="Code">Code: </label>
-            <input type="text" name="Code" [ngModel]="country.code">
+            <input type="text" name="Code" [ngModel]="country.Code">
         </div>
-        <div *ngIf="!isUpdate">
+    <div *ngIf="!isUpdate">
         <input type="submit" value="Add">
     </div>
     <div *ngIf="isUpdate">

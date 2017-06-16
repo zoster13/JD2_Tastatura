@@ -2,7 +2,7 @@
     <form #f="ngForm" (ngSubmit)="onSubmit(f.value, f)">
         <div>
             <label for="Name">Name: </label>
-            <input type="text" name="Name" [ngModel]="accommtype.name">
+            <input type="text" name="Name" [ngModel]="accommtype.Name">
         </div>
         <div *ngIf="!isUpdate">
         <input type="submit" value="Add">

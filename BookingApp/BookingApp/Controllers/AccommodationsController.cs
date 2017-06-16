@@ -36,11 +36,11 @@ namespace BookingApp.Controllers
             return Ok(accommodation);
         }
 
-        [EnableQuery]
-        public IQueryable<Room> GetAccommodationRooms(int id)
-        {
-            return db.Rooms;
-        }
+        //[EnableQuery]
+        //public IQueryable<Room> GetAccommodationRooms(int id)
+        //{
+        //    return db.Rooms;
+        //}
 
         // PUT: api/Accommodations/5
         [ResponseType(typeof(void))]

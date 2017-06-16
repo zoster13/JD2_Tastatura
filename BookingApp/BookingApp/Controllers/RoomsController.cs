@@ -24,23 +24,20 @@ namespace BookingApp.Controllers
         }
 
         // GET: api/Rooms/5
-        //[ResponseType(typeof(Room))]
-        //[EnableQuery]
-        //public SingleResult<Room> GetRoom( int id)
-        //{
-        //    Room room = db.Rooms.Find(id);
-        //    if (room == null)
-        //    {
-        //        return room.AsQueryable;
-        //    }
+        [ResponseType(typeof(Room))]
+        public IHttpActionResult GetRoom(int id)
+        {
+            Room room = db.Rooms.Find(id);
+            if (room == null)
+            {
+                return NotFound();
+            }
 
-        //    return Ok(room);
+            return Ok(room);
+        }
 
-        //    //return Ok(db.Rooms.AsQueryable().Where(r => r.Accommodation.Id == id));
-        //}
-
-        // PUT: api/Rooms/5
-        [ResponseType(typeof(void))]
+// PUT: api/Rooms/5
+[ResponseType(typeof(void))]
         public IHttpActionResult PutRoom(int id, Room room)
         {
             if (!ModelState.IsValid)

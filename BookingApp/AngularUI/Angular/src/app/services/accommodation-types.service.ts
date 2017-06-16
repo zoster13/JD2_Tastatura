@@ -43,7 +43,7 @@ export class AccommodationTypesService {
     }
 
     update(accommodationType: AccommodationType): Promise<AccommodationType> {
-        const url = `${this.accommodationTypesUrl}/${accommodationType.id}`;
+        const url = `${this.accommodationTypesUrl}/${accommodationType["Id"]}`;
         return this.http
         .put(url, JSON.stringify(accommodationType), {headers: this.headers})
         .toPromise()

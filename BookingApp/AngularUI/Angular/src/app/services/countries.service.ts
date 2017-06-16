@@ -43,7 +43,8 @@ export class CountriesService {
     }
 
     update(country: Country): Promise<Country> {
-        const url = `${this.countriesUrl}/${country.id}`;
+        debugger
+        const url = `${this.countriesUrl}/${country["Id"]}`;
         return this.http
         .put(url, JSON.stringify(country), {headers: this.headers})
         .toPromise()

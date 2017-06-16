@@ -4,9 +4,10 @@
             <div class="list">
                 <label> Id: </label> {{accommodation.Id}}.
                 <label> Name: </label> {{accommodation.Name}}
-                <a (click)="update(accommodation.Id)"  [routerLink]="['/mainpage/accommodation/update']" >Update</a>
-                <a  [routerLink]="['/mainpage/accommodation/rooms', accommodation.Id]">Rooms</a>
+                <a (click)="update(accommodation.Id)"  [routerLink]="['/mainpage/accommodation/update', accommodation.Id]" >Update</a>
+                <a  [routerLink]="['/mainpage/accommodation/roomlist', accommodation.Id]">Rooms</a>
                 <a  [routerLink]="['/mainpage/accommodation/comments', accommodation.Id]">Comments</a>
+                <a [routerLink]="['/mainpage/accommodation/details', accommodation.Id]" >Details</a>
             </div>
             <div class="listseparator">
             </div>

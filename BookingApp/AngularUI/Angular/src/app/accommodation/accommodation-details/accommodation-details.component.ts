@@ -27,6 +27,7 @@ export class AccommodationDetailsComponent implements OnInit {
     this.route.params
     .switchMap((params: Params) => this.accommodationService.getAccommodation(+params['id']))
     .subscribe(accomm => this.accommodation = accomm);
+    this.accommodation;
   }
 
   goBack(): void {
