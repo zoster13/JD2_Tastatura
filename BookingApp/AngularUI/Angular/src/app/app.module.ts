@@ -68,7 +68,7 @@ const ChildRoutesRooms = [
 const ChildRoutesRegions = [
    {path: "regionlist", component: RegionsListComponent},
    {path: "regionform", component: RegionsFormComponent},
-   {path: "update", component: RegionsFormComponent}
+   {path: "update/:id", component: RegionsFormComponent}
   ]
 
 const ChildRoutesPlaces = [

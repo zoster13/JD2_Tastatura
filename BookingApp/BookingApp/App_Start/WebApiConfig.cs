@@ -7,6 +7,9 @@ using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 using System.Web.Http.Cors;
 using System.Net.Http.Headers;
+using System.Web.Http.OData.Builder;
+using System.Web.Http.OData.Extensions;
+using BookingApp.Models;
 
 namespace BookingApp
 {
@@ -21,6 +24,11 @@ namespace BookingApp
 
             var cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);
+
+            ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+            builder.EntitySet<Room>("Rooms");
+            builder.EntitySet<Country>("Countries");
+            config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
 
             // Web API routes
             config.MapHttpAttributeRoutes();

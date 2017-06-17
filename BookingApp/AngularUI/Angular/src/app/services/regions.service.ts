@@ -43,7 +43,7 @@ export class RegionsService {
     }
 
     update(region: Region): Promise<Region> {
-        const url = `${this.regionsUrl}/${region.id}`;
+        const url = `${this.regionsUrl}/${region["Id"]}`;
         return this.http
         .put(url, JSON.stringify(region), {headers: this.headers})
         .toPromise()

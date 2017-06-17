@@ -74,6 +74,10 @@ namespace BookingApp.Controllers
         [ResponseType(typeof(Place))]
         public IHttpActionResult PostPlace(Place place)
         {
+            Region region = db.Regions.Where(r => r.Id == place.Region.Id).Include("Country").FirstOrDefault();
+
+            place.Region = region;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

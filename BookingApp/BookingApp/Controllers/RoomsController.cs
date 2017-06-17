@@ -18,6 +18,7 @@ namespace BookingApp.Controllers
         private BAContext db = new BAContext();
 
         // GET: api/Rooms
+        [EnableQuery]
         public IQueryable<Room> GetRooms()
         {
             return db.Rooms;
@@ -36,8 +37,8 @@ namespace BookingApp.Controllers
             return Ok(room);
         }
 
-// PUT: api/Rooms/5
-[ResponseType(typeof(void))]
+        // PUT: api/Rooms/5
+        [ResponseType(typeof(void))]
         public IHttpActionResult PutRoom(int id, Room room)
         {
             if (!ModelState.IsValid)
@@ -75,6 +76,25 @@ namespace BookingApp.Controllers
         [ResponseType(typeof(Room))]
         public IHttpActionResult PostRoom(Room room)
         {
+            Accommodation accomm = db.Accommodations
+                .Where(a => a.Id == room.Accommodation.Id)
+                .Include("Place")
+                .Include("AccommodationType")
+                .Include("Owner")
+                .FirstOrDefault();
+
+            accomm.Place = db.Places
+                .Where(p => p.Id == accomm.Place.Id)
+                .Include("Region")
+                .FirstOrDefault();
+
+            accomm.Place.Region = db.Regions
+                .Where(r => r.Id == accomm.Place.Region.Id)
+                .Include("Country")
+                .FirstOrDefault();
+
+            room.Accommodation = accomm;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

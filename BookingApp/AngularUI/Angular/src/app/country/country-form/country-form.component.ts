@@ -56,5 +56,7 @@ export class CountryFormComponent implements OnInit {
         this.countriesService.update(this.country);
     }
     form.resetForm();
+
+    this.router.navigate(["mainpage/country/countrylist"]);
     }
 }

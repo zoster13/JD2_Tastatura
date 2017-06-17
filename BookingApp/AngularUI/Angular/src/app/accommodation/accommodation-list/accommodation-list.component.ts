@@ -31,14 +31,4 @@ export class AccommodationListComponent implements OnInit {
   ngOnInit() : void {
     this.getAccommodations();
   }
-
-  update(accommId: number){
-    this.accomm = new Accommodation();
-    for(var i = 0; i < this.accommodations.length; i++){
-      this.temp = this.accommodations[i];
-      if(this.temp.Id == accommId){
-          break;
-      }
-    }
-  }
 }

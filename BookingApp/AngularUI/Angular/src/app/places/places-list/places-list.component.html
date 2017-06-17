@@ -3,7 +3,7 @@
         <div class="list">
             <label> Name: </label> {{place.Name}}
             <label> Region: </label> {{place.Region.Name}}
-            <a (click)="update(place.Id)"  [routerLink]="['/mainpage/places/update', place.Id]" >Update</a>
+            <a [routerLink]="['/mainpage/places/update', place.Id]" >Update</a>
         </div>
         <div class="listseparator">
         </div>

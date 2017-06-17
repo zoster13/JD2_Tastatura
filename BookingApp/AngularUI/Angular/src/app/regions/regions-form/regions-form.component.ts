@@ -27,6 +27,7 @@ export class RegionsFormComponent {
       private countryService: CountriesService,
       private regionsService: RegionsService,
       private router: Router,
+      private routeActive: ActivatedRoute,
       private location: Location) {
 
         this.region = new Region();
@@ -39,12 +40,13 @@ export class RegionsFormComponent {
 
     this.uriParts =  this.router.url.split('/');
 
-    if(this.uriParts[this.uriParts.length - 1] === 'update'){
+    if(this.uriParts[this.uriParts.length - 2] === 'update'){
+        this.routeActive.params
+        .switchMap((params: Params) => this.regionsService.getRegion(+params['id']))
+        .subscribe(region => this.region = region);
+
       this.isUpdate = true;
-      
-      this.temp = JSON.parse(localStorage.getItem('updateRegion'));
-      this.region.id = this.temp.id;
-      this.region.name = this.temp.name;
+
     }
     else{
       this.isUpdate = false;
@@ -59,7 +61,9 @@ export class RegionsFormComponent {
 
   onSubmit(region: any, form: NgForm):void{
       this.region.name = region.Name;
+      this.region.country = new Country();
       this.region.country.id = region.Country;
+      debugger
 
       if(!this.isUpdate){
           this.regionsService.create(this.region);
@@ -69,5 +73,6 @@ export class RegionsFormComponent {
       }
 
       form.resetForm();
+      this.router.navigate(["mainpage/regions/regionlist"]);
   }
 }

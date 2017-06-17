@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import {RoomsService} from '../../services/rooms.service';
 import {Room} from '../../models/Room';
 
@@ -15,28 +15,30 @@ export class RoomsListComponent implements OnInit {
   room: Room;
   temp: any;
 
+  uriParts: string[];
+
   constructor(private roomsService:RoomsService,
-  private router: Router) {
+  private router: Router,
+  private route: ActivatedRoute) {
     
   }
 
-  getRooms() : void {
+  getAllRooms() : void {
     this.roomsService.getAllRooms()
       .then(rooms => this.rooms = rooms);
   }
 
   ngOnInit() : void {
-    this.getRooms();
-  }
 
-  update(roomId: number){
-    this.room = new Room();
-    for(var i = 0; i < this.rooms.length; i++){
-      this.temp = this.rooms[i];
-      if(this.temp.Id == roomId){
-          break;
-      }
+    this.uriParts =  this.router.url.split('/');
+
+    if(this.uriParts[this.uriParts.length - 2] === 'roomlist'){
+        this.route.params
+        .switchMap((params: Params) => this.roomsService.getRooms(+params['id']))
+        .subscribe(rooms => this.rooms = rooms);
     }
+     else{
+       this.getAllRooms();
+     }
   }
-
 }

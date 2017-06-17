@@ -3,7 +3,7 @@
         <li *ngFor="let accommtype of accommtypes">
             <div class="list">
                 <label> Name: </label> {{accommtype.Name}}
-                <a (click)="update(accommtype.Id)"  [routerLink]="['/mainpage/accommtypes/update', accommtype.Id]" >Update</a>
+                <a [routerLink]="['/mainpage/accommtypes/update', accommtype.Id]" >Update</a>
             </div>
             <div class="listseparator">
             </div>

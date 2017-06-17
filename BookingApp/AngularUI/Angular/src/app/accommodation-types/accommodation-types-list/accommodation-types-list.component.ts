@@ -29,13 +29,4 @@ export class AccommodationTypesListComponent implements OnInit {
     this.getAccomTypes();
   }
 
-update(accommtypeId: number){
-    this.accommtype = new AccommodationType();
-    for(var i = 0; i < this.accommtypes.length; i++){
-      this.temp = this.accommtypes[i];
-      if(this.temp.Id == accommtypeId){
-          break;
-      }
-    }
-  }
 }

@@ -28,15 +28,4 @@ export class CountryListComponent implements OnInit {
   ngOnInit() : void {
     this.getCountries();
   }
-
-   update(countryId: number){
-    this.country = new Country();
-    for(var i = 0; i < this.countries.length; i++){
-      this.temp = this.countries[i];
-      if(this.temp.Id == countryId){
-          break;
-      }
-    }
-  }
-
 }
