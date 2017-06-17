@@ -1,18 +1,27 @@
 <ul class="list">
     <div>
-        <label for="Name">Name: </label>
-        <input type="text" [(ngModel)]="nameTerm" id="search" placeholder="Search to type">
+        <input type="text" [(ngModel)]="nameTerm" id="search" placeholder="Search by Name">
+        <input type="text" [(ngModel)]="addressTerm" id="search" placeholder="Search by Address">
+        <input type="text" [(ngModel)]="placeTerm" id="search" placeholder="Search by Place">
+        <input type="text" [(ngModel)]="aTypeTerm" id="search" placeholder="Search by Accomm. Type">
     </div>
 
+    <br/>
+
     <div >
-        <li *ngFor="let accommodation of accommodations | AccommodationFilterPipe: nameTerm">
+        <li *ngFor="let accommodation of accommodations | AccommodationFilterPipe: [nameTerm,addressTerm,placeTerm,aTypeTerm]">
             <div class="list">
-                <label> Id: </label> {{accommodation.Id}}.
-                <label> Name: </label> {{accommodation.Name}}
                 <a [routerLink]="['/mainpage/accommodation/update', accommodation.Id]" >Update</a>
-                <a  [routerLink]="['/mainpage/accommodation/roomlist', accommodation.Id]">Rooms</a>
-                <a  [routerLink]="['/mainpage/accommodation/comments', accommodation.Id]">Comments</a>
+                <a [routerLink]="['/mainpage/accommodation/roomlist', accommodation.Id]">Rooms</a>
+                <a [routerLink]="['/mainpage/accommodation/comments', accommodation.Id]">Comments</a>
                 <a [routerLink]="['/mainpage/accommodation/details', accommodation.Id]" >Details</a>
+                
+                <br/>
+                <label> Name: </label> {{accommodation.Name}} <br/>
+                <label> Address: </label> {{accommodation.Address}} <br/>
+                <label> Average Grade: </label> {{accommodation.AverageGrade}} <br/>
+                <label> Place: </label> {{accommodation.Place.Name}} <br/>
+                <label> Accommodation Type: </label> {{accommodation.AccommodationType.Name}} 
             </div>
             <div class="listseparator">
             </div>

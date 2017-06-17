@@ -5,20 +5,55 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 
 export class AccommodationFilterPipe implements PipeTransform {
-    transform(accommodations: any, term: any): any {
+    transform(accommodations, args:any[]): any {
 
-        //check if accommodations is undefined
-        if (term===undefined) {
-            return accommodations;
+        let nameTerm = args[0];
+        let addressTerm = args[1];
+        let placeTerm = args[2];
+        let aTypeTerm = args[3];
+
+        let filtredAccommodations = accommodations;
+
+        if(nameTerm !== undefined)
+        {
+            nameTerm = nameTerm.toLowerCase();
+
+            //return updated accommodations array
+            filtredAccommodations =  filtredAccommodations.filter(function(accomm:any) {
+                return ((accomm.Name.toLowerCase().indexOf(nameTerm) > -1));
+            })
         }
 
-        term = term.toLowerCase();
+        if(addressTerm !== undefined)
+        {
+            addressTerm = addressTerm.toLowerCase();
 
-        //return updated accommodations array
-        var accomms =  accommodations.filter(function(accomm:any) {
-            return accomm.Name.toLowerCase().indexOf(term) > -1;
-        })
+            //return updated accommodations array
+            filtredAccommodations =  filtredAccommodations.filter(function(accomm:any) {
+                return ((accomm.Address.toLowerCase().indexOf(addressTerm) > -1));
+            })
+        }
 
-        return accomms;
+        if(placeTerm !== undefined)
+        {
+            placeTerm = placeTerm.toLowerCase();
+
+            //return updated accommodations array
+            filtredAccommodations =  filtredAccommodations.filter(function(accomm:any) {
+                return ((accomm.Place.Name.toLowerCase().indexOf(placeTerm) > -1));
+            })
+        }
+        
+        if(aTypeTerm !== undefined)
+        {
+            aTypeTerm = aTypeTerm.toLowerCase();
+
+            //return updated accommodations array
+            filtredAccommodations =  filtredAccommodations.filter(function(accomm:any) {
+                return ((accomm.AccommodationType.Name.toLowerCase().indexOf(aTypeTerm) > -1));
+            })
+        }
+
+        return filtredAccommodations;
     }
 }
