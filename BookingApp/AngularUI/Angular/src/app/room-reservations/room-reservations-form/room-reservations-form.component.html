@@ -1,0 +1,46 @@
+<div class="formborder" id="roomformborder">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value, f)">
+    <div>
+      <label for="Name">Start date: </label>
+    </div>
+    <div>
+      <label for="Name">Year: </label>
+      <input type="text" name="Syear" [ngModel]="reservation.startDate.getYear()">
+    </div>
+    <div>
+      <label for="Name">Month: </label>
+      <input type="text" name="Smonth" [ngModel]="reservation.startDate.getMonth()">
+    </div>
+    <div>
+      <label for="Name">Day: </label>
+      <input type="text" name="Sday" [ngModel]="reservation.startDate.getDay()">
+    </div>
+    <div>
+      <label for="Name">End date: </label>
+    </div>
+    <div>
+      <label for="Name">Year: </label>
+      <input type="text" name="Eyear" [ngModel]="reservation.endDate.getYear()">
+    </div>
+    <div>
+      <label for="Name">Month: </label>
+      <input type="text" name="Emonth" [ngModel]="reservation.endDate.getMonth()">
+    </div>
+    <div>
+      <label for="Name">Day: </label>
+      <input type="text" name="Eday" [ngModel]="reservation.endDate.getDay()">
+    </div>
+    <div>
+        <label for="Owner">Choose room: </label>
+        <select name="Room" ngModel>
+            <option *ngFor="let room of rooms" value="{{room.Id}}">{{room.Accommodation.Name}}, room number: {{room.RoomNumber}}</option>
+        </select>
+    </div>
+    <div *ngIf="!isUpdate">
+        <input type="submit" value="Add">
+    </div>
+    <div *ngIf="isUpdate">
+        <input type="submit" value="Update">
+    </div>
+  </form>
+</div>

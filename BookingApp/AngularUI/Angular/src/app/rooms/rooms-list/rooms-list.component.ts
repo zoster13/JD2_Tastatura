@@ -11,11 +11,12 @@ import {Room} from '../../models/Room';
 
 export class RoomsListComponent implements OnInit {
 
-  rooms: Room[];
+  rooms: Room[] = [];
   room: Room;
   temp: any;
 
   uriParts: string[];
+  caption: string;
 
   constructor(private roomsService:RoomsService,
   private router: Router,
@@ -33,11 +34,17 @@ export class RoomsListComponent implements OnInit {
     this.uriParts =  this.router.url.split('/');
 
     if(this.uriParts[this.uriParts.length - 2] === 'roomlist'){
+        
+
         this.route.params
         .switchMap((params: Params) => this.roomsService.getRooms(+params['id']))
         .subscribe(rooms => this.rooms = rooms);
+        this.rooms;
+
+        this.caption = "Rooms of selected accommodation:";
     }
      else{
+       this.caption = "";
        this.getAllRooms();
      }
   }

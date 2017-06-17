@@ -12,7 +12,8 @@ export class AccommodationService {
     constructor(private http: Http) { }
 
     getAccommodations() : Promise<Accommodation[]> {
-        return this.http.get(this.accommodationsUrl)
+        const url = `${this.accommodationsUrl}?$top=4&$skip=0`;
+        return this.http.get(url)
                     .toPromise()
                     .then(response => response.json() as Accommodation[] )
                     .catch(this.handleError);

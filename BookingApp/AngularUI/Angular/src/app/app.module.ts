@@ -27,6 +27,9 @@ import {AccommodationTypesFormComponent} from './accommodation-types/accommodati
 import {CountryFormComponent} from './country/country-form/country-form.component';
 import {CountryMainComponent} from './country/country-main/country-main.component';
 import {CountryListComponent} from './country/country-list/country-list.component';
+import {RoomReservationsMainComponent} from './room-reservations/room-reservations-main/room-reservations-main.component';
+import {RoomReservationsListComponent} from './room-reservations/room-reservations-list/room-reservations-list.component';
+import {RoomReservationsFormComponent} from './room-reservations/room-reservations-form/room-reservations-form.component';
 
 import {CountriesService} from './services/countries.service';
 import {AccommodationService} from './services/accommodation.service';
@@ -37,6 +40,7 @@ import {AccommodationTypesService} from './services/accommodation-types.service'
 import {AuthenticationService} from './services/authentication.service';
 import {AppUsersService} from './services/appuser.service';
 import {RegionsService} from './services/regions.service';
+import {RoomReservationsService} from './services/room-reservations.service';
 
 //Maps
 import { MapComponent } from './map/map.component';
@@ -62,7 +66,8 @@ const ChildRoutesCountry = [
 const ChildRoutesRooms = [
    {path: "roomform", component: RoomsFormComponent},
    {path: "roomlist", component: RoomsListComponent},
-   {path: "update/:id", component: RoomsFormComponent}
+   {path: "update/:id", component: RoomsFormComponent},
+   {path: "reservationlist/:id", component: RoomReservationsListComponent}
   ]
 
 const ChildRoutesRegions = [
@@ -83,6 +88,12 @@ const ChildRoutesAccommTypes = [
    {path: "update/:id", component: AccommodationTypesFormComponent}
   ]
 
+const ChildRoutesReservations = [
+   {path: "reservationlist", component: RoomReservationsListComponent},
+   {path: "reservationform", component: RoomReservationsFormComponent},
+   {path: "update/:id", component: RoomReservationsFormComponent}
+  ]
+
 const ChildRoutesMain = [
    {path: "map", component: MapComponent},
    {path: "accommodation", component: AccommodationMainComponent, children: ChildRoutesAccomm},
@@ -91,6 +102,7 @@ const ChildRoutesMain = [
    {path: "regions", component: RegionsMainComponent, children: ChildRoutesRegions},
    {path: "places", component: PlacesMainComponent, children: ChildRoutesPlaces},
    {path: "accommtypes", component: AccommodationTypesMainComponent, children: ChildRoutesAccommTypes},
+   {path: "reservations", component: RoomReservationsMainComponent, children: ChildRoutesReservations},
    {path: "login", component: LoginComponent}
   ]
 
@@ -126,7 +138,10 @@ const Routes = [
     AccommodationTypesMainComponent,
     AccommodationTypesListComponent,
     AccommodationTypesFormComponent,
-    AccommodationFilterPipe
+    AccommodationFilterPipe,
+    RoomReservationsMainComponent,
+    RoomReservationsListComponent,
+    RoomReservationsFormComponent
   ],
   imports: [
     BrowserModule,
@@ -144,7 +159,8 @@ const Routes = [
     AccommodationTypesService,
     AuthenticationService,
     AppUsersService,
-    RegionsService
+    RegionsService,
+    RoomReservationsService
     ],
   bootstrap: [
     AppComponent

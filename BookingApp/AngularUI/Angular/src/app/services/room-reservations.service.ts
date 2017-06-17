@@ -11,7 +11,7 @@ export class RoomReservationsService {
 
     constructor(private http: Http) { }
 
-    getRoomReservations() : Promise<RoomReservations[]> {
+    getAllRoomReservations() : Promise<RoomReservations[]> {
         return this.http.get(this.roomReservationsUrl)
                     .toPromise()
                     .then(response => response.json() as RoomReservations[])
@@ -24,6 +24,14 @@ export class RoomReservationsService {
             .toPromise()
             .then(response => response.json() as RoomReservations)
             .catch(this.handleError);
+    }
+
+    getRoomReservations(id : number) : Promise<RoomReservations[]> {
+        const url = `${this.roomReservationsUrl}/?$filter=Room/Id eq ${id}&$orderby=StartDate`;
+        return this.http.get(url)
+                    .toPromise()
+                    .then(response => response.json() as RoomReservations[])
+                    .catch(this.handleError);
     }
 
     delete(id: number): Promise<void> {
@@ -43,7 +51,7 @@ export class RoomReservationsService {
     }
 
     update(roomReservations: RoomReservations): Promise<RoomReservations> {
-        const url = `${this.roomReservationsUrl}/${roomReservations.id}`;
+        const url = `${this.roomReservationsUrl}/${roomReservations['Id']}`;
         return this.http
         .put(url, JSON.stringify(roomReservations), {headers: this.headers})
         .toPromise()

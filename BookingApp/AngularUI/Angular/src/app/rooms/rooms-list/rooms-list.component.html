@@ -1,5 +1,8 @@
 <ul class="list">
     <div>
+        <div *ngIf="caption != ''">
+            <p>{{caption}}</p>
+        </div>
         <li *ngFor="let room of rooms">
             <div class="list">
                 <label> Room number: </label>{{room.RoomNumber}}.
@@ -7,7 +10,7 @@
                 <label> Description: </label> {{room.Description}}.
                 <label> Price per night: </label>{{room.PricePerNight}}.
                 <label> Accommodation: </label>{{room.Accommodation.Name}}.
-                <a [routerLink]="['/mainpage/rooms/book']" >Book</a>
+                <a [routerLink]="['/mainpage/rooms/reservationlist', room.Id]">Book</a>
                 <a [routerLink]="['/mainpage/rooms/update', room.Id]" >Update</a>
             </div>
             <div class="listseparator">

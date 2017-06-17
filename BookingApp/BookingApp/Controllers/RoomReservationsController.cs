@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BookingApp.Models;
+using System.Web.Http.OData;
 
 namespace BookingApp.Controllers
 {
@@ -17,6 +18,7 @@ namespace BookingApp.Controllers
         private BAContext db = new BAContext();
 
         // GET: api/RoomReservations
+        [EnableQuery]
         public IQueryable<RoomReservations> GetRoomReservationss()
         {
             return db.RoomReservationss;
@@ -39,6 +41,8 @@ namespace BookingApp.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutRoomReservations(int id, RoomReservations roomReservations)
         {
+            roomReservations.User = db.AppUsers.Where(u => u.Username == roomReservations.User.Username).FirstOrDefault();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -74,6 +78,27 @@ namespace BookingApp.Controllers
         [ResponseType(typeof(RoomReservations))]
         public IHttpActionResult PostRoomReservations(RoomReservations roomReservations)
         {
+            Room room = db.Rooms.Where(r => roomReservations.Room.Id == r.Id).Include("Accommodation").FirstOrDefault();
+            room.Accommodation = db.Accommodations
+                .Where(a => a.Id == room.Accommodation.Id)
+                .Include("AccommodationType")
+                .Include("Owner")
+                .Include("Place").FirstOrDefault();
+
+            room.Accommodation.Place = db.Places
+                .Where(p => p.Id == room.Accommodation.Place.Id)
+                .Include("Region")
+                .FirstOrDefault();
+
+            room.Accommodation.Place.Region = db.Regions
+                .Where(r => r.Id == room.Accommodation.Place.Region.Id)
+                .Include("Country")
+                .FirstOrDefault();
+
+            roomReservations.Room = room;
+
+            roomReservations.User = db.AppUsers.Where(u => u.Id == 1).FirstOrDefault();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

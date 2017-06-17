@@ -27,7 +27,9 @@ namespace BookingApp
 
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<Room>("Rooms");
+            builder.EntitySet<Accommodation>("Accommodations");
             builder.EntitySet<Country>("Countries");
+            builder.EntitySet<RoomReservations>("RoomReservations");
             config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
 
             // Web API routes

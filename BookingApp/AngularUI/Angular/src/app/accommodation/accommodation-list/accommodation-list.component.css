@@ -1,7 +1,114 @@
 div.accommlistitem{
     background-color: white;
-    height: 100px;
+    height: 150px;
     width: 100%;
     position: absolute;
     left: 100px;
+}
+
+div.accommname{
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 22px;
+    position: absolute;
+    left: 28%;
+}
+
+div.accommimage{
+    background-color:green;
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    left: 3%;
+}
+
+div.topmarg{
+    background-color: transparent;
+    height: 17px;
+    width: 100%;
+}
+
+li.left a.listlinkk {
+    display: block;
+    color:white;
+    text-align: center;
+    padding: 5px 5px;
+    text-decoration: none;
+}
+
+
+
+li.left {
+    float: left;
+}
+
+div.linkrooms{
+    background-color: #333;
+    width: 70px;
+    height: 30px;
+    position: absolute;
+    left: 60%;
+}
+
+div.linkcomments{
+    background-color: #333;
+    width: 80px;
+    height: 30px;
+    position: absolute;
+    left: 80%;
+}
+
+ul.accommtabmenuu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 40%;
+    position: relative;
+    left: 410px;
+    top: 50px;
+}
+
+div.description{
+    width: 500px;
+    height: 91px;
+    position: relative;
+    left: 195px;
+    top: 40px;
+    color: #333;
+    overflow-wrap: hidden;
+}
+
+div.grade{
+    width: 200px;
+    height: 91px;
+    position: relative;
+    left: 195px;
+    top: 20px;
+    color: #333;
+}
+
+div.grade label.gradecolorred{
+    color: red;
+    font-size: 20;
+    font-weight: bold;
+}
+
+div.grade label.gradecoloryellow{
+    color: yellow;
+    font-size: 20;
+    font-weight: bold;
+}
+div.grade label.gradecolorgreen{
+    color:green;
+    font-size: 20;
+    font-weight: bold;
+}
+
+div.bottom{
+    position: relative;
+    left: 100;
 }

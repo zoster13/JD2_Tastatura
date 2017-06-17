@@ -1,0 +1,18 @@
+<ul class="list">
+    <div>
+        <div *ngIf="caption != ''">
+            <p>{{caption}}</p>
+        </div>
+        <li *ngFor="let roomres of roomReservations">
+            <div class="list">
+                <label> Start date: </label>{{roomres.StartDate}}.
+                <label> End date: </label> {{roomres.EndDate}}.
+                <a [routerLink]="['/mainpage/reservations/update', roomres.Id]" >Update</a>
+                <a [routerLink]="['/mainpage/reservations/reservationlist']">Delete</a>
+                <a (click)="finishBooking(roomres)" [routerLink]="['/mainpage/accommodation/accommlist']">Finish Booking</a>
+            </div>
+            <div class="listseparator">
+            </div>
+        </li>
+    </div>
+</ul>
