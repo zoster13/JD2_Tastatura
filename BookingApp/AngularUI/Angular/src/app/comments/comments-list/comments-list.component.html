@@ -1,0 +1,24 @@
+<div *ngIf="isAdd">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value, f)">
+    <div>
+      <label for="Grade">Text:</label>
+      <input type="text" name="Text" ngModel>
+    </div>
+    <div>
+      <label for="Password">Grade: </label>
+      <input type="text" name="Grade" ngModel>
+    </div>
+    <input type="submit">
+  </form>
+</div>
+<ul class="list">
+    <li *ngFor="let comm of comments">
+        <div class="list">
+            <label>Text:</label> {{comm.Text}}
+            <label>Grade: </label>{{comm.Grade}}
+            <a [routerLink]="['/mainpage/comments/update', comm.Id]" >Update</a>
+        </div>
+        <div class="listseparator">
+        </div>
+    </li>
+</ul>

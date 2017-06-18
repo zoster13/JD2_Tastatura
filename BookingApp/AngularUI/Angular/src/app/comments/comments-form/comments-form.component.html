@@ -1,0 +1,30 @@
+<div class="formborder" id="roomformborder">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value, f)">
+        <div>
+            <label for="Name">Text: </label>
+            <input type="text" name="Text" [ngModel]="comment.Text">
+        </div>
+        <div>
+            <label for="Code">Grade: </label>
+            <input type="text" name="Grade" [ngModel]="comment.Grade">
+        </div>
+        <div>
+        <label for="Place">Choose accommodation: </label>
+        <select name="Accommodation" ngModel>
+            <option *ngFor="let accomm of accommodation" value="{{accomm.Id}}">{{accomm.Name}}</option>
+        </select>
+    </div>
+    <div>
+        <label for="Place">Choose user: </label>
+        <select name="User" ngModel>
+            <option *ngFor="let user of users" value="{{user.Id}}">{{user.FullName}}</option>
+        </select>
+    </div>
+    <div *ngIf="!isUpdate">
+        <input type="submit" value="Add">
+    </div>
+    <div *ngIf="isUpdate">
+        <input type="submit" value="Update">
+    </div>
+    </form>
+</div>

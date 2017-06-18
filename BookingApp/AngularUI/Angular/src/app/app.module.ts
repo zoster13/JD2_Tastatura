@@ -12,7 +12,6 @@ import { RoomsMainComponent } from './rooms/rooms-main/rooms-main.component';
 import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
 import { LoginComponent } from './login/login.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
-import {CommentsComponent} from './comments/comments.component';
 import {AccommodationFormComponent} from './accommodation/accommodation-form/accommodation-form.component';
 import {AccommodationListComponent} from './accommodation/accommodation-list/accommodation-list.component';
 import {RegionsFormComponent} from './regions/regions-form/regions-form.component';
@@ -30,6 +29,9 @@ import {CountryListComponent} from './country/country-list/country-list.componen
 import {RoomReservationsMainComponent} from './room-reservations/room-reservations-main/room-reservations-main.component';
 import {RoomReservationsListComponent} from './room-reservations/room-reservations-list/room-reservations-list.component';
 import {RoomReservationsFormComponent} from './room-reservations/room-reservations-form/room-reservations-form.component';
+import {CommentsMainComponent} from './comments/comments-main/comments-main.component';
+import {CommentsListComponent} from './comments/comments-list/comments-list.component';
+import {CommentsFormComponent} from './comments/comments-form/comments-form.component';
 
 import {CountriesService} from './services/countries.service';
 import {AccommodationService} from './services/accommodation.service';
@@ -51,10 +53,11 @@ import { AccommodationFilterPipe } from './search/search.component';
 const ChildRoutesAccomm = [
    {path: "accommform", component: AccommodationFormComponent},
    {path: "accommlist", component: AccommodationListComponent},
-   {path: "comments/:id", component: CommentsComponent},
    {path: "update/:id", component: AccommodationFormComponent},
    {path: "roomlist/:id", component: RoomsListComponent},
    {path: "details/:id", component: AccommodationDetailsComponent},
+   {path: "reservationlist/:id", component: RoomReservationsListComponent},
+   {path: "commentlist/:id", component: CommentsListComponent},
   ]
 
 const ChildRoutesCountry = [
@@ -66,8 +69,7 @@ const ChildRoutesCountry = [
 const ChildRoutesRooms = [
    {path: "roomform", component: RoomsFormComponent},
    {path: "roomlist", component: RoomsListComponent},
-   {path: "update/:id", component: RoomsFormComponent},
-   {path: "reservationlist/:id", component: RoomReservationsListComponent}
+   {path: "update/:id", component: RoomsFormComponent}
   ]
 
 const ChildRoutesRegions = [
@@ -94,6 +96,12 @@ const ChildRoutesReservations = [
    {path: "update/:id", component: RoomReservationsFormComponent}
   ]
 
+const ChildRoutesComments = [
+   {path: "commentlist", component: CommentsListComponent},
+   {path: "commentform", component: CommentsFormComponent},
+   {path: "update/:id", component: CommentsFormComponent}
+  ]
+
 const ChildRoutesMain = [
    {path: "map", component: MapComponent},
    {path: "accommodation", component: AccommodationMainComponent, children: ChildRoutesAccomm},
@@ -103,6 +111,7 @@ const ChildRoutesMain = [
    {path: "places", component: PlacesMainComponent, children: ChildRoutesPlaces},
    {path: "accommtypes", component: AccommodationTypesMainComponent, children: ChildRoutesAccommTypes},
    {path: "reservations", component: RoomReservationsMainComponent, children: ChildRoutesReservations},
+   {path: "comments", component: CommentsMainComponent, children: ChildRoutesComments},
    {path: "login", component: LoginComponent}
   ]
 
@@ -119,7 +128,6 @@ const Routes = [
     AccommodationMainComponent,
     AccommodationDetailsComponent,
     LoginComponent,
-    CommentsComponent,
     MainpageComponent, 
     AccommodationFormComponent,
     AccommodationListComponent,
@@ -141,7 +149,10 @@ const Routes = [
     AccommodationFilterPipe,
     RoomReservationsMainComponent,
     RoomReservationsListComponent,
-    RoomReservationsFormComponent
+    RoomReservationsFormComponent,
+    CommentsMainComponent,
+    CommentsListComponent,
+    CommentsFormComponent
   ],
   imports: [
     BrowserModule,

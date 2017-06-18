@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BookingApp.Models;
+using System.Web.Http.OData;
 
 namespace BookingApp.Controllers
 {
@@ -17,6 +18,7 @@ namespace BookingApp.Controllers
         private BAContext db = new BAContext();
 
         // GET: api/Comments
+        [EnableQuery]
         public IQueryable<Comment> GetComments()
         {
             return db.Comments;
@@ -39,6 +41,7 @@ namespace BookingApp.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutComment(int id, Comment comment)
         {
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -74,6 +77,29 @@ namespace BookingApp.Controllers
         [ResponseType(typeof(Comment))]
         public IHttpActionResult PostComment(Comment comment)
         {
+            Accommodation accomm = db.Accommodations
+                .Where(a => comment.Accommodation.Id == a.Id)
+                .Include("Place")
+                .Include("AccommodationType")
+                .Include("Owner")
+                .FirstOrDefault();
+
+            accomm.Place = db.Places
+                .Where(p => p.Id == accomm.Place.Id)
+                .Include("Region")
+                .FirstOrDefault();
+
+            accomm.Place.Region = db.Regions
+                .Where(r => r.Id == accomm.Place.Region.Id)
+                .Include("Country")
+                .FirstOrDefault();
+
+            comment.Accommodation = accomm;
+            comment.User = db.AppUsers
+                .Where(u => u.Username == comment.User.Username)
+                .FirstOrDefault();
+
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

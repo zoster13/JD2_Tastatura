@@ -11,11 +11,19 @@ export class CommentsService {
 
     constructor(private http: Http) { }
 
-    getComments() : Promise<Comment[]> {
+    getAllComments() : Promise<Comment[]> {
         return this.http.get(this.commentsUrl)
                     .toPromise()
                     .then(response => response.json() as Comment[])
                     .catch(this.handleError);
+    }
+
+    getComments(id: number): Promise<Comment[]> {
+        const url = `${this.commentsUrl}/?$filter=Accommodation/Id eq ${id}`;
+        return this.http.get(url)
+            .toPromise()
+            .then(response => response.json() as Comment[])
+            .catch(this.handleError);
     }
 
     getComment(id: number): Promise<Comment> {

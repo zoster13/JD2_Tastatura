@@ -10,7 +10,7 @@
                 <label> Description: </label> {{room.Description}}.
                 <label> Price per night: </label>{{room.PricePerNight}}.
                 <label> Accommodation: </label>{{room.Accommodation.Name}}.
-                <a [routerLink]="['/mainpage/rooms/reservationlist', room.Id]">Book</a>
+                <a [routerLink]="['/mainpage/accommodation/reservationlist', room.Id]">Book</a>
                 <a [routerLink]="['/mainpage/rooms/update', room.Id]" >Update</a>
             </div>
             <div class="listseparator">

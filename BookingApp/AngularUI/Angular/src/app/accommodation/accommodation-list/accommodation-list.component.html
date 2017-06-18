@@ -6,26 +6,43 @@
         <input type="text" [(ngModel)]="aTypeTerm" id="search" placeholder="Search by Accomm. Type">
     </div>
 
-    <br/>
+	<br/>
 
     <div >
         <li *ngFor="let accommodation of accommodations | AccommodationFilterPipe: [nameTerm,addressTerm,placeTerm,aTypeTerm]">
             <div class="list">
-                <a [routerLink]="['/mainpage/accommodation/update', accommodation.Id]" >Update</a>
-                <a [routerLink]="['/mainpage/accommodation/roomlist', accommodation.Id]">Rooms</a>
-                <a [routerLink]="['/mainpage/accommodation/comments', accommodation.Id]">Comments</a>
-                <a [routerLink]="['/mainpage/accommodation/details', accommodation.Id]" >Details</a>
+                <div class="topmarg">&nbsp;
+                </div>
+                <div class="accommname">
+                    {{accommodation.Name}}  
+                </div>
+                <div class="accommimage"> <img alt="" /> </div>
+                <div class="description">
+                    Description:  {{accommodation.Description}}   <br/>
+                    Address:  {{accommodation.Address}}   <br/>
+                    Place:  {{accommodation.Place.Name}}   <br/>
+			        Accommodation Type: {{accommodation.AccommodationType.Name}} 
+                </div>
+                    <ul class="accommtabmenuu">
+                        <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/update', accommodation.Id]" >Update</a></li>
+                        <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/update', accommodation.Id]" >Delete</a></li>
+                        <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/roomlist', accommodation.Id]">Rooms</a></li>
+                        <li class="left"><a class="listlinkk"  [routerLink]="['/mainpage/accommodation/commentlist', accommodation.Id]">Comments</a></li>
+                    </ul>
+                    <div class="grade" *ngIf="accommodation.AverageGrade < 2.5">
+                        Average grade: <label class="gradecolorred"> {{accommodation.AverageGrade}}</label> <br/>
+                    </div>
+                    <div class="grade" *ngIf="(accommodation.AverageGrade == 2.5) || (accommodation.AverageGrade <= 3.5)">
+                        Average grade: <label class="gradecoloryellow"> {{accommodation.AverageGrade}}</label> <br/>
+                    </div>
+                    <div class="grade" *ngIf="accommodation.AverageGrade > 3.5">
+                        Average grade: <label class="gradecolorgreen"> {{accommodation.AverageGrade}}</label> <br/>
+                    </div>
+                    
                 
-                <br/>
-                <label> Name: </label> {{accommodation.Name}} <br/>
-                <label> Address: </label> {{accommodation.Address}} <br/>
-                <label> Average Grade: </label> {{accommodation.AverageGrade}} <br/>
-                <label> Place: </label> {{accommodation.Place.Name}} <br/>
-                <label> Accommodation Type: </label> {{accommodation.AccommodationType.Name}} 
             </div>
             <div class="listseparator">
             </div>
         </li>
     </div>
-
 </ul>

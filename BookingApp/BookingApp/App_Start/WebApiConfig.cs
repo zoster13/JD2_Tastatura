@@ -30,6 +30,7 @@ namespace BookingApp
             builder.EntitySet<Accommodation>("Accommodations");
             builder.EntitySet<Country>("Countries");
             builder.EntitySet<RoomReservations>("RoomReservations");
+            builder.EntitySet<Comment>("Coomments");
             config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
 
             // Web API routes
