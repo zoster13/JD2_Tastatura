@@ -1,4 +1,4 @@
-<div *ngIf="isAdd">
+<div *ngIf="isAdd && isAllowed">
     <form #f="ngForm" (ngSubmit)="onSubmit(f.value, f)">
     <div>
       <label for="Grade">Text:</label>
@@ -10,6 +10,9 @@
     </div>
     <input type="submit">
   </form>
+</div>
+<div>
+    You will be allowed to post comments after you have visited this accommodation.
 </div>
 <ul class="list">
     <li *ngFor="let comm of comments">

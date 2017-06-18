@@ -21,7 +21,7 @@ namespace BookingApp.Controllers
         [EnableQuery]
         public IQueryable<RoomReservations> GetRoomReservationss()
         {
-            return db.RoomReservationss;
+            return db.RoomReservationss.Include("Room");
         }
 
         // GET: api/RoomReservations/5

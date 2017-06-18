@@ -41,7 +41,6 @@ export class RoomReservationsFormComponent {
 
   ngOnInit(): void {
     this.getRooms();
-debugger
     this.uriParts =  this.router.url.split('/');
       
       if(this.uriParts[this.uriParts.length - 2] === 'update'){
@@ -91,7 +90,6 @@ debugger
         this.reservation.user.id = 1;
 
       if(!this.isUpdate){
-          debugger
           this.reservationService.create(this.reservation);
       }
       else{

@@ -94,10 +94,56 @@ namespace BookingApp.Controllers
                 .Include("Country")
                 .FirstOrDefault();
 
+            
+
+            if(comment.User.Username != string.Empty)
+            {
+                comment.User = db.AppUsers
+               .Where(u => u.Username == comment.User.Username)
+               .FirstOrDefault();
+            }
+            else
+            {
+                comment.User = db.AppUsers
+               .Where(u => u.Id == comment.User.Id)
+               .FirstOrDefault();
+            }
+
             comment.Accommodation = accomm;
-            comment.User = db.AppUsers
-                .Where(u => u.Username == comment.User.Username)
-                .FirstOrDefault();
+
+            List<Comment> comments = db.Comments.Where(c => c.Accommodation.Id == comment.Accommodation.Id).ToList();
+            double average = comment.Grade;
+            int count = 1;
+
+            foreach (Comment comm in comments)
+            {
+                average += comm.Grade;
+                count++;
+            }
+
+            average /= count;
+
+            comment.Accommodation.AverageGrade = average;
+
+            
+
+            db.Entry(comment.Accommodation).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CommentExists(comment.Accommodation.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
 
             if (!ModelState.IsValid)

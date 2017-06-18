@@ -26,8 +26,16 @@ export class RoomReservationsService {
             .catch(this.handleError);
     }
 
-    getRoomReservations(id : number) : Promise<RoomReservations[]> {
-        const url = `${this.roomReservationsUrl}/?$filter=Room/Id eq ${id}&$orderby=StartDate`;
+    getRoomReservations(id: number) : Promise<RoomReservations[]> {
+        const url = `${this.roomReservationsUrl}/?$filter=Room/Id eq '${id}'`;
+        return this.http.get(url)
+                    .toPromise()
+                    .then(response => response.json() as RoomReservations[])
+                    .catch(this.handleError);
+    }
+
+    getRoomReservationsForUser(username: string) : Promise<RoomReservations[]> {
+        const url = `${this.roomReservationsUrl}/?$filter=User/Username eq '${username}'`;
         return this.http.get(url)
                     .toPromise()
                     .then(response => response.json() as RoomReservations[])
