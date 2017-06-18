@@ -22,8 +22,8 @@ namespace BookingApp
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
-            var cors = new EnableCorsAttribute("*", "*", "*");
-            config.EnableCors(cors);
+            //var cors = new EnableCorsAttribute("*", "*", "*");
+            //config.EnableCors(cors);
 
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<Room>("Rooms");

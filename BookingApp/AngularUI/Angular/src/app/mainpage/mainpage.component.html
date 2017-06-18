@@ -1,4 +1,5 @@
 <div class="background">
+    
     <div class="main">
         <router-outlet></router-outlet>
     </div>
@@ -15,6 +16,7 @@
                 <li class="left"><a class="active" routerLink="/mainpage/accommtypes/accommtypeslist">Accommodation Types</a></li>
                 <li class="left"><a class="active" routerLink="/mainpage/comments">Comments</a></li>
                 <li class="left"><a class="active" routerLink="/mainpage/reservations">Reservations</a></li>
+                <li class="left"><a class="active" routerLink="/mainpage/notifications">Notifications</a></li>
             </div>
             <li class="right"><a id="rightmost" class="notactive"></a></li>
             <div *ngIf="!isLoggedIn()">

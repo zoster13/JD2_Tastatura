@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { RouterModule, Routes, Router } from '@angular/router';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AccommodationMainComponent } from './accommodation/accommodation-main/accommodation-main.component';
@@ -32,6 +32,7 @@ import {RoomReservationsFormComponent} from './room-reservations/room-reservatio
 import {CommentsMainComponent} from './comments/comments-main/comments-main.component';
 import {CommentsListComponent} from './comments/comments-list/comments-list.component';
 import {CommentsFormComponent} from './comments/comments-form/comments-form.component';
+import {NotificationsComponent} from './notifications/notifications.component';
 
 import {CountriesService} from './services/countries.service';
 import {AccommodationService} from './services/accommodation.service';
@@ -43,6 +44,7 @@ import {AuthenticationService} from './services/authentication.service';
 import {AppUsersService} from './services/appuser.service';
 import {RegionsService} from './services/regions.service';
 import {RoomReservationsService} from './services/room-reservations.service';
+import { NotificationService } from "./services/notifications.service";
 
 //Maps
 import { MapComponent } from './map/map.component';
@@ -103,6 +105,7 @@ const ChildRoutesComments = [
   ]
 
 const ChildRoutesMain = [
+   {path: "notifications", component: NotificationsComponent},
    {path: "map", component: MapComponent},
    {path: "accommodation", component: AccommodationMainComponent, children: ChildRoutesAccomm},
    {path: "country", component: CountryMainComponent, children: ChildRoutesCountry},
@@ -152,7 +155,8 @@ const Routes = [
     RoomReservationsFormComponent,
     CommentsMainComponent,
     CommentsListComponent,
-    CommentsFormComponent
+    CommentsFormComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
@@ -160,7 +164,8 @@ const Routes = [
     FormsModule,
     HttpModule,
     //prilikom import-a mape prosleđujemo Google API key koji dobijamo preko google konzole
-    AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'}),
+    JsonpModule
   ],
   providers: [CountriesService, 
     AccommodationService,
@@ -171,7 +176,8 @@ const Routes = [
     AuthenticationService,
     AppUsersService,
     RegionsService,
-    RoomReservationsService
+    RoomReservationsService,
+    NotificationService
     ],
   bootstrap: [
     AppComponent
