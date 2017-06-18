@@ -7,7 +7,6 @@
     </div>
 
 	<br/>
-
     <div >
         <li *ngFor="let accommodation of accommodations | AccommodationFilterPipe: [nameTerm,addressTerm,placeTerm,aTypeTerm]">
             <div class="list">
@@ -38,11 +37,15 @@
                     <div class="grade" *ngIf="accommodation.AverageGrade > 3.5">
                         Average grade: <label class="gradecolorgreen"> {{accommodation.AverageGrade}}</label> <br/>
                     </div>
-                    
-                
             </div>
             <div class="listseparator">
             </div>
+            
         </li>
     </div>
 </ul>
+<div>
+    <ul>
+        <li *ngFor="let num of numeration"><a [routerLink]="['/mainpage/accommodation/accommlist', num]">{{num}}</a></li>
+    </ul>
+</div>

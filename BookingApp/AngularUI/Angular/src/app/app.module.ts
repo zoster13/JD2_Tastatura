@@ -54,7 +54,7 @@ import { AccommodationFilterPipe } from './search/search.component';
 
 const ChildRoutesAccomm = [
    {path: "accommform", component: AccommodationFormComponent},
-   {path: "accommlist", component: AccommodationListComponent},
+   {path: "accommlist/:id", component: AccommodationListComponent},
    {path: "update/:id", component: AccommodationFormComponent},
    {path: "roomlist/:id", component: RoomsListComponent},
    {path: "details/:id", component: AccommodationDetailsComponent},
