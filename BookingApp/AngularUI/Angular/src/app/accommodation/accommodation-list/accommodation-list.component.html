@@ -24,14 +24,14 @@
                 </div>
                     <ul class="accommtabmenuu">
                         <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/update', accommodation.Id]" >Update</a></li>
-                        <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/update', accommodation.Id]" >Delete</a></li>
+                        <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/accommlist', 1]" (click)="delete(accommodation.Id)" >Delete</a></li>
                         <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/roomlist', 1, accommodation.Id]">Rooms</a></li>
                         <li class="left"><a class="listlinkk"  [routerLink]="['/mainpage/accommodation/commentlist', accommodation.Id]">Comments</a></li>
                     </ul>
                     <div class="grade" *ngIf="accommodation.AverageGrade < 2.5">
                         Average grade: <label class="gradecolorred"> {{accommodation.AverageGrade}}</label> <br/>
                     </div>
-                    <div class="grade" *ngIf="(accommodation.AverageGrade == 2.5) || (accommodation.AverageGrade <= 3.5)">
+                    <div class="grade" *ngIf="(accommodation.AverageGrade == 2.5) && (accommodation.AverageGrade <= 3.5)">
                         Average grade: <label class="gradecoloryellow"> {{accommodation.AverageGrade}}</label> <br/>
                     </div>
                     <div class="grade" *ngIf="accommodation.AverageGrade > 3.5">

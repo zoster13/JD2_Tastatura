@@ -111,4 +111,9 @@ export class CommentsListComponent implements OnInit {
       
       form.resetForm();
 }
+
+  delete(id: number){ 
+    this.commentsService.delete(id);
+    window.location.reload();
+  }
 }

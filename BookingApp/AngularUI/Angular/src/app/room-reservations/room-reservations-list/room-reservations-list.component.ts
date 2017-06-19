@@ -54,4 +54,9 @@ export class RoomReservationsListComponent implements OnInit {
     this.roomreservationsService.update(roomres);
 
   }
+
+  delete(id: number){ 
+    this.roomreservationsService.delete(id);
+    window.location.reload();
+  }
 }

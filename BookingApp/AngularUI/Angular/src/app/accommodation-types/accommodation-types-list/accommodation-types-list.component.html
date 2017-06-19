@@ -4,6 +4,7 @@
             <div class="list">
                 <label> Name: </label> {{accommtype.Name}}
                 <a [routerLink]="['/mainpage/accommtypes/update', accommtype.Id]" >Update</a>
+                <a [routerLink]="['/mainpage/accommtypes/accommtypelist']" (click)="delete(accommtype.Id)">Delete</a>
             </div>
             <div class="listseparator">
             </div>

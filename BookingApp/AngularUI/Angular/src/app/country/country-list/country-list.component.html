@@ -4,6 +4,7 @@
             <label> Name: </label> {{country.Name}}
             <label> Code: </label> {{country.Code}}
             <a [routerLink]="['/mainpage/country/update', country.Id]" >Update</a>
+            <a [routerLink]="['/mainpage/country/countrylist']" (click)="delete(country.Id)" >Delete</a>
         </div>
         <div class="listseparator">
         </div>

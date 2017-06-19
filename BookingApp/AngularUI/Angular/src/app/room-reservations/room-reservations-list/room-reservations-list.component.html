@@ -10,7 +10,7 @@
                     End date: {{roomres.EndDate}}.
                 </div>
                 <a [routerLink]="['/mainpage/reservations/update', roomres.Id]" >Update</a>
-                <a [routerLink]="['/mainpage/reservations/reservationlist']">Delete</a>
+                <a [routerLink]="['/mainpage/reservations/reservationlist']" (click)="delete(roomres.Id)">Delete</a>
                 <a (click)="finishBooking(roomres)" [routerLink]="['/mainpage/accommodation/accommlist']">Finish Booking</a>
             </div>
             <div class="listseparator">

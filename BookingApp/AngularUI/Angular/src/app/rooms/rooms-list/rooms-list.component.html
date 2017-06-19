@@ -15,7 +15,7 @@
                 </div>
                 <ul class="accommtabmenuu">
                     <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/rooms/update', room.Id]" >Update</a></li>
-                    <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/rooms/update', room.Id]" >Delete</a></li>
+                    <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/rooms/roomlist', 1]" (click)="delete(room.Id)" >Delete</a></li>
                     <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/reservationlist', room.Id]">Book</a></li>
                 </ul>
             </div>

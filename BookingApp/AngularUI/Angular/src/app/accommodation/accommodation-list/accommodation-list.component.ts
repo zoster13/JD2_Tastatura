@@ -50,4 +50,9 @@ export class AccommodationListComponent implements OnInit {
         .switchMap((params: Params) => this.accommodationService.getAccommodations(((+params['id'])-1)*3))
         .subscribe(country => this.accommodations = country);
   }
+
+  delete(id: number){
+    this.accommodationService.delete(id);
+    window.location.reload();
+  }
 }

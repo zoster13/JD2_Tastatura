@@ -85,4 +85,9 @@ export class RoomsListComponent implements OnInit {
         this.accomlist = false;
     }
   }
+
+  delete(id: number){
+    this.roomsService.delete(id);
+    window.location.reload();
+  }
 }

@@ -28,4 +28,9 @@ export class CountryListComponent implements OnInit {
   ngOnInit() : void {
     this.getCountries();
   }
+
+  delete(id: number){
+    this.countryService.delete(id);
+    window.location.reload();
+  }
 }

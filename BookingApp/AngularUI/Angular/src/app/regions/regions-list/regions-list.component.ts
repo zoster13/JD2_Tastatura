@@ -29,4 +29,8 @@ export class RegionsListComponent implements OnInit {
     this.getRegions();
   }
 
+  delete(id: number){ 
+    this.regionsService.delete(id);
+    window.location.reload();
+  }
 }

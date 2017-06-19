@@ -28,4 +28,9 @@ export class PlacesListComponent implements OnInit {
   ngOnInit() : void {
     this.getPlaces();
   }
+
+  delete(id: number){
+    this.placesService.delete(id);
+    window.location.reload();
+  }
 }

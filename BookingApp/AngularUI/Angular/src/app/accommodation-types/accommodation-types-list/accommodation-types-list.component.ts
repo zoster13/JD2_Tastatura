@@ -29,4 +29,8 @@ export class AccommodationTypesListComponent implements OnInit {
     this.getAccomTypes();
   }
 
+  delete(id: number){ 
+    this.accommTypesService.delete(id);
+    window.location.reload();
+  }
 }
