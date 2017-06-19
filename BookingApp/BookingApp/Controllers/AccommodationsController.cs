@@ -112,7 +112,24 @@ namespace BookingApp.Controllers
         [ResponseType(typeof(Accommodation))]
         public IHttpActionResult DeleteAccommodation(int id)
         {
-            Accommodation accommodation = db.Accommodations.Find(id);
+            //Accommodation accommodation = db.Accommodations.Find(id);
+
+            Accommodation accommodation = db.Accommodations
+                .Include("AccommodationType")
+                .Include("Place")
+                .Include("Owner")
+                .FirstOrDefault(a => a.Id == id);
+
+            Place place = db.Places.Where(p => p.Id == accommodation.Place.Id).Include("Region").FirstOrDefault();
+            place.Region = db.Regions.Where(r => r.Id == place.Region.Id).Include("Country").FirstOrDefault();
+            AccommodationType accommType = db.AccommodationTypes.FirstOrDefault(at => at.Id == accommodation.AccommodationType.Id);
+            AppUser user = db.AppUsers.FirstOrDefault(o => o.Id == accommodation.Owner.Id);
+
+            accommodation.Place = place;
+            accommodation.AccommodationType = accommType;
+            accommodation.Owner = user;
+
+
             if (accommodation == null)
             {
                 return NotFound();
