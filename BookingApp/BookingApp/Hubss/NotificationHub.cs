@@ -25,7 +25,7 @@ namespace BookingApp.Hubss
         {
             hubContext.Clients.Group("Admins").clickNotification($"Kliknuto je: {clickCount} puta");
         }
-
+        
         public static void NotifyNewAccommodation(int accommodationId)
         {
             hubContext.Clients.Group("Admins").newAccommodationNotification(accommodationId);
@@ -34,7 +34,7 @@ namespace BookingApp.Hubss
         public override Task OnConnected()
         {
             //Ako vam treba pojedinacni User
-            var identityName = Context.User.Identity.Name;
+            //var identityName = Context.User.Identity.Name;
 
             Groups.Add(Context.ConnectionId, "Admins");
 
