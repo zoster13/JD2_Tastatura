@@ -16,12 +16,12 @@
 			        Accommodation Type: {{accommodation.AccommodationType.Name}} 
                 </div>
                     <ul class="accommtabmenuu">
-                        <button (click)="approveAccommodation(accommodation.Id)"> Approve </button>
+                        <button (click)="approveAccommodation(accommodation)"> Approve </button>
                     </ul>
                     <div class="grade" *ngIf="accommodation.AverageGrade < 2.5">
                         Average grade: <label class="gradecolorred"> {{accommodation.AverageGrade}}</label> <br/>
                     </div>
-                    <div class="grade" *ngIf="(accommodation.AverageGrade == 2.5) || (accommodation.AverageGrade <= 3.5)">
+                    <div class="grade" *ngIf="(accommodation.AverageGrade == 2.5) && (accommodation.AverageGrade <= 3.5)">
                         Average grade: <label class="gradecoloryellow"> {{accommodation.AverageGrade}}</label> <br/>
                     </div>
                     <div class="grade" *ngIf="accommodation.AverageGrade > 3.5">
