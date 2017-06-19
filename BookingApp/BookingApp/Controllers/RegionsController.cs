@@ -93,7 +93,8 @@ namespace BookingApp.Controllers
         [ResponseType(typeof(Region))]
         public IHttpActionResult DeleteRegion(int id)
         {
-            Region region = db.Regions.Find(id);
+            Region region = db.Regions.Where(r => r.Id == id).Include("Country").FirstOrDefault();
+
             if (region == null)
             {
                 return NotFound();

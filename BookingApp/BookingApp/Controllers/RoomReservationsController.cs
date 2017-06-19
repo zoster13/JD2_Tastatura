@@ -122,7 +122,25 @@ namespace BookingApp.Controllers
         [ResponseType(typeof(RoomReservations))]
         public IHttpActionResult DeleteRoomReservations(int id)
         {
-            RoomReservations roomReservations = db.RoomReservationss.Find(id);
+            RoomReservations roomReservations = db.RoomReservationss.Where(r => r.Id == id).Include("Room").FirstOrDefault();
+
+            roomReservations.Room = db.Rooms.Where(r => roomReservations.Room.Id == r.Id).Include("Accommodation").FirstOrDefault();
+            roomReservations.Room.Accommodation = db.Accommodations
+                .Where(a => a.Id == roomReservations.Room.Accommodation.Id)
+                .Include("AccommodationType")
+                .Include("Owner")
+                .Include("Place").FirstOrDefault();
+
+            roomReservations.Room.Accommodation.Place = db.Places
+                .Where(p => p.Id == roomReservations.Room.Accommodation.Place.Id)
+                .Include("Region")
+                .FirstOrDefault();
+
+            roomReservations.Room.Accommodation.Place.Region = db.Regions
+                .Where(r => r.Id == roomReservations.Room.Accommodation.Place.Region.Id)
+                .Include("Country")
+                .FirstOrDefault();
+
             if (roomReservations == null)
             {
                 return NotFound();
