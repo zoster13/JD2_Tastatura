@@ -27,7 +27,7 @@ export class MapComponent implements OnInit {
   }
 
   private getAccommodations() : void {
-        this.accommodationService.getAccommodations().then(accommodations => {this.accomodations = accommodations; 
+        this.accommodationService.getAllAccommodations().then(accommodations => {this.accomodations = accommodations; 
                                                                               this.doMapping();});
       }      
 

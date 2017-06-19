@@ -18,6 +18,13 @@ export class RoomsListComponent implements OnInit {
   uriParts: string[];
   caption: string;
 
+  roomscount: number = 0;
+  roomsaccomcount: number = 0;
+  i: number = 0;
+  numeration: number[] = [];
+  numerationacc: number[] = [];
+  accomlist: boolean = false;
+
   constructor(private roomsService:RoomsService,
   private router: Router,
   private route: ActivatedRoute) {
@@ -30,22 +37,52 @@ export class RoomsListComponent implements OnInit {
   }
 
   ngOnInit() : void {
+    this.roomsService.getAllRooms()
+      .then(rooms =>{ 
+        this.roomscount = rooms.length;
+      if(this.roomscount%3 == 0){
+          for(this.i = 0;this.i < Math.floor(this.roomscount/3); this.i++){
+            this.numeration[this.i] = this.i + 1;
+          }
+      }
+      else{
+          for(this.i = 0; this.i <  Math.floor(this.roomscount/3) + 1; this.i++){
+            this.numeration[this.i] = this.i + 1;
+          }
+      }
+    });
+    this.route.params
+        .switchMap((params: Params) => this.roomsService.getAllRoomsByAccomm(+params['acc']))
+        .subscribe(rooms =>{  
+        this.roomscount = rooms.length;
+        if(this.roomscount%3 == 0){
+          for(this.i = 0;this.i < Math.floor(this.roomscount/3); this.i++){
+            this.numerationacc[this.i] = this.i + 1;
+          }
+      }
+      else{
+          for(this.i = 0; this.i <  Math.floor(this.roomscount/3) + 1; this.i++){
+            this.numerationacc[this.i] = this.i + 1;
+          }
+      }
+    });
 
     this.uriParts =  this.router.url.split('/');
 
-    if(this.uriParts[this.uriParts.length - 2] === 'roomlist'){
-        
-
+    if(this.uriParts[this.uriParts.length - 3] === 'roomlist'){ 
         this.route.params
-        .switchMap((params: Params) => this.roomsService.getRooms(+params['id']))
+        .switchMap((params: Params) => this.roomsService.getRoomsByAccomm((+params['id'] - 1)*3, +params['acc']))
         .subscribe(rooms => this.rooms = rooms);
-        this.rooms;
 
         this.caption = "Rooms of selected accommodation:";
+        this.accomlist = true;
     }
-     else{
-       this.caption = "";
-       this.getAllRooms();
-     }
+    else{
+        this.route.params
+        .switchMap((params: Params) => this.roomsService.getRooms((+params['id'] - 1)*3))
+        .subscribe(rooms => {this.rooms = rooms;});
+
+        this.accomlist = false;
+    }
   }
 }

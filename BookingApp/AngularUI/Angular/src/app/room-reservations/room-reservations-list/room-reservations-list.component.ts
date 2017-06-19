@@ -37,7 +37,7 @@ export class RoomReservationsListComponent implements OnInit {
 
         this.route.params
         .switchMap((params: Params) => this.roomreservationsService.getRoomReservations(+params['id']))
-        .subscribe(roomsres => this.roomReservations = roomsres);
+        .subscribe(roomsres => {this.roomReservations = roomsres;});
 
         this.caption = "Rooms reservations of selected room:";
     }

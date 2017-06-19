@@ -56,7 +56,7 @@ const ChildRoutesAccomm = [
    {path: "accommform", component: AccommodationFormComponent},
    {path: "accommlist/:id", component: AccommodationListComponent},
    {path: "update/:id", component: AccommodationFormComponent},
-   {path: "roomlist/:id", component: RoomsListComponent},
+   {path: "roomlist/:id/:acc", component: RoomsListComponent},
    {path: "details/:id", component: AccommodationDetailsComponent},
    {path: "reservationlist/:id", component: RoomReservationsListComponent},
    {path: "commentlist/:id", component: CommentsListComponent},
@@ -70,7 +70,7 @@ const ChildRoutesCountry = [
 
 const ChildRoutesRooms = [
    {path: "roomform", component: RoomsFormComponent},
-   {path: "roomlist", component: RoomsListComponent},
+   {path: "roomlist/:id", component: RoomsListComponent},
    {path: "update/:id", component: RoomsFormComponent}
   ]
 

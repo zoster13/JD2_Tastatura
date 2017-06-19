@@ -19,7 +19,23 @@ export class RoomsService {
     }
 
     getRooms(id : number) : Promise<Room[]> {
-        const url = `${this.roomsUrl}/?$filter=Accommodation/Id eq ${id}&$orderby=PricePerNight`;
+        const url = `${this.roomsUrl}/?$top=3&$skip=${id}`;
+        return this.http.get(url)
+                    .toPromise()
+                    .then(response => response.json() as Room[])
+                    .catch(this.handleError);
+    }
+
+    getRoomsByAccomm(id : number, acc: number) : Promise<Room[]> {
+        const url = `${this.roomsUrl}/?$filter=Accommodation/Id eq ${acc}&$top=3&$skip=${id}`;
+        return this.http.get(url)
+                    .toPromise()
+                    .then(response => response.json() as Room[])
+                    .catch(this.handleError);
+    }
+
+    getAllRoomsByAccomm(id : number) : Promise<Room[]> {
+        const url = `${this.roomsUrl}/?$filter=Accommodation/Id eq ${id}`;
         return this.http.get(url)
                     .toPromise()
                     .then(response => response.json() as Room[])

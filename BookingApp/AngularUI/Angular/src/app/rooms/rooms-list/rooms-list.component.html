@@ -4,17 +4,33 @@
             <p>{{caption}}</p>
         </div>
         <li *ngFor="let room of rooms">
-            <div class="list">
-                <label> Room number: </label>{{room.RoomNumber}}.
-                <label> Bed count: </label> {{room.BedCount}}.
-                <label> Description: </label> {{room.Description}}.
-                <label> Price per night: </label>{{room.PricePerNight}}.
-                <label> Accommodation: </label>{{room.Accommodation.Name}}.
-                <a [routerLink]="['/mainpage/accommodation/reservationlist', room.Id]">Book</a>
-                <a [routerLink]="['/mainpage/rooms/update', room.Id]" >Update</a>
+            <div class="listt">
+                <div class="description">
+                    <label> Accommodation: </label>{{room.Accommodation.Name}}.<br/>
+                <label> Room number: </label>{{room.RoomNumber}}.<br/>
+                <label> Bed count: </label> {{room.BedCount}}.<br/>
+                <label> Description: </label> {{room.Description}}.<br/><br/><br/>
+                <label> Price per night: </label>
+                <div class="price">{{room.PricePerNight}}$</div>
+                </div>
+                <ul class="accommtabmenuu">
+                    <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/rooms/update', room.Id]" >Update</a></li>
+                    <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/rooms/update', room.Id]" >Delete</a></li>
+                    <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/reservationlist', room.Id]">Book</a></li>
+                </ul>
             </div>
             <div class="listseparator">
             </div>
         </li>
     </div>
 </ul>
+<div *ngIf="!accomlist && rooms.length > 0">
+    <ul>
+        <li *ngFor="let num of numeration"><a [routerLink]="['/mainpage/rooms/roomlist', num]">{{num}}</a></li>
+    </ul>
+</div>
+<div *ngIf="accomlist && rooms.length > 0">
+    <ul>
+        <li *ngFor="let num of numerationacc"><a [routerLink]="['/mainpage/accommodation/roomlist', num, rooms[0].Accommodation.Id]">{{num}}</a></li>
+    </ul>
+</div>

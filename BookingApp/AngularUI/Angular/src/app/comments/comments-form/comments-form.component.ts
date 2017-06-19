@@ -66,7 +66,7 @@ export class CommentsFormComponent {
   }
 
   getAccommodation() : void {
-    this.accommService.getAccommodations().then(accomm => this.accommodation = accomm);
+    this.accommService.getAllAccommodations().then(accomm => this.accommodation = accomm);
   }
 
   getUsers() : void {

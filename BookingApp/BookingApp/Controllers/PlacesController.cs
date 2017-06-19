@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BookingApp.Models;
+using System.Data.Entity.Migrations;
 
 namespace BookingApp.Controllers
 {
@@ -39,6 +40,9 @@ namespace BookingApp.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPlace(int id, Place place)
         {
+            Region region = db.Regions.Where(r => r.Id == place.Region.Id).Include("Country").FirstOrDefault();
+            place.Region = region;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -50,6 +54,27 @@ namespace BookingApp.Controllers
             }
 
             db.Entry(place).State = EntityState.Modified;
+            db.Entry(place.Region).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PlaceExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+
+            region.Places.Add(place);
+            db.Entry(place.Region).State = EntityState.Modified;
 
             try
             {

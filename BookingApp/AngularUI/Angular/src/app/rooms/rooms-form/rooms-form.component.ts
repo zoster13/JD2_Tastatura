@@ -66,8 +66,7 @@ export class RoomsFormComponent {
   }
 
   getAccommodation() : void {
-    this.accommService.getAccommodations().then(accomm => this.accommodation = accomm);
-    //debugger
+    this.accommService.getAllAccommodations().then(accomm => this.accommodation = accomm);
   }
 
   onSubmit(room: any, form: NgForm):void{
@@ -87,6 +86,6 @@ export class RoomsFormComponent {
 
       form.resetForm();
 
-      this.router.navigate(["mainpage/rooms/roomlist"]);
+      this.router.navigate(["mainpage/rooms/roomlist/1"]);
   }
 }

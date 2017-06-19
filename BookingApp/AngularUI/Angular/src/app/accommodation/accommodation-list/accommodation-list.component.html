@@ -25,7 +25,7 @@
                     <ul class="accommtabmenuu">
                         <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/update', accommodation.Id]" >Update</a></li>
                         <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/update', accommodation.Id]" >Delete</a></li>
-                        <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/roomlist', accommodation.Id]">Rooms</a></li>
+                        <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/roomlist', 1, accommodation.Id]">Rooms</a></li>
                         <li class="left"><a class="listlinkk"  [routerLink]="['/mainpage/accommodation/commentlist', accommodation.Id]">Comments</a></li>
                     </ul>
                     <div class="grade" *ngIf="accommodation.AverageGrade < 2.5">

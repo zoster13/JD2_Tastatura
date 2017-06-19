@@ -5,8 +5,10 @@
         </div>
         <li *ngFor="let roomres of roomReservations">
             <div class="list">
-                <label> Start date: </label>{{roomres.StartDate}}.
-                <label> End date: </label> {{roomres.EndDate}}.
+                <div class="description">
+                    Start date: {{roomres.StartDate}}.<br/>
+                    End date: {{roomres.EndDate}}.
+                </div>
                 <a [routerLink]="['/mainpage/reservations/update', roomres.Id]" >Update</a>
                 <a [routerLink]="['/mainpage/reservations/reservationlist']">Delete</a>
                 <a (click)="finishBooking(roomres)" [routerLink]="['/mainpage/accommodation/accommlist']">Finish Booking</a>

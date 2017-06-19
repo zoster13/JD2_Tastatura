@@ -125,13 +125,12 @@ export class AccommodationFormComponent implements OnInit {
           this.accomService.create(this.accommodation);
       }
       else{
-          debugger
           this.accomService.update(this.accommodation);
       }
       
       form.resetForm();
 
-      this.router.navigate(["mainpage/accommodation/accommlist"]);
+      this.router.navigate(["mainpage/accommodation/accommlist/1"]);
     }
 
     fileChange(input) {  
