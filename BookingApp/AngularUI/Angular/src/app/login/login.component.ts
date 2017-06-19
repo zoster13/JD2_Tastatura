@@ -13,15 +13,6 @@ import {AuthenticationService} from '../services/authentication.service';
 })
 
 export class LoginComponent {
-    // isLoggedIn: boolean;
-
-    // constructor(private location: Location, public router: Router) {}
-
-    // onSubmit(login: LogIn, form: NgForm) {
-    //   this.isLoggedIn = true;
-    //   form.reset();
-    //   this.router.navigate(['/mainpage']);
-    // }
 
     model: any = {};
     loading = false;
@@ -43,6 +34,9 @@ export class LoginComponent {
                 if (result === true) {
                     this.router.navigate(['/mainpage']);
                     window.location.reload();
+
+                    
+                    
                 } else {
                     alert('Username or password is incorrect');
                     this.router.navigate(['mainpage/login']);

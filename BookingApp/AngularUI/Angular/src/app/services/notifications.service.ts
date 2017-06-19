@@ -12,13 +12,15 @@ export class NotificationService {
     private connection: any;  
 
     // create the Event Emitter  
-    public notificationReceived: EventEmitter < string >;  
+    public notificationReceived: EventEmitter < string >;
+    public newAccommodationReceived: EventEmitter < string >;
     public connectionEstablished: EventEmitter < Boolean >;  
     public connectionExists: Boolean;  
    
     constructor() {  
         // Constructor initialization  
         this.connectionEstablished = new EventEmitter < Boolean > ();  
+        this.newAccommodationReceived = new EventEmitter < any > ();  
         this.notificationReceived = new EventEmitter < string > ();  
         this.connectionExists = false;  
         // create hub connection  
@@ -48,12 +50,17 @@ export class NotificationService {
         });  
     }  
     private registerOnServerEvents(): void {  
-
+        
+        //Click notification
         this.proxy.on('clickNotification', (data: string) => {  
-            
             console.log('received notification: ' + data);  
-            
             this.notificationReceived.emit(data);  
-        });  
+        });
+
+        //New accommodation notification
+        this.proxy.on('newAccommodationNotification', (accommodationId: any) => {  
+            console.log('received new accomm id: ' + accommodationId);  
+            this.newAccommodationReceived.emit(accommodationId);  
+        });
     }  
 }  

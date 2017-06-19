@@ -19,6 +19,14 @@ export class AccommodationService {
                     .catch(this.handleError);
     }
 
+    getAllUnapprovedAccommodations() : Promise<Accommodation[]> {
+        const url = `${this.accommodationsUrl}?$filter=Approved eq false`;
+        return this.http.get(url)
+                    .toPromise()
+                    .then(response => response.json() as Accommodation[] )
+                    .catch(this.handleError);
+    }
+
     getAccommodations(id: number) : Promise<Accommodation[]> {
         const url = `${this.accommodationsUrl}?$top=3&$skip=${id}`;
         return this.http.get(url)

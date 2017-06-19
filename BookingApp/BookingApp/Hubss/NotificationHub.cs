@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNet.SignalR;
+﻿using BookingApp.Models;
+using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Helpers;
 
 namespace BookingApp.Hubss
 {
@@ -24,10 +26,15 @@ namespace BookingApp.Hubss
             hubContext.Clients.Group("Admins").clickNotification($"Kliknuto je: {clickCount} puta");
         }
 
+        public static void NotifyNewAccommodation(int accommodationId)
+        {
+            hubContext.Clients.Group("Admins").newAccommodationNotification(accommodationId);
+        }
+
         public override Task OnConnected()
         {
             //Ako vam treba pojedinacni User
-            //var identityName = Context.User.Identity.Name;
+            var identityName = Context.User.Identity.Name;
 
             Groups.Add(Context.ConnectionId, "Admins");
 
@@ -47,6 +54,7 @@ namespace BookingApp.Hubss
             {
 
             }
+
             return base.OnDisconnected(stopCalled);
         }
     }

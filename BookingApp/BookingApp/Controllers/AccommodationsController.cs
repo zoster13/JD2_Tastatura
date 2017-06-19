@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using BookingApp.Models;
 using System.Web.Http.OData;
+using BookingApp.Hubss;
 
 namespace BookingApp.Controllers
 {
@@ -101,6 +102,8 @@ namespace BookingApp.Controllers
 
             db.Accommodations.Add(accommodation);
             db.SaveChanges();
+
+            NotificationHub.NotifyNewAccommodation(accommodation.Id);
 
             return CreatedAtRoute("DefaultApi", new { id = accommodation.Id }, accommodation);
         }

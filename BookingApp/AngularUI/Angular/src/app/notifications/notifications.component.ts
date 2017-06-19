@@ -1,6 +1,8 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { NotificationService } from '../services/notifications.service';
 import { HttpService } from '../services/http.service';
+import {Accommodation} from '../models/Accommodation';
+import {AccommodationService} from '../services/accommodation.service';
 
 @Component({
   selector: 'notifications',
@@ -11,14 +13,22 @@ import { HttpService } from '../services/http.service';
 export class NotificationsComponent implements OnInit {
 
   isConnected: Boolean;
-  notifications: string[];
+  //notifications: string[];
 
-  constructor(private notifService: NotificationService, private http: HttpService, private _ngZone: NgZone) {
+  unapprovedAccommodations: Accommodation[];
+
+  constructor(private notifService: NotificationService, 
+              private http: HttpService, 
+              private _ngZone: NgZone,
+              private accommodationService : AccommodationService) {
+    
     this.isConnected = false;
-    this.notifications = [];
-   }
+    
+      this.unapprovedAccommodations = [];
+  }
 
   ngOnInit() {
+    this.getUnapprovedAccommodations();
     this.checkConnection();
     this.subscribeForNotifications();
   }
@@ -28,17 +38,28 @@ export class NotificationsComponent implements OnInit {
   }
 
   private subscribeForNotifications () {
-    this.notifService.notificationReceived.subscribe(e => this.onNotification(e));
+    //this.notifService.notificationReceived.subscribe(e => this.onNotification(e));
+    this.notifService.newAccommodationReceived.subscribe(e => this.onNewAccommodationRecived(e));
   }
 
-  public onNotification(notif: string) {
+  // public onNotification(notif: string) {
+  //    this._ngZone.run(() => {  
+  //               this.notifications.push(notif); 
+  //   });  
+  //}
+
+  public onNewAccommodationRecived(accommodationId: any) {
      this._ngZone.run(() => {  
-                this.notifications.push(notif); 
-    });  
-   
+                alert('You have one new accommodation that need to be approved.');
+                debugger
+                this.getUnapprovedAccommodations(); 
+    });
   }
 
-  public onClick() {
-    this.http.click().subscribe(data => console.log(data));
-  } 
+  private getUnapprovedAccommodations() : void {
+    this.accommodationService.getAllAccommodations()
+      .then(accommodations =>{ 
+        this.unapprovedAccommodations = accommodations;
+    });
+  }
 }
