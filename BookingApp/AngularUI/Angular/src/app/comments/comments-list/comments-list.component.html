@@ -11,7 +11,7 @@
     <input type="submit">
   </form>
 </div>
-<div>
+<div *ngIf="isLoggedIn()"><br/>
     You will be allowed to post comments after you have visited this accommodation.
 </div>
 <ul class="list">
@@ -19,7 +19,7 @@
         <div class="list">
             <label>Text:</label> {{comm.Text}}
             <label>Grade: </label>{{comm.Grade}}
-            <a [routerLink]="['/mainpage/comments/update', comm.Id]" >Update</a>
+            <label *ngIf="isLoggedIn()"><a [routerLink]="['/mainpage/comments/update', comm.Id]" >Update</a></label>
             <!--<a [routerLink]="['/mainpage/comments/commentlist']" (click)="delete(comm.Id)">Delete</a>-->
         </div>
         <div class="listseparator">

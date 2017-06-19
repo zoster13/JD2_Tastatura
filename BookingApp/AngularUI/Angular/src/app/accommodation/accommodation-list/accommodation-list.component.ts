@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef  } from '@angular/core';
 import { Router, Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import {AccommodationService} from '../../services/accommodation.service';
+import {AuthenticationService} from '../../services/authentication.service';
 import {Accommodation} from '../../models/Accommodation';
 import {AccommodationFilterPipe} from '../../search/search.component';
 
@@ -23,7 +24,8 @@ export class AccommodationListComponent implements OnInit {
   constructor(private accommodationService:AccommodationService,
   private router: Router,
   private routeActive: ActivatedRoute,
-  private location: Location) {
+  private location: Location,
+  private authenticationService: AuthenticationService) {
   }
 
   getAccommodations() : void {
@@ -54,5 +56,9 @@ export class AccommodationListComponent implements OnInit {
   delete(id: number){
     this.accommodationService.delete(id);
     window.location.reload();
+  }
+
+  isLoggedIn(): boolean {
+        return this.authenticationService.isLoggedIn();
   }
 }

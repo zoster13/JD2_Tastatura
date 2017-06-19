@@ -12,7 +12,7 @@ export class AccommodationService {
     constructor(private http: Http) { }
 
     getAllAccommodations() : Promise<Accommodation[]> {
-        const url = `${this.accommodationsUrl}`;
+        const url = `${this.accommodationsUrl}?$filter=Approved eq true`;
         return this.http.get(url)
                     .toPromise()
                     .then(response => response.json() as Accommodation[] )
@@ -28,7 +28,7 @@ export class AccommodationService {
     }
 
     getAccommodations(id: number) : Promise<Accommodation[]> {
-        const url = `${this.accommodationsUrl}?$top=3&$skip=${id}`;
+        const url = `${this.accommodationsUrl}?$top=3&$skip=${id}&$filter=Approved eq true`;
         return this.http.get(url)
                     .toPromise()
                     .then(response => response.json() as Accommodation[] )

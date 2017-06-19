@@ -13,11 +13,11 @@
                 <label> Price per night: </label>
                 <div class="price">{{room.PricePerNight}}$</div>
                 </div>
-                <ul class="accommtabmenuu">
+               <label *ngIf="isLoggedIn()"> <ul class="accommtabmenuu">
                     <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/rooms/update', room.Id]" >Update</a></li>
                     <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/rooms/roomlist', 1]" (click)="delete(room.Id)" >Delete</a></li>
                     <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/reservationlist', room.Id]">Book</a></li>
-                </ul>
+                </ul></label>
             </div>
             <div class="listseparator">
             </div>

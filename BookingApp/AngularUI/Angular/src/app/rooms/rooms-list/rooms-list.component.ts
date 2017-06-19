@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import {RoomsService} from '../../services/rooms.service';
 import {Room} from '../../models/Room';
+import {AuthenticationService} from '../../services/authentication.service';
 
 @Component({
   selector: 'rooms-list',
@@ -27,7 +28,8 @@ export class RoomsListComponent implements OnInit {
 
   constructor(private roomsService:RoomsService,
   private router: Router,
-  private route: ActivatedRoute) {
+  private route: ActivatedRoute,
+  private authenticationService: AuthenticationService) {
     
   }
 
@@ -89,5 +91,9 @@ export class RoomsListComponent implements OnInit {
   delete(id: number){
     this.roomsService.delete(id);
     window.location.reload();
+  }
+
+  isLoggedIn(): boolean {
+        return this.authenticationService.isLoggedIn();
   }
 }

@@ -7,6 +7,7 @@ import {AccommodationService} from '../../services/accommodation.service';
 import {RoomsService} from '../../services/rooms.service';
 import {Comment} from '../../models/Comment';
 import {RoomReservations} from '../../models/RoomReservations';
+import {AuthenticationService} from '../../services/authentication.service';
 import {Room} from '../../models/Room';
 import {AppUser} from '../../models/AppUser';
 import {Accommodation} from '../../models/Accommodation';
@@ -39,6 +40,7 @@ export class CommentsListComponent implements OnInit {
   private accommService:AccommodationService,
   private roomsService:RoomsService,
   private reservationService:RoomReservationsService,
+  private authenticationService: AuthenticationService,
   private router: Router,
   private route: ActivatedRoute) {
     this.comment = new Comment();
@@ -63,9 +65,10 @@ export class CommentsListComponent implements OnInit {
         this.caption = "Comments of selected accommodation:";
         this.isAdd = true;
 
-        this.route.params
-        .switchMap((params: Params) => this.roomsService.getRooms(+params['id']))
-        .subscribe(rooms => this.rooms = rooms);
+    if(this.isLoggedIn()){
+          this.route.params
+          .switchMap((params: Params) => this.roomsService.getRooms(+params['id']))
+          .subscribe(rooms => this.rooms = rooms);
 
         this.route.params
         .switchMap((params: Params) => this.reservationService.getRoomReservationsForUser(JSON.parse(localStorage.getItem('currentUser'))['username']))
@@ -86,16 +89,22 @@ export class CommentsListComponent implements OnInit {
                             }
                           }
                       }
-                    }
+                  }
                 }
            });
-         }); 
+        }
+      );
     }
      else{
        this.caption = "";
        this.isAdd = false;
        this.getAllComments();
      }
+  }
+}
+
+isLoggedIn(): boolean {
+        return this.authenticationService.isLoggedIn();
   }
 
  onSubmit(comment: any, form: NgForm):void{

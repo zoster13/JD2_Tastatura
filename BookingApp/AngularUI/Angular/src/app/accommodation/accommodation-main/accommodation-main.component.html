@@ -3,7 +3,7 @@
 </div>
 <ul class="tabmenu">
     <li class="left"><a class="menu active" routerLink="/mainpage/accommodation/accommlist/1">List of Accommodation</a></li>
-    <li class="left"><a class="menu active" routerLink="/mainpage/accommodation/accommform">Add Accommodation</a></li>
+    <label *ngIf="isLoggedIn()"><li class="left"><a class="menu active" routerLink="/mainpage/accommodation/accommform">Add Accommodation</a></li></label>
 </ul>
 <br/>
 <br/>

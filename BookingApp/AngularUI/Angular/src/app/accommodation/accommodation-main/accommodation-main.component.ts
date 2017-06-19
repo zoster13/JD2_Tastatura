@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import {AccommodationService} from '../../services/accommodation.service';
+import {AuthenticationService} from '../../services/authentication.service';
 import {Accommodation} from '../../models/Accommodation';
 
 @Component({
@@ -12,7 +13,12 @@ import {Accommodation} from '../../models/Accommodation';
 
 export class AccommodationMainComponent {
 
-  constructor(private router: Router) {
+  constructor(private router: Router, 
+  private authenticationService: AuthenticationService) {
     
+  }
+
+   isLoggedIn(): boolean {
+        return this.authenticationService.isLoggedIn();
   }
 }
