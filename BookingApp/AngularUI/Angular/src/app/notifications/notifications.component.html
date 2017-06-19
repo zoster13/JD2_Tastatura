@@ -16,7 +16,7 @@
 			        Accommodation Type: {{accommodation.AccommodationType.Name}} 
                 </div>
                     <ul class="accommtabmenuu">
-                        <button> Approve </button>
+                        <button (click)="approveAccommodation(accommodation.Id)"> Approve </button>
                     </ul>
                     <div class="grade" *ngIf="accommodation.AverageGrade < 2.5">
                         Average grade: <label class="gradecolorred"> {{accommodation.AverageGrade}}</label> <br/>

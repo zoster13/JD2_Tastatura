@@ -62,4 +62,9 @@ export class NotificationsComponent implements OnInit {
         this.unapprovedAccommodations = accommodations;
     });
   }
+
+  private approveAccommodation(accommodationId): void{
+    debugger
+    this.accommodationService.update(this.unapprovedAccommodations.find(a => a.id === accommodationId));
+  }
 }
