@@ -97,7 +97,15 @@ namespace BookingApp.Controllers
 
             roomReservations.Room = room;
 
-            roomReservations.User = db.AppUsers.Where(u => u.Id == 1).FirstOrDefault();
+            if(roomReservations.User.Username == string.Empty)
+            {
+                roomReservations.User = db.AppUsers.Where(u => u.Id == 1).FirstOrDefault();
+            }
+            else
+            {
+                roomReservations.User = db.AppUsers.Where(u => u.Username == roomReservations.User.Username).FirstOrDefault();
+            }
+            
 
             if (!ModelState.IsValid)
             {
