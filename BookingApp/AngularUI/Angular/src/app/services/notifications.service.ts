@@ -50,12 +50,6 @@ export class NotificationService {
         });  
     }  
     private registerOnServerEvents(): void {  
-        
-        // //Click notification
-        // this.proxy.on('clickNotification', (data: string) => {  
-        //     console.log('received notification: ' + data);  
-        //     this.notificationReceived.emit(data);  
-        // });
 
         //New accommodation notification
         this.proxy.on('newAccommodationNotification', (accommodationId: any) => {  

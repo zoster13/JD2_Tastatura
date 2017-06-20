@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Comment} from '../models/Comment';
-import {Headers, Http} from '@angular/http';
+import {Headers, Http, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -35,25 +35,49 @@ export class CommentsService {
     }
 
     delete(id: number): Promise<void> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         const url = `${this.commentsUrl}/${id}`;
-        return this.http.delete(url, {headers: this.headers})
+        return this.http.delete(url, options)
         .toPromise()
         .then(() => null)
         .catch(this.handleError);
     }
 
     create(comment: Comment): Promise<Comment> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         return this.http
-        .post(this.commentsUrl, JSON.stringify(comment), {headers: this.headers})
+        .post(this.commentsUrl, JSON.stringify(comment), options)
         .toPromise()
         .then(res => res.json() as Comment)
         .catch(this.handleError);
     }
 
     update(comment: Comment): Promise<Comment> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         const url = `${this.commentsUrl}/${comment.id}`;
         return this.http
-        .put(url, JSON.stringify(comment), {headers: this.headers})
+        .put(url, JSON.stringify(comment), options)
         .toPromise()
         .then(() => comment)
         .catch(this.handleError);

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Place} from '../models/Place';
-import {Headers, Http} from '@angular/http';
+import {Headers, Http, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -27,25 +27,49 @@ export class PlacesService {
     }
 
     delete(id: number): Promise<void> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         const url = `${this.placesUrl}/${id}`;
-        return this.http.delete(url, {headers: this.headers})
+        return this.http.delete(url, options)
         .toPromise()
         .then(() => null)
         .catch(this.handleError);
     }
 
     create(place: Place): Promise<Place> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         return this.http
-        .post(this.placesUrl, JSON.stringify(place), {headers: this.headers})
+        .post(this.placesUrl, JSON.stringify(place), options)
         .toPromise()
         .then(res => res.json() as Place)
         .catch(this.handleError);
     }
 
     update(place: Place): Promise<Place> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         const url = `${this.placesUrl}/${place["Id"]}`;
         return this.http
-        .put(url, JSON.stringify(place), {headers: this.headers})
+        .put(url, JSON.stringify(place), options)
         .toPromise()
         .then(() => place)
         .catch(this.handleError);

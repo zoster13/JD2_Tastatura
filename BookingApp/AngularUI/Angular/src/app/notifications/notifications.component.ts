@@ -1,6 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { NotificationService } from '../services/notifications.service';
-import { HttpService } from '../services/http.service';
 import {Accommodation} from '../models/Accommodation';
 import {AccommodationService} from '../services/accommodation.service';
 
@@ -8,7 +7,6 @@ import {AccommodationService} from '../services/accommodation.service';
   selector: 'notifications',
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.css'],
-  providers: [HttpService]
 })
 export class NotificationsComponent implements OnInit {
 
@@ -18,7 +16,6 @@ export class NotificationsComponent implements OnInit {
   unapprovedAccommodations: Accommodation[];
 
   constructor(private notifService: NotificationService, 
-              private http: HttpService, 
               private _ngZone: NgZone,
               private accommodationService : AccommodationService) {
     

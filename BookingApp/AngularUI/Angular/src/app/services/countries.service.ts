@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Country} from '../models/Country';
-import {Headers, Http} from '@angular/http';
+import {Headers, Http, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -35,26 +35,49 @@ export class CountriesService {
     }
 
     delete(id: number): Promise<void> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         const url = `${this.countriesUrl}/${id}`;
-        return this.http.delete(url, {headers: this.headers})
+        return this.http.delete(url, options)
         .toPromise()
         .then(() => null)
         .catch(this.handleError);
     }
 
     create(country: Country): Promise<Country> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         return this.http
-        .post(this.countriesUrl, JSON.stringify(country), {headers: this.headers})
+        .post(this.countriesUrl, JSON.stringify(country), options)
         .toPromise()
         .then(res => res.json() as Country)
         .catch(this.handleError);
     }
 
     update(country: Country): Promise<Country> {
-        debugger
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         const url = `${this.countriesUrl}/${country["Id"]}`;
         return this.http
-        .put(url, JSON.stringify(country), {headers: this.headers})
+        .put(url, JSON.stringify(country), options)
         .toPromise()
         .then(() => country)
         .catch(this.handleError);

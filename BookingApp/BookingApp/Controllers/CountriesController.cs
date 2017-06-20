@@ -17,19 +17,16 @@ namespace BookingApp.Controllers
     public class CountriesController : ApiController
     {
         private BAContext db = new BAContext();
-
-        // GET: api/Countries
-        //public IQueryable<Country> GetCountries()
-        //{
-        //    return db.Countries;
-        //}
+        
         [EnableQuery]
+        [HttpGet]
         public IHttpActionResult GetCountries()
         {
             return Ok(db.Countries.AsQueryable());
         }
 
         // GET: api/Countries/5
+        [HttpGet]
         [ResponseType(typeof(Country))]
         public IHttpActionResult GetCountry(int id)
         {
@@ -43,6 +40,8 @@ namespace BookingApp.Controllers
         }
 
         // PUT: api/Countries/5
+        [HttpPut]
+        [Authorize(Roles = "Admin")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCountry(int id, Country country)
         {
@@ -78,6 +77,8 @@ namespace BookingApp.Controllers
         }
 
         // POST: api/Countries
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ResponseType(typeof(Country))]
         public IHttpActionResult PostCountry(Country country)
         {
@@ -93,6 +94,8 @@ namespace BookingApp.Controllers
         }
 
         // DELETE: api/Countries/5
+        [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [ResponseType(typeof(Country))]
         public IHttpActionResult DeleteCountry(int id)
         {

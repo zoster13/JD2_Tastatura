@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {RoomReservations} from '../models/RoomReservations';
-import {Headers, Http} from '@angular/http';
+import {Headers, Http, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -43,25 +43,49 @@ export class RoomReservationsService {
     }
 
     delete(id: number): Promise<void> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         const url = `${this.roomReservationsUrl}/${id}`;
-        return this.http.delete(url, {headers: this.headers})
+        return this.http.delete(url, options)
         .toPromise()
         .then(() => null)
         .catch(this.handleError);
     }
 
     create(roomReservations: RoomReservations): Promise<RoomReservations> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         return this.http
-        .post(this.roomReservationsUrl, JSON.stringify(roomReservations), {headers: this.headers})
+        .post(this.roomReservationsUrl, JSON.stringify(roomReservations), options)
         .toPromise()
         .then(res => res.json() as RoomReservations)
         .catch(this.handleError);
     }
 
     update(roomReservations: RoomReservations): Promise<RoomReservations> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         const url = `${this.roomReservationsUrl}/${roomReservations['Id']}`;
         return this.http
-        .put(url, JSON.stringify(roomReservations), {headers: this.headers})
+        .put(url, JSON.stringify(roomReservations), options)
         .toPromise()
         .then(() => roomReservations)
         .catch(this.handleError);

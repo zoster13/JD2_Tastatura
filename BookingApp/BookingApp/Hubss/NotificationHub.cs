@@ -20,11 +20,6 @@ namespace BookingApp.Hubss
         {
             Clients.All.hello("Hello from server");
         }
-
-        public static void Notify(int clickCount)
-        {
-            hubContext.Clients.Group("Admins").clickNotification($"Kliknuto je: {clickCount} puta");
-        }
         
         public static void NotifyNewAccommodation(int accommodationId)
         {
@@ -38,10 +33,10 @@ namespace BookingApp.Hubss
 
             Groups.Add(Context.ConnectionId, "Admins");
 
-            if (Context.User.IsInRole("Admin"))
-            {
+            //if (Context.User.IsInRole("Admin"))
+            //{
 
-            }
+            //}
 
             return base.OnConnected();
         }
@@ -50,10 +45,10 @@ namespace BookingApp.Hubss
         {
             Groups.Remove(Context.ConnectionId, "Admins");
 
-            if (Context.User.IsInRole("Admin"))
-            {
+            //if (Context.User.IsInRole("Admin"))
+            //{
 
-            }
+            //}
 
             return base.OnDisconnected(stopCalled);
         }

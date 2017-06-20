@@ -27,47 +27,75 @@ export class AppUsersService {
     }
 
     delete(id: number): Promise<void> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ JSON.parse(token).token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         const url = `${this.appUsersUrl}/${id}`;
-        return this.http.delete(url, {headers: this.headers})
+        return this.http.delete(url, options)
         .toPromise()
         .then(() => null)
         .catch(this.handleError);
     }
 
     create(appUser: AppUser): Promise<AppUser> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ JSON.parse(token).token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         return this.http
-        .post(this.appUsersUrl, JSON.stringify(appUser), {headers: this.headers})
+        .post(this.appUsersUrl, JSON.stringify(appUser), options)
         .toPromise()
         .then(res => res.json() as AppUser)
         .catch(this.handleError);
     }
 
     update(appUser: AppUser): Promise<AppUser> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ JSON.parse(token).token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         const url = `${this.appUsersUrl}/${appUser.id}`;
         return this.http
-        .put(url, JSON.stringify(appUser), {headers: this.headers})
+        .put(url, JSON.stringify(appUser), options)
         .toPromise()
         .then(() => appUser)
         .catch(this.handleError);
     }
 
     ban(id: number) {
-        let token=localStorage.getItem("token");
-        this.headers.append('Authorization', 'Bearer '+ token);
 
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
         let options = new RequestOptions();
-        options.headers = this.headers;
+        options.headers = header;
         
         return this.http.put(`http://localhost:54042/api/UserBan/${id}`, "", options);
     }
 
     unban(id: number) {
-        let token=localStorage.getItem("token");
-        this.headers.append('Authorization', 'Bearer '+ token);
-
-        let options = new RequestOptions();
-        options.headers = this.headers;
         
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         return this.http.put(`http://localhost:54042/api/UserUnban/${id}`, "", options);
     }
 

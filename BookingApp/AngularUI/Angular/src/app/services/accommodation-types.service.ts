@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AccommodationType} from '../models/AccommodationType';
-import {Headers, Http} from '@angular/http';
+import {Headers, Http, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class AccommodationTypesService {
 
     constructor(private http: Http) { }
 
-    getAccommodationTypes() : Promise<AccommodationType[]> {
+    getAccommodationTypes() : Promise<AccommodationType[]> {        
         return this.http.get(this.accommodationTypesUrl)
                     .toPromise()
                     .then(response => response.json() as AccommodationType[])
@@ -27,25 +27,49 @@ export class AccommodationTypesService {
     }
 
     delete(id: number): Promise<void> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         const url = `${this.accommodationTypesUrl}/${id}`;
-        return this.http.delete(url, {headers: this.headers})
+        return this.http.delete(url, options)
         .toPromise()
         .then(() => null)
         .catch(this.handleError);
     }
 
     create(accommodationType: AccommodationType): Promise<AccommodationType> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         return this.http
-        .post(this.accommodationTypesUrl, JSON.stringify(accommodationType), {headers: this.headers})
+        .post(this.accommodationTypesUrl, JSON.stringify(accommodationType), options)
         .toPromise()
         .then(res => res.json() as AccommodationType)
         .catch(this.handleError);
     }
 
     update(accommodationType: AccommodationType): Promise<AccommodationType> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         const url = `${this.accommodationTypesUrl}/${accommodationType["Id"]}`;
         return this.http
-        .put(url, JSON.stringify(accommodationType), {headers: this.headers})
+        .put(url, JSON.stringify(accommodationType), options)
         .toPromise()
         .then(() => accommodationType)
         .catch(this.handleError);

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Accommodation} from '../models/Accommodation';
-import {Headers, Http} from '@angular/http';
+import {Headers, Http, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -46,26 +46,49 @@ export class AccommodationService {
     }
 
     delete(id: number): Promise<void> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         const url = `${this.accommodationsUrl}/${id}`;
-        return this.http.delete(url, {headers: this.headers})
+        return this.http.delete(url, options)
         .toPromise()
         .then(() => null)
         .catch(this.handleError);
     }
 
     create(accommodation: Accommodation): Promise<Accommodation> {
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         return this.http
-        .post(this.accommodationsUrl, JSON.stringify(accommodation), {headers: this.headers})
+        .post(this.accommodationsUrl, JSON.stringify(accommodation), options)
         .toPromise()
         .then(res => res.json() as Accommodation)
         .catch(this.handleError);
     }
 
     update(accommodation: Accommodation): Promise<Accommodation> {
-        debugger
+
+        let token=localStorage.getItem("token");
+        let header = new Headers();
+        header.append('Content-Type', 'application/json');
+        header.append('Authorization', 'Bearer '+ token);
+        let options = new RequestOptions();
+        options.headers = header;
+
         const url = `${this.accommodationsUrl}/${accommodation["Id"]}`;
         return this.http
-        .put(url, JSON.stringify(accommodation), {headers: this.headers})
+        .put(url, JSON.stringify(accommodation), options)
         .toPromise()
         .then(() => accommodation)
         .catch(this.handleError);
