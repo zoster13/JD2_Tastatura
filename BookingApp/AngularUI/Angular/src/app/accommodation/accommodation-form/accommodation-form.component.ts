@@ -119,7 +119,8 @@ export class AccommodationFormComponent implements OnInit {
       this.accommodation.accommodationType = new AccommodationType();
       this.accommodation.accommodationType.id = accomm.AccommodationType;
       this.accommodation.owner = new AppUser();
-      this.accommodation.owner.id = accomm.Owner;
+      //this.accommodation.owner.id = accomm.Owner;
+      this.accommodation.owner.username = JSON.parse(localStorage.getItem('currentUser'))['username'];
 
       if(!this.isUpdate){
           this.accomService.create(this.accommodation);
