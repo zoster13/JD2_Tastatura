@@ -40,7 +40,7 @@ li a {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 7px;
+    padding: 14px 5px;
     text-decoration: none;
 }
 
@@ -49,7 +49,7 @@ li a#appname {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 60px 0px 20px;
+    padding: 14px 30px 0px 20px;
     text-decoration: none;
     font-weight: bold;
     font-size: 20px;
@@ -59,7 +59,7 @@ li a#ime {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 90px;
+    padding: 14px 50px;
     text-decoration: none;
 }
 
@@ -67,7 +67,7 @@ li a#rightmost {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 20px 0px 20px;
+    padding: 14px 5px 0px 05px;
     text-decoration: none;
     font-weight: bold;
     font-size: 20px;

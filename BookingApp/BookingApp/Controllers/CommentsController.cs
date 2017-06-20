@@ -22,7 +22,7 @@ namespace BookingApp.Controllers
         [EnableQuery]
         public IQueryable<Comment> GetComments()
         {
-            return db.Comments;
+            return db.Comments.Include("User");
         }
 
         // GET: api/Comments/5

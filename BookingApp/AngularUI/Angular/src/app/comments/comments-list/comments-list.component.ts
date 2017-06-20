@@ -49,31 +49,30 @@ export class CommentsListComponent implements OnInit {
 
   getAllComments() : void {
     this.commentsService.getAllComments()
-      .then(comments => this.comments = comments);
+      .then(comments => {this.comments = comments;});
   }
 
   ngOnInit() : void {
     if(this.isLoggedIn()){
             this.role = JSON.parse(localStorage.getItem('currentUser'))['role'];
-        }
-    
+   }
 
     this.uriParts =  this.router.url.split('/');
 
     if(this.uriParts[this.uriParts.length - 2] === 'commentlist'){
         this.route.params
         .switchMap((params: Params) => this.commentsService.getComments(+params['id']))
-        .subscribe(comments => this.comments = comments);
+        .subscribe(comments => {this.comments = comments;});
 
         this.accomid = +(this.uriParts[this.uriParts.length - 1]);
 
         this.caption = "Comments of selected accommodation:";
         this.isAdd = true;
 
-    if(this.isLoggedIn()){
-          this.route.params
-          .switchMap((params: Params) => this.roomsService.getRooms(+params['id']))
-          .subscribe(rooms => this.rooms = rooms);
+        if(this.isLoggedIn()){
+          // this.route.params
+          // .switchMap((params: Params) => this.roomsService.getAllRoomsByAccomm(+params['id']))
+          // .subscribe(rooms => this.rooms = rooms);
 
         this.route.params
         .switchMap((params: Params) => this.reservationService.getRoomReservationsForUser(JSON.parse(localStorage.getItem('currentUser'))['username']))
@@ -81,7 +80,7 @@ export class CommentsListComponent implements OnInit {
         {
           this.reservations = res;
           this.route.params
-          .switchMap((params: Params) => this.roomsService.getRooms(+params['id']))
+          .switchMap((params: Params) => this.roomsService.getAllRoomsByAccomm(+params['id']))
           .subscribe((rooms) => 
           {
               this.rooms = rooms;
@@ -100,12 +99,12 @@ export class CommentsListComponent implements OnInit {
         }
       );
     }
+    }
      else{
        this.caption = "";
        this.isAdd = false;
        this.getAllComments();
      }
-  }
 }
 
 isLoggedIn(): boolean {

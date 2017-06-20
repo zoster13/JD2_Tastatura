@@ -213,22 +213,22 @@ namespace BookingApp.Migrations
 
             //****************************************************************************************
 
-            Accommodation accomm1 = new Accommodation(1, "Hotel Park", "Hotel sa 5 zvezdica.", "Novosadskog sajma 35", 4.4, 0.0, 0.0, "nepoznato", false, place1, accommType1, context.AppUsers.Where(u => u.Id == 1).FirstOrDefault());
-            Accommodation accomm2 = new Accommodation(2, "Fontana", "Opis...", "Jugoslovenske Armije 11", 4.3, 0.0, 0.0, "nepoznato", false, place2, accommType1, context.AppUsers.Where(u => u.Id == 1).FirstOrDefault());
-            Accommodation accomm3 = new Accommodation(3, "Vila Elena", "Opis...", "18, Heracleous St", 4.7, 0.0, 0.0, "nepoznato", false, place5, accommType3, context.AppUsers.Where(u => u.Id == 1).FirstOrDefault());
+            Accommodation accomm1 = new Accommodation(1, "Hotel Park", "Hotel sa 5 zvezdica.", "Novosadskog sajma 35", 3, 0.0, 0.0, "nepoznato", false, place1, accommType1, context.AppUsers.Where(u => u.Id == 1).FirstOrDefault());
+            Accommodation accomm2 = new Accommodation(2, "Fontana", "Opis...", "Jugoslovenske Armije 11", 0, 0.0, 0.0, "nepoznato", false, place2, accommType1, context.AppUsers.Where(u => u.Id == 1).FirstOrDefault());
+            Accommodation accomm3 = new Accommodation(3, "Vila Elena", "Opis...", "18, Heracleous St", 0, 0.0, 0.0, "nepoznato", false, place5, accommType3, context.AppUsers.Where(u => u.Id == 1).FirstOrDefault());
 
             //******************************************************************************************************************
 
             Room room1 = new Room(1, 2, "opis...", 60, accomm1);
             Room room2 = new Room(2, 3, "opis...", 80, accomm1);
             Room room3 = new Room(3, 1, "opis...", 35, accomm1);
-            Room room4 = new Room(1, 2, "opis...", 20, accomm2);
-            Room room5 = new Room(2, 2, "opis...", 35, accomm2);
-            Room room6 = new Room(3, 3, "opis...", 50, accomm2);
-            Room room7 = new Room(1, 1, "opis...", 100, accomm3);
-            Room room8 = new Room(2, 2, "opis...", 260, accomm3);
-            Room room9 = new Room(3, 3, "opis...", 180, accomm3);
-            Room room10 = new Room(4, 1, "opis...", 200, accomm3);
+            Room room4 = new Room(4, 2, "opis...", 20, accomm2);
+            Room room5 = new Room(5, 2, "opis...", 35, accomm2);
+            Room room6 = new Room(6, 3, "opis...", 50, accomm2);
+            Room room7 = new Room(7, 1, "opis...", 100, accomm3);
+            Room room8 = new Room(8, 2, "opis...", 260, accomm3);
+            Room room9 = new Room(9, 3, "opis...", 180, accomm3);
+            Room room10 = new Room(10, 1, "opis...", 200, accomm3);
 
             context.Rooms.AddOrUpdate(room1);
             context.Rooms.AddOrUpdate(room2);
@@ -240,6 +240,30 @@ namespace BookingApp.Migrations
             context.Rooms.AddOrUpdate(room8);
             context.Rooms.AddOrUpdate(room9);
             context.Rooms.AddOrUpdate(room10);
+
+            context.SaveChanges();
+
+            RoomReservations res1 = new RoomReservations() { StartDate = new DateTime(2017, 1, 1), EndDate = new DateTime(2017, 1, 10), Timestamp = DateTime.Now, User = context.AppUsers.Where(u => u.Id == 1).FirstOrDefault(), Room = room1};
+            RoomReservations res2 = new RoomReservations() { StartDate = new DateTime(2017, 5, 1), EndDate = new DateTime(2017, 5, 10), Timestamp = DateTime.Now, User = context.AppUsers.Where(u => u.Id == 1).FirstOrDefault(), Room = room1};
+            RoomReservations res3 = new RoomReservations() { StartDate = new DateTime(2017, 11, 1), EndDate = new DateTime(2017, 11, 10), Timestamp = DateTime.Now, User = context.AppUsers.Where(u => u.Id == 1).FirstOrDefault(), Room = room1};
+            RoomReservations res4 = new RoomReservations() { StartDate = new DateTime(2017, 11, 1), EndDate = new DateTime(2017, 11, 10), Timestamp = DateTime.Now, User = context.AppUsers.Where(u => u.Id == 1).FirstOrDefault(), Room = room2};
+            RoomReservations res5 = new RoomReservations() { StartDate = new DateTime(2017, 3, 1), EndDate = new DateTime(2017, 3, 10), Timestamp = DateTime.Now, User = context.AppUsers.Where(u => u.Id == 1).FirstOrDefault(), Room = room2 };
+
+            context.RoomReservationss.AddOrUpdate(res1);
+            context.RoomReservationss.AddOrUpdate(res2);
+            context.RoomReservationss.AddOrUpdate(res3);
+            context.RoomReservationss.AddOrUpdate(res4);
+            context.RoomReservationss.AddOrUpdate(res5);
+
+            context.SaveChanges();
+
+            Comment comm1 = new Comment() { Text = "Odlican smestaj..sve pohvale :)", Grade = 5, Accommodation = accomm1, User = context.AppUsers.Where(u => u.Id == 3).FirstOrDefault() };
+            Comment comm2 = new Comment() { Text = "Katastrofa! nikad vise...", Grade = 1, Accommodation = accomm1, User = context.AppUsers.Where(u => u.Id == 5).FirstOrDefault() };
+            Comment comm3 = new Comment() { Text = "Nije lose :P", Grade = 3, Accommodation = accomm1, User = context.AppUsers.Where(u => u.Id == 6).FirstOrDefault() };
+
+            context.Comments.Add(comm1);
+            context.Comments.Add(comm2);
+            context.Comments.Add(comm3);
 
             context.SaveChanges();
         }
