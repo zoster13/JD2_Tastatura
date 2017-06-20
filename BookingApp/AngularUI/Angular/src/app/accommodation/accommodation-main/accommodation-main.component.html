@@ -3,7 +3,7 @@
 </div>
 <ul class="tabmenu">
     <li class="left"><a class="menu active" routerLink="/mainpage/accommodation/accommlist/1">List of Accommodation</a></li>
-    <label *ngIf="(isLoggedIn() && ((currentuser == 'admin') || (currentuser == 'meanadzer')))"><li class="left"><a class="menu active" routerLink="/mainpage/accommodation/accommform">Add Accommodation</a></li></label>
+    <label *ngIf="(isLoggedIn() && ((role == 'Admin') || (role == 'Manager' && banned == 'False')))"><li class="left"><a class="menu active" routerLink="/mainpage/accommodation/accommform">Add Accommodation</a></li></label>
 </ul>
 <br/>
 <br/>

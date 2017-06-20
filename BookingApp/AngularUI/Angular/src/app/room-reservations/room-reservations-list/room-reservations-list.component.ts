@@ -13,7 +13,7 @@ import {AppUser} from '../../models/AppUser';
 
 export class RoomReservationsListComponent implements OnInit {
 
-  currentuser: string;
+  role: string;
   roomReservations: RoomReservations[] = [];
 
   uriParts: string[];
@@ -39,7 +39,7 @@ export class RoomReservationsListComponent implements OnInit {
   ngOnInit() : void {
 
     if(this.isLoggedIn()){
-            this.currentuser = JSON.parse(localStorage.getItem('currentUser'))['username'];
+            this.role = JSON.parse(localStorage.getItem('currentUser'))['role'];
         }
 
     this.uriParts =  this.router.url.split('/');

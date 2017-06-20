@@ -14,7 +14,7 @@
                 <div class="price">{{room.PricePerNight}}$</div>
                 </div>
                <label *ngIf="isLoggedIn()"> <ul class="accommtabmenuu">
-                    <label *ngIf="(currentuser == 'admin')"><li class="left"><a class="listlinkk" [routerLink]="['/mainpage/rooms/update', room.Id]" >Update</a></li>
+                    <label *ngIf="(role == 'Admin')"><li class="left"><a class="listlinkk" [routerLink]="['/mainpage/rooms/update', room.Id]" >Update</a></li>
                     <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/rooms/roomlist', 1]" (click)="delete(room.Id)" >Delete</a></li></label>
                     <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/reservationlist', room.Id]">Book</a></li>
                 </ul></label>

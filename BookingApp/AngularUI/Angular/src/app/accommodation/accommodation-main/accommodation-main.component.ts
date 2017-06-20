@@ -12,7 +12,8 @@ import {Accommodation} from '../../models/Accommodation';
 })
 
 export class AccommodationMainComponent implements OnInit {
-currentuser: string;
+    role: string;
+    banned: string;
 
   constructor(private router: Router, 
   private authenticationService: AuthenticationService) {
@@ -25,7 +26,10 @@ currentuser: string;
 
   ngOnInit() : void {
         if(this.isLoggedIn()){
-            this.currentuser = JSON.parse(localStorage.getItem('currentUser'))['username'];
+            this.role = JSON.parse(localStorage.getItem('currentUser'))['role'];
+            if(this.role == 'Manager'){
+                this.banned = JSON.parse(localStorage.getItem('currentUser'))['isBanned'];
+            }
         }
     }
 }

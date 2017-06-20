@@ -19,7 +19,7 @@ import {Accommodation} from '../../models/Accommodation';
 })
 
 export class CommentsListComponent implements OnInit {
-  currentuser: string;
+  role: string;
 
   comments: Comment[] = [];
   comment: Comment;
@@ -54,7 +54,7 @@ export class CommentsListComponent implements OnInit {
 
   ngOnInit() : void {
     if(this.isLoggedIn()){
-            this.currentuser = JSON.parse(localStorage.getItem('currentUser'))['username'];
+            this.role = JSON.parse(localStorage.getItem('currentUser'))['role'];
         }
     
 

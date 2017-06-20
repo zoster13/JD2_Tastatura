@@ -13,7 +13,7 @@ import {AccommodationFilterPipe} from '../../search/search.component';
 })
 
 export class AccommodationListComponent implements OnInit {
-  currentuser: string;
+  role: string;
 
   accommodations: Accommodation[];
   accomm: Accommodation;
@@ -48,15 +48,16 @@ export class AccommodationListComponent implements OnInit {
 
   ngOnInit() : void {
     if(this.isLoggedIn()){
-        this.currentuser = JSON.parse(localStorage.getItem('currentUser'))['username'];
+        this.role = JSON.parse(localStorage.getItem('currentUser'))['role'];
     }
     
     
     this.getAccommodations();
+    
 
     this.routeActive.params
         .switchMap((params: Params) => this.accommodationService.getAccommodations(((+params['id'])-1)*3))
-        .subscribe(country => this.accommodations = country);
+        .subscribe(country => {this.accommodations = country;});
   }
 
   delete(id: number){

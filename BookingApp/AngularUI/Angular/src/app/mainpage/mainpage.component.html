@@ -8,9 +8,9 @@
             <li class="left"><a id="appname" class="notactive" routerLink="/mainpage">Booking App</a></li>
             <li class="left"><a class="active" routerLink="/mainpage/map">Google Map</a></li>
             <li class="left"><a class="active" [routerLink]="['/mainpage/accommodation/accommlist', 1]">Accommodation</a></li>
-            <div *ngIf="isLoggedIn() && (currentuser == 'admin')">
+            <div *ngIf="isLoggedIn() && (role == 'Admin')">
                 <li class="left"><a class="active" routerLink="/mainpage/rooms/roomlist/1">Rooms</a></li>
-                <li class="left"><a class="active" routerLink="/mainpage/country/countrylist">Countries</a></li>   
+                <li class="left"><a class="active" routerLink="/mainpage/country/countrylist/1">Countries</a></li>   
                 <li class="left"><a class="active" routerLink="/mainpage/regions/regionlist">Regions</a></li>
                 <li class="left"><a class="active" routerLink="/mainpage/places/placelist">Places</a></li>
                 <li class="left"><a class="active" routerLink="/mainpage/accommtypes/accommtypeslist">Accommodation Types</a></li>

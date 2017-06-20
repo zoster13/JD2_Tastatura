@@ -12,7 +12,7 @@ import {AuthenticationService} from '../../services/authentication.service';
 
 export class RoomsListComponent implements OnInit {
 
-  currentuser: string;
+  role: string;
   
   rooms: Room[] = [];
   room: Room;
@@ -42,7 +42,7 @@ export class RoomsListComponent implements OnInit {
 
   ngOnInit() : void { 
     if(this.isLoggedIn()){
-     this.currentuser = JSON.parse(localStorage.getItem('currentUser'))['username'];
+     this.role = JSON.parse(localStorage.getItem('currentUser'))['role'];
     }
 
     this.roomsService.getAllRooms()
