@@ -8,7 +8,7 @@ import {AccommodationService} from '../services/accommodation.service';
   selector: 'map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
-  styles: ['agm-map {height: 600px; width: 900px;}'] //postavljamo sirinu i visinu mape
+  styles: ['agm-map {height: 625px; width: 900px;}'] //postavljamo sirinu i visinu mape
 })
 export class MapComponent implements OnInit {
 
@@ -40,9 +40,9 @@ export class MapComponent implements OnInit {
             mapInfo = new MapInfo(accommodation["Latitude"],
                                   accommodation["Longitude"],
                                   "assets/ftn.png",
-                                  "Jugodrvo" , 
-                                  "" , 
-                                  "http://ftn.uns.ac.rs/691618389/fakultet-tehnickih-nauka");
+                                  accommodation["Name"], 
+                                  accommodation["Description"] , 
+                                  "");
 
             this.accomodationsMapInfo.push(mapInfo);
         }

@@ -213,9 +213,9 @@ namespace BookingApp.Migrations
 
             //****************************************************************************************
 
-            Accommodation accomm1 = new Accommodation(1, "Hotel Park", "Hotel sa 5 zvezdica.", "Novosadskog sajma 35", 3, 0.0, 0.0, "nepoznato", false, place1, accommType1, context.AppUsers.Where(u => u.Id == 1).FirstOrDefault());
-            Accommodation accomm2 = new Accommodation(2, "Fontana", "Opis...", "Jugoslovenske Armije 11", 0, 0.0, 0.0, "nepoznato", false, place2, accommType1, context.AppUsers.Where(u => u.Id == 1).FirstOrDefault());
-            Accommodation accomm3 = new Accommodation(3, "Vila Elena", "Opis...", "18, Heracleous St", 0, 0.0, 0.0, "nepoznato", false, place5, accommType3, context.AppUsers.Where(u => u.Id == 1).FirstOrDefault());
+            Accommodation accomm1 = new Accommodation(1, "Hotel Park", "Hotel sa 5 zvezdica.", "Novosadskog sajma 35", 3, 19.842954, 45.242268, "nepoznato", false, place1, accommType1, context.AppUsers.Where(u => u.Id == 1).FirstOrDefault());
+            Accommodation accomm2 = new Accommodation(2, "Fontana", "Opis...", "Jugoslovenske Armije 11", 0, 19.84179, 45.243134, "nepoznato", false, place2, accommType1, context.AppUsers.Where(u => u.Id == 1).FirstOrDefault());
+            Accommodation accomm3 = new Accommodation(3, "Vila Elena", "Opis...", "18, Heracleous St", 0, 19.842300, 45.242101, "nepoznato", false, place5, accommType3, context.AppUsers.Where(u => u.Id == 1).FirstOrDefault());
 
             //******************************************************************************************************************
 
