@@ -35,26 +35,25 @@ export class AccommodationFormComponent implements OnInit {
   uriParts: string [];
   isUpdate: boolean;
   temp: any;
-;
+
   constructor(private placesService:PlacesService,
-  private accommTypeService: AccommodationTypesService,
-  private accomService: AccommodationService,
-  private roomsService: RoomsService,
-  private appUsersService: AppUsersService,
-  private routeActive: ActivatedRoute,
-  private router: Router,
-  private changeDetectorRef: ChangeDetectorRef
-  ) 
-  {
-    this.accommodation = new Accommodation();
-    this.accommodation.rooms = [];
-    this.accommodation.owner = new AppUser();
-    this.accommodation.name = '';
-    this.accommodation.description = '';
-    this.accommodation.address = '';
-    this.accommodation.longitude = 0;
-    this.accommodation.latitude = 0;
-    this.owners = [];
+            private accommTypeService: AccommodationTypesService,
+            private accomService: AccommodationService,
+            private roomsService: RoomsService,
+            private appUsersService: AppUsersService,
+            private routeActive: ActivatedRoute,
+            private router: Router,
+            private changeDetectorRef: ChangeDetectorRef) {
+            
+        this.accommodation = new Accommodation();
+        this.accommodation.rooms = [];
+        this.accommodation.owner = new AppUser();
+        this.accommodation.name = '';
+        this.accommodation.description = '';
+        this.accommodation.address = '';
+        this.accommodation.longitude = 0;
+        this.accommodation.latitude = 0;
+        this.owners = [];
   }
 
   ngOnInit(): void {
@@ -64,24 +63,15 @@ export class AccommodationFormComponent implements OnInit {
 
     this.uriParts =  this.router.url.split('/');
 
-    if(this.uriParts[this.uriParts.length - 2] === 'update'){
+    if(this.uriParts[this.uriParts.length - 2] === 'update') {
+        
         this.routeActive.params
         .switchMap((params: Params) => this.accomService.getAccommodation(+params['id']))
         .subscribe(accomm => this.accommodation = accomm);
-      this.isUpdate = true;
       
-    //   this.temp = JSON.parse(localStorage.getItem('updateAccommodation'));
-    //   this.accommodation.id = this.temp.id;
-    //   this.accommodation.name = this.temp.name;
-    //   this.accommodation.description = this.temp.description;
-    //   this.accommodation.address = this.temp.address;
-    //   this.accommodation.longitude = this.temp.longitude;
-    //   this.accommodation.latitude = this.temp.latitude;
-    //   this.accommodation.imageURL = this.temp.imageURL;
-    //   this.fileSrcs = [];
-    //   this.fileSrcs.push(this.accommodation.imageURL);
+        this.isUpdate = true;
     }
-    else{
+    else {
       this.isUpdate = false;
 
       this.accommodation.name = '';
@@ -119,7 +109,6 @@ export class AccommodationFormComponent implements OnInit {
       this.accommodation.accommodationType = new AccommodationType();
       this.accommodation.accommodationType.id = accomm.AccommodationType;
       this.accommodation.owner = new AppUser();
-      //this.accommodation.owner.id = accomm.Owner;
       this.accommodation.owner.username = JSON.parse(localStorage.getItem('currentUser'))['username'];
 
       if(!this.isUpdate){
@@ -130,7 +119,6 @@ export class AccommodationFormComponent implements OnInit {
       }
       
       form.resetForm();
-
       this.router.navigate(["mainpage/accommodation/accommlist/1"]);
     }
 
@@ -146,7 +134,8 @@ export class AccommodationFormComponent implements OnInit {
             console.log(reader.result);  
         }  
         reader.readAsDataURL(file);  
-    }  
+    }
+
     readFiles(files, index = 0) {  
        let reader = new FileReader();  
         // If there is a file  
@@ -175,6 +164,7 @@ export class AccommodationFormComponent implements OnInit {
             this.changeDetectorRef.detectChanges();  
         }  
     }  
+    
     resize(img, MAX_WIDTH: number, MAX_HEIGHT: number, callback) {  
         // This will wait until the img is loaded before calling this function  
         return img.onload = () => {  

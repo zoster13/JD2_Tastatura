@@ -9,7 +9,9 @@ export class CountriesService {
     private headers = new Headers({'Content-Type': 'application/json'});
     private countriesUrl = 'http://localhost:54042/api/Countries';  // URL to web api
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) {
+        
+     }
 
     getAllCountries() : Promise<Country[]> {
         return this.http.get(this.countriesUrl)

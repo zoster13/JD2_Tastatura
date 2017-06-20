@@ -50,13 +50,16 @@ namespace BookingApp.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutAccommodation(int id, Accommodation accommodation)
         {
-            Accommodation accomm = db.Accommodations.Where(a => a.Id == accommodation.Id).Include("Owner").Include("AccommodationType").Include("Place").FirstOrDefault();
-            AppUser user = db.AppUsers.FirstOrDefault(o => o.Username == accommodation.Owner.Username);
+            Accommodation accomm = db.Accommodations.Where(a => a.Id == accommodation.Id)
+                .Include("Owner")
+                .Include("AccommodationType")
+                .Include("Place")
+                .FirstOrDefault();
 
+            AppUser user = db.AppUsers.FirstOrDefault(o => o.Username == accommodation.Owner.Username);
             Place place = db.Places.Where(p => p.Id == accommodation.Place.Id).Include("Region").FirstOrDefault();
             place.Region = db.Regions.Where(r => r.Id == place.Region.Id).Include("Country").FirstOrDefault();
             AccommodationType accommType = db.AccommodationTypes.FirstOrDefault(at => at.Id == accommodation.AccommodationType.Id);
-
             accommodation.Place = place;
             accommodation.AccommodationType = accommType;
             accommodation.Owner = user;
@@ -65,7 +68,6 @@ namespace BookingApp.Controllers
             {
                 return BadRequest(ModelState);
             }
-
 
             if (id != accommodation.Id)
             {
@@ -92,10 +94,8 @@ namespace BookingApp.Controllers
 
             if(accommodation.Approved)
             {
-                //var user = db.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
                 NotificationHub.NotifyAccommodationApproved(accommodation.Owner.Id.ToString(), accommodation.Id);
             }
-
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -106,11 +106,19 @@ namespace BookingApp.Controllers
         [ResponseType(typeof(Accommodation))]
         public IHttpActionResult PostAccommodation(Accommodation accommodation)
         {
-            AppUser user = db.AppUsers.FirstOrDefault(o => o.Username == accommodation.Owner.Username);
+            AppUser user = db.AppUsers
+                .FirstOrDefault(o => o.Username == accommodation.Owner.Username);
 
-            Place place = db.Places.Where(p => p.Id == accommodation.Place.Id).Include("Region").FirstOrDefault();
-            place.Region = db.Regions.Where(r => r.Id == place.Region.Id).Include("Country").FirstOrDefault();
-            AccommodationType accommType = db.AccommodationTypes.FirstOrDefault(at => at.Id == accommodation.AccommodationType.Id);
+            Place place = db.Places.Where(p => p.Id == accommodation.Place.Id)
+                .Include("Region")
+                .FirstOrDefault();
+
+            place.Region = db.Regions.Where(r => r.Id == place.Region.Id)
+                .Include("Country")
+                .FirstOrDefault();
+
+            AccommodationType accommType = db.AccommodationTypes
+                .FirstOrDefault(at => at.Id == accommodation.AccommodationType.Id);
 
             accommodation.Place = place;
             accommodation.AccommodationType = accommType;

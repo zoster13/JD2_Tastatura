@@ -9,7 +9,9 @@ export class AppUsersService {
     private headers = new Headers({'Content-Type': 'application/json'});
     private appUsersUrl = 'http://localhost:54042/api/AppUsers';  // URL to web api
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) { 
+        
+    }
 
     getAppUsers() : Promise<AppUser[]> {
         return this.http.get(this.appUsersUrl)

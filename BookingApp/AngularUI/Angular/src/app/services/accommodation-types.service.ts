@@ -9,7 +9,9 @@ export class AccommodationTypesService {
     private headers = new Headers({'Content-Type': 'application/json'});
     private accommodationTypesUrl = 'http://localhost:54042/api/AccommodationTypes';  // URL to web api
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) { 
+        
+    }
 
     getAccommodationTypes() : Promise<AccommodationType[]> {        
         return this.http.get(this.accommodationTypesUrl)

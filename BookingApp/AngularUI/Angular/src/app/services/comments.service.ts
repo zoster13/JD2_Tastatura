@@ -9,7 +9,9 @@ export class CommentsService {
     private headers = new Headers({'Content-Type': 'application/json'});
     private commentsUrl = 'http://localhost:54042/api/Comments';  // URL to web api
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) { 
+        
+    }
 
     getAllComments() : Promise<Comment[]> {
         return this.http.get(this.commentsUrl)

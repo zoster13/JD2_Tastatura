@@ -9,7 +9,9 @@ export class PlacesService {
     private headers = new Headers({'Content-Type': 'application/json'});
     private placesUrl = 'http://localhost:54042/api/Places';  // URL to web api
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) { 
+        
+    }
 
     getPlaces() : Promise<Place[]> {
         return this.http.get(this.placesUrl)

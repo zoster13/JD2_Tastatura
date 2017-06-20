@@ -52,8 +52,8 @@ export class NotificationsComponent implements OnInit {
 
   public onAccommodationApproved(accommodationId: any) {
      this._ngZone.run(() => {  
-                this.notifications.push('Your accommodation [' + accommodationId + '] is approved');
                 alert('Your accommodation [' + accommodationId + '] is approved');
+                this.notifications.push('Your accommodation [' + accommodationId + '] is approved');
     });
   }
 

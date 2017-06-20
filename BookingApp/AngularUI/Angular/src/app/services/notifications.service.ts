@@ -46,8 +46,6 @@ export class NotificationService {
             console.log('Now connected ' + data.transport.name + ', connection ID= ' + data.id);
 
             let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
-            debugger
             this.proxy.invoke('AddUserToGroup', currentUser.userId, currentUser.role);
 
             this.connectionEstablished.emit(true);  
@@ -61,7 +59,6 @@ export class NotificationService {
 
         //New accommodation notification
         this.proxy.on('newAccommodationNotification', (accommodationId: any) => {  
-            //console.log('received new accomm id: ' + accommodationId);  
             this.newAccommodationReceived.emit(accommodationId);  
         });
 

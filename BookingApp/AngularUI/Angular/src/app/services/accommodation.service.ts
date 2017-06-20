@@ -9,7 +9,9 @@ export class AccommodationService {
     private headers = new Headers({'Content-Type': 'application/json'});
     private accommodationsUrl = 'http://localhost:54042/api/Accommodations';  // URL to web api
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) { 
+
+    }
 
     getAllAccommodations() : Promise<Accommodation[]> {
         const url = `${this.accommodationsUrl}?$filter=Approved eq true`;
@@ -41,8 +43,6 @@ export class AccommodationService {
             .toPromise()
             .then(response => response.json() as Accommodation)
             .catch(this.handleError);
-            
-
     }
 
     delete(id: number): Promise<void> {

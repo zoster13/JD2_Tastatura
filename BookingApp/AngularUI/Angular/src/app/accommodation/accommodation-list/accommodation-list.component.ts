@@ -23,11 +23,13 @@ export class AccommodationListComponent implements OnInit {
   i: number = 0;
 
   constructor(private accommodationService:AccommodationService,
-  private router: Router,
-  private routeActive: ActivatedRoute,
-  private location: Location,
-  private authenticationService: AuthenticationService) {
-  }
+              private router: Router,
+              private routeActive: ActivatedRoute,
+              private location: Location,
+              private authenticationService: AuthenticationService) {
+              
+              }
+
 
   getAccommodations() : void {
     this.accommodationService.getAllAccommodations()
@@ -47,20 +49,19 @@ export class AccommodationListComponent implements OnInit {
   }
 
   ngOnInit() : void {
+
     if(this.isLoggedIn()){
         this.role = JSON.parse(localStorage.getItem('currentUser'))['role'];
     }
     
-    
     this.getAccommodations();
-    
 
     this.routeActive.params
         .switchMap((params: Params) => this.accommodationService.getAccommodations(((+params['id'])-1)*3))
         .subscribe(country => {this.accommodations = country;});
   }
 
-  delete(id: number){
+  delete(id: number) {
     this.accommodationService.delete(id);
     window.location.reload();
   }

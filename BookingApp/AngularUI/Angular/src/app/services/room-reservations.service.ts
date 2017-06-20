@@ -9,7 +9,9 @@ export class RoomReservationsService {
     private headers = new Headers({'Content-Type': 'application/json'});
     private roomReservationsUrl = 'http://localhost:54042/api/RoomReservations';  // URL to web api
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) { 
+        
+    }
 
     getAllRoomReservations() : Promise<RoomReservations[]> {
         return this.http.get(this.roomReservationsUrl)
