@@ -37,12 +37,6 @@
             <option *ngFor="let accommtype of accommTypes" value="{{accommtype.Id}}">{{accommtype.Name}}</option>
         </select>
     </div>
-    <div>
-        <label for="Owner">Choose owner: </label>
-        <select name="Owner" ngModel>
-            <option *ngFor="let owner of owners" value="{{owner.Id}}">{{owner.FullName}}</option>
-        </select>
-    </div>
     <div *ngIf="!isUpdate">
         <input type="submit" value="Add">
     </div>
