@@ -1,6 +1,6 @@
 <ul class="list">
 	<br/>
-    <div >
+    <div *ngIf="(role == 'Admin')">
         <li *ngFor="let accommodation of unapprovedAccommodations">
             <div class="list">
                 <div class="topmarg">&nbsp;
@@ -32,6 +32,10 @@
             </div>
             
         </li>
+    </div>
+
+    <div *ngIf="(role == 'Manager')">
+        
     </div>
 </ul>
 <div>

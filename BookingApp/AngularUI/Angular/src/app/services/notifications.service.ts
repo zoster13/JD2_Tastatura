@@ -14,6 +14,7 @@ export class NotificationService {
     // create the Event Emitter  
     public notificationReceived: EventEmitter < string >;
     public newAccommodationReceived: EventEmitter < string >;
+    public accommodationApproved: EventEmitter < string >;
     public connectionEstablished: EventEmitter < Boolean >;  
     public connectionExists: Boolean;  
    
@@ -22,6 +23,7 @@ export class NotificationService {
         this.connectionEstablished = new EventEmitter < Boolean > ();  
         this.newAccommodationReceived = new EventEmitter < any > ();  
         this.notificationReceived = new EventEmitter < string > ();  
+        this.accommodationApproved = new EventEmitter <string>();
         this.connectionExists = false;  
         // create hub connection  
         this.connection = $.hubConnection("http://localhost:54042/");  
@@ -41,7 +43,13 @@ export class NotificationService {
     // check in the browser console for either signalr connected or not  
     private startConnection(): void {  
         this.connection.start().done((data: any) => {  
-            console.log('Now connected ' + data.transport.name + ', connection ID= ' + data.id);  
+            console.log('Now connected ' + data.transport.name + ', connection ID= ' + data.id);
+
+            let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+            debugger
+            this.proxy.invoke('AddUserToGroup', currentUser.userId, currentUser.role);
+
             this.connectionEstablished.emit(true);  
             this.connectionExists = true;  
         }).fail((error: any) => {  
@@ -53,8 +61,13 @@ export class NotificationService {
 
         //New accommodation notification
         this.proxy.on('newAccommodationNotification', (accommodationId: any) => {  
-            console.log('received new accomm id: ' + accommodationId);  
+            //console.log('received new accomm id: ' + accommodationId);  
             this.newAccommodationReceived.emit(accommodationId);  
+        });
+
+        //On accomm approved
+        this.proxy.on('accommodationApproved', (accommodationId: any) => {  
+            this.accommodationApproved.emit(accommodationId);  
         });
     }  
 }  

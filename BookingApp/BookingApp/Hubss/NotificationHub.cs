@@ -26,12 +26,29 @@ namespace BookingApp.Hubss
             hubContext.Clients.Group("Admins").newAccommodationNotification(accommodationId);
         }
 
+        public static void NotifyAccommodationApproved(string userId, int accommodationId)
+        {
+            hubContext.Clients.Group(userId).accommodationApproved(accommodationId);
+        }
+
+        public void AddUserToGroup(int id, string role)
+        {
+            if(role == "Admin")
+            {
+                Groups.Add(Context.ConnectionId, "Admins");
+            }
+            else if(role == "Manager")
+            {
+                Groups.Add(Context.ConnectionId, id.ToString());
+            }
+        } 
+
         public override Task OnConnected()
         {
             //Ako vam treba pojedinacni User
             //var identityName = Context.User.Identity.Name;
 
-            Groups.Add(Context.ConnectionId, "Admins");
+            //Groups.Add(Context.ConnectionId, "Admins");
 
             //if (Context.User.IsInRole("Admin"))
             //{
@@ -43,7 +60,7 @@ namespace BookingApp.Hubss
 
         public override Task OnDisconnected(bool stopCalled)
         {
-            Groups.Remove(Context.ConnectionId, "Admins");
+            //Groups.Remove(Context.ConnectionId, "Admins");
 
             //if (Context.User.IsInRole("Admin"))
             //{

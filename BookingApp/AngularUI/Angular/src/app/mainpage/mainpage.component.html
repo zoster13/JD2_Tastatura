@@ -10,7 +10,9 @@
             <li class="left"><a class="active" [routerLink]="['/mainpage/accommodation/accommlist', 1]">Accommodation</a></li>
             <div *ngIf="isLoggedIn() && (role == 'Admin' || role == 'Manager')">
                  <li class="left"><a class="active" routerLink="/mainpage/rooms/roomlist/1">Rooms</a></li>
-+            </div>
+                 <notifications> </notifications>
+                 <li class="left"><a class="active" routerLink="/mainpage/notifications">Notifications</a></li>
+            </div>
             <div *ngIf="isLoggedIn() && (role == 'Admin')">
                 <li class="left"><a class="active" routerLink="/mainpage/country/countrylist/1">Countries</a></li>   
                 <li class="left"><a class="active" routerLink="/mainpage/regions/regionlist">Regions</a></li>
@@ -18,8 +20,8 @@
                 <li class="left"><a class="active" routerLink="/mainpage/accommtypes/accommtypeslist">Accommodation Types</a></li>
                 <li class="left"><a class="active" routerLink="/mainpage/comments">Comments</a></li>
                 <li class="left"><a class="active" routerLink="/mainpage/reservations">Reservations</a></li>
-                <li class="left"><a class="active" routerLink="/mainpage/notifications">Unapproved Accomm.</a></li>
                 <li class="left"><a class="active" routerLink="/mainpage/appusers">Users</a></li>
+                 <li class="left"><a class="active" routerLink="/mainpage/notifications">Unapproved accomm.</a></li>
             </div>
             <li class="right"><a id="rightmost" class="notactive"></a></li>
             <div *ngIf="!isLoggedIn()">

@@ -11,9 +11,11 @@ import {AccommodationService} from '../services/accommodation.service';
 export class NotificationsComponent implements OnInit {
 
   isConnected: Boolean;
-  //notifications: string[];
+  notifications: string[];
+  role : string;
 
   unapprovedAccommodations: Accommodation[];
+
 
   constructor(private notifService: NotificationService, 
               private _ngZone: NgZone,
@@ -22,6 +24,8 @@ export class NotificationsComponent implements OnInit {
     this.isConnected = false;
     
       this.unapprovedAccommodations = [];
+      this.notifications = [];
+      this.role = JSON.parse(localStorage.getItem('currentUser'))['role'];
   }
 
   ngOnInit() {
@@ -36,12 +40,20 @@ export class NotificationsComponent implements OnInit {
 
   private subscribeForNotifications () {
     this.notifService.newAccommodationReceived.subscribe(e => this.onNewAccommodationRecived(e));
+    this.notifService.accommodationApproved.subscribe(e => this.onAccommodationApproved(e));
   }
 
   public onNewAccommodationRecived(accommodationId: any) {
      this._ngZone.run(() => {  
                 alert('You have one new accommodation that needs to be approved.');
                 this.getUnapprovedAccommodations(); 
+    });
+  }
+
+  public onAccommodationApproved(accommodationId: any) {
+     this._ngZone.run(() => {  
+                this.notifications.push('Your accommodation [' + accommodationId + '] is approved');
+                alert('Your accommodation [' + accommodationId + '] is approved');
     });
   }
 

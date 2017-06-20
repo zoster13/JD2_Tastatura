@@ -38,8 +38,10 @@ export class AuthenticationService {
                         //set user role
                         var role = response.headers.get('role');
                         var isBanned = response.headers.get('isBanned');
+                        var userId = response.headers.get('userId');
+                        
                         // store username and jwt token in local storage to keep user logged in between page refreshes
-                        localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token, role : role, isBanned: isBanned }));
+                        localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token, role : role, isBanned: isBanned, userId:userId }));
                         localStorage.setItem('token', token);
                         // return true to indicate successful login
                         return true;

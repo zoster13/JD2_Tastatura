@@ -4,6 +4,7 @@ import { Location }                 from '@angular/common';
 
 import {LogIn} from '../models/Log-in';
 import {AuthenticationService} from '../services/authentication.service';
+import {NotificationsComponent} from '../notifications/notifications.component';
 
 @Component({
   selector: 'main-page',

@@ -30,7 +30,7 @@ export class RoomsFilterPipe implements PipeTransform {
         if((priceTerm !== undefined) && (priceTerm !== ""))
         {
             filtredRooms =  filtredRooms.filter(function(room:any) {
-                return (room.PricePerNight < bedCountTerm);
+                return (room.PricePerNight < priceTerm);
             })
         }
         

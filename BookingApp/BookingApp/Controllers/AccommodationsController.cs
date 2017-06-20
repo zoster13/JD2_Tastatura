@@ -54,6 +54,18 @@ namespace BookingApp.Controllers
                 return BadRequest(ModelState);
             }
 
+            Accommodation accomm = db.Accommodations.FirstOrDefault(a => a.Id == accommodation.Id);//TEMP
+
+            AppUser owner = db.AppUsers.FirstOrDefault(o => o.Id == accomm.Owner.Id);
+            Place place = db.Places.Where(p => p.Id == accommodation.Place.Id).Include("Region").FirstOrDefault();
+            place.Region = db.Regions.Where(r => r.Id == place.Region.Id).Include("Country").FirstOrDefault();
+            AccommodationType accommType = db.AccommodationTypes.FirstOrDefault(at => at.Id == accommodation.AccommodationType.Id);
+
+            accommodation.Place = place;
+            accommodation.AccommodationType = accommType;
+            accommodation.Owner = owner;
+
+
             if (id != accommodation.Id)
             {
                 return BadRequest();
@@ -76,6 +88,13 @@ namespace BookingApp.Controllers
                     throw;
                 }
             }
+
+            if(accommodation.Approved)
+            {
+                var user = db.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
+                NotificationHub.NotifyAccommodationApproved(user.Id, accommodation.Id);
+            }
+
 
             return StatusCode(HttpStatusCode.NoContent);
         }

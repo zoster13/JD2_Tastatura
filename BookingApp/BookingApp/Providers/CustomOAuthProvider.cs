@@ -71,9 +71,11 @@ namespace BookingApp.Providers
                 context.OwinContext.Response.Headers.Add("IsBanned", new[] { "False" });
             }
 
+            context.OwinContext.Response.Headers.Add("UserID", new[] { appUser.Id.ToString() });
+
             //Mora se dodati u header response-a kako bi se se Role atribut
             //mogao procitati na klijentskoj strani
-            context.OwinContext.Response.Headers.Add("Access-Control-Expose-Headers", new[] { "Role" ,"IsBanned" });
+            context.OwinContext.Response.Headers.Add("Access-Control-Expose-Headers", new[] { "Role" ,"IsBanned", "UserId" });
 
             //if (!user.EmailConfirmed)
             //{
