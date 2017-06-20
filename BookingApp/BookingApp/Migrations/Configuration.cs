@@ -213,9 +213,9 @@ namespace BookingApp.Migrations
 
             //****************************************************************************************
 
-            Accommodation accomm1 = new Accommodation(1, "Hotel Park", "Hotel sa 5 zvezdica.", "Novosadskog sajma 35", 4.4, 0.0, 0.0, "nepoznato", false, place1, accommType1, new AppUser());
-            Accommodation accomm2 = new Accommodation(2, "Fontana", "Opis...", "Jugoslovenske Armije 11", 4.3, 0.0, 0.0, "nepoznato", false, place2, accommType1, new AppUser());
-            Accommodation accomm3 = new Accommodation(3, "Vila Elena", "Opis...", "18, Heracleous St", 4.7, 0.0, 0.0, "nepoznato", false, place5, accommType3, new AppUser());
+            Accommodation accomm1 = new Accommodation(1, "Hotel Park", "Hotel sa 5 zvezdica.", "Novosadskog sajma 35", 4.4, 0.0, 0.0, "nepoznato", false, place1, accommType1, context.AppUsers.Where(u => u.Id == 1).FirstOrDefault());
+            Accommodation accomm2 = new Accommodation(2, "Fontana", "Opis...", "Jugoslovenske Armije 11", 4.3, 0.0, 0.0, "nepoznato", false, place2, accommType1, context.AppUsers.Where(u => u.Id == 1).FirstOrDefault());
+            Accommodation accomm3 = new Accommodation(3, "Vila Elena", "Opis...", "18, Heracleous St", 4.7, 0.0, 0.0, "nepoznato", false, place5, accommType3, context.AppUsers.Where(u => u.Id == 1).FirstOrDefault());
 
             //******************************************************************************************************************
 
