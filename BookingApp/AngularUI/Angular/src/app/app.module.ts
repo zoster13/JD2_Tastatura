@@ -33,6 +33,7 @@ import {CommentsMainComponent} from './comments/comments-main/comments-main.comp
 import {CommentsListComponent} from './comments/comments-list/comments-list.component';
 import {CommentsFormComponent} from './comments/comments-form/comments-form.component';
 import {NotificationsComponent} from './notifications/notifications.component';
+import {AppUsersComponent} from './users/users.component';
 
 import {CountriesService} from './services/countries.service';
 import {AccommodationService} from './services/accommodation.service';
@@ -105,6 +106,7 @@ const ChildRoutesComments = [
   ]
 
 const ChildRoutesMain = [
+   {path: "appusers", component: AppUsersComponent},
    {path: "notifications", component: NotificationsComponent},
    {path: "map", component: MapComponent},
    {path: "accommodation", component: AccommodationMainComponent, children: ChildRoutesAccomm},
@@ -156,7 +158,8 @@ const Routes = [
     CommentsMainComponent,
     CommentsListComponent,
     CommentsFormComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    AppUsersComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AppUser} from '../models/AppUser';
-import {Headers, Http} from '@angular/http';
+import {Headers, Http, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -49,6 +49,26 @@ export class AppUsersService {
         .toPromise()
         .then(() => appUser)
         .catch(this.handleError);
+    }
+
+    ban(id: number) {
+        let token=localStorage.getItem("token");
+        this.headers.append('Authorization', 'Bearer '+ token);
+
+        let options = new RequestOptions();
+        options.headers = this.headers;
+        
+        return this.http.put(`http://localhost:54042/api/UserBan/${id}`, "", options);
+    }
+
+    unban(id: number) {
+        let token=localStorage.getItem("token");
+        this.headers.append('Authorization', 'Bearer '+ token);
+
+        let options = new RequestOptions();
+        options.headers = this.headers;
+        
+        return this.http.put(`http://localhost:54042/api/UserUnban/${id}`, "", options);
     }
 
     private handleError(error: any): Promise<any> {

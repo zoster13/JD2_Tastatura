@@ -46,6 +46,8 @@ namespace BookingApp.Providers
             var role = db.Roles.SingleOrDefault(r => r.Id == userRole.RoleId);
             var roleName = role?.Name;
 
+            AppUser appUser = db.AppUsers.FirstOrDefault(au => au.Username.Equals(context.UserName));
+
             if (roleName == "Admin")
             {
                 context.OwinContext.Response.Headers.Add("Role", new[] { "Admin" });
@@ -59,10 +61,20 @@ namespace BookingApp.Providers
                 context.OwinContext.Response.Headers.Add("Role", new[] { "User" });
             }
 
+
+            if(appUser.IsBanned)
+            {
+                context.OwinContext.Response.Headers.Add("IsBanned", new[] { "True" });
+            }
+            else
+            {
+                context.OwinContext.Response.Headers.Add("IsBanned", new[] { "False" });
+            }
+
             //Mora se dodati u header response-a kako bi se se Role atribut
             //mogao procitati na klijentskoj strani
-            context.OwinContext.Response.Headers.Add("Access-Control-Expose-Headers", new[] { "Role" });
-            
+            context.OwinContext.Response.Headers.Add("Access-Control-Expose-Headers", new[] { "Role" ,"IsBanned" });
+
             //if (!user.EmailConfirmed)
             //{
             //    context.SetError("invalid_grant", "AppUser did not confirm email.");

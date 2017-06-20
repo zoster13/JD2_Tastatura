@@ -1,0 +1,10 @@
+    <div>    
+        <li *ngFor="let user of allUsers">
+            <div>
+                <label> FullName: </label> {{user.FullName}}.<br/>
+                <label> Username: </label> {{user.Username}}.<br/>
+                <button *ngIf="!user.IsBanned" (click)="ban(user.Id)"> Ban </button>
+                <button *ngIf="user.IsBanned" (click)="unban(user.Id)"> Unban </button>
+            </div>
+        </li>
+    </div>

@@ -65,16 +65,34 @@ namespace BookingApp.Migrations
             );
             context.AppUsers.AddOrUpdate(
                   p => p.FullName,
-                  new AppUser() { FullName = "Menadzer Menadzerovic", Email = "menadzer@yahoo.com", Password = "menadzer", Username = "meanadzer" }
+                  new AppUser() { FullName = "Menadzer Menadzerovic", Email = "m0@yahoo.com", Password = "m0", Username = "m0" }
             );
+            context.AppUsers.AddOrUpdate(
+                  p => p.FullName,
+                  new AppUser() { FullName = "Stefan Stevic", Email = "m1@yahoo.com", Password = "m1", Username = "m1" }
+            );
+            context.AppUsers.AddOrUpdate(
+                  p => p.FullName,
+                  new AppUser() { FullName = "Mirko Mirkovic", Email = "m2@yahoo.com", Password = "m2", Username = "m2" }
+            );
+
             context.AppUsers.AddOrUpdate(
                 p => p.FullName,
                 new AppUser() { FullName = "AppUser AppUserovic", Email = "appu@yahoo.com", Password = "appu", Username = "appu" }
             );
+            context.AppUsers.AddOrUpdate(
+                p => p.FullName,
+                new AppUser() { FullName = "Marko Markovic", Email = "marko@yahoo.com", Password = "marko", Username = "marko" }
+            );
+            context.AppUsers.AddOrUpdate(
+                p => p.FullName,
+                new AppUser() { FullName = "Laza Lazic", Email = "laza@yahoo.com", Password = "laza", Username = "laza" }
+            );
+
+
             context.SaveChanges();
 
-            //Dodjeljivanje rola
-            //[Authorize(Roles="Admin")]
+            //Admins
             var userStore = new UserStore<BAIdentityUser>(context);
             var userManager = new UserManager<BAIdentityUser>(userStore);
             if (!context.Users.Any(u => u.UserName == "admin"))
@@ -84,17 +102,50 @@ namespace BookingApp.Migrations
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "Admin");
             }
-            if (!context.Users.Any(u => u.UserName == "meanadzer"))
+
+            //Menadzeri
+            if (!context.Users.Any(u => u.UserName == "m0"))
             {
-                var _appUser = context.AppUsers.FirstOrDefault(a => a.Email == "menadzer@yahoo.com");
-                var user = new BAIdentityUser() { Id = "meanadzer", UserName = "meanadzer", Email = "meanadzer@yahoo.com", PasswordHash = BAIdentityUser.HashPassword("meanadzer"), AppUserId = _appUser.Id };
+                var _appUser = context.AppUsers.FirstOrDefault(a => a.Email == "m0@yahoo.com");
+                var user = new BAIdentityUser() { Id = _appUser.Username, UserName = _appUser.Username, Email = _appUser.Email, PasswordHash = BAIdentityUser.HashPassword(_appUser.Password), AppUserId = _appUser.Id };
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "Manager");
             }
+            if (!context.Users.Any(u => u.UserName == "m1"))
+            {
+                var _appUser = context.AppUsers.FirstOrDefault(a => a.Email == "m1@yahoo.com");
+                var user = new BAIdentityUser() { Id = _appUser.Username, UserName = _appUser.Username, Email = _appUser.Email, PasswordHash = BAIdentityUser.HashPassword(_appUser.Password), AppUserId = _appUser.Id };
+                userManager.Create(user);
+                userManager.AddToRole(user.Id, "Manager");
+            }
+
+            if (!context.Users.Any(u => u.UserName == "m2"))
+            {
+                var _appUser = context.AppUsers.FirstOrDefault(a => a.Email == "m2@yahoo.com");
+                var user = new BAIdentityUser() { Id = _appUser.Username, UserName = _appUser.Username, Email = _appUser.Email, PasswordHash = BAIdentityUser.HashPassword(_appUser.Password), AppUserId = _appUser.Id };
+                userManager.Create(user);
+                userManager.AddToRole(user.Id, "Manager");
+            }
+
+            //AppUsers
             if (!context.Users.Any(u => u.UserName == "appu"))
             {
                 var _appUser = context.AppUsers.FirstOrDefault(a => a.Email == "appu@yahoo.com");
-                var user = new BAIdentityUser() { Id = "appu", UserName = "appu", Email = "appu@yahoo.com", PasswordHash = BAIdentityUser.HashPassword("appu"), AppUserId = _appUser.Id };
+                var user = new BAIdentityUser() { Id = _appUser.Username, UserName = _appUser.Username, Email = _appUser.Email, PasswordHash = BAIdentityUser.HashPassword(_appUser.Password), AppUserId = _appUser.Id };
+                userManager.Create(user);
+                userManager.AddToRole(user.Id, "AppUser");
+            }
+            if (!context.Users.Any(u => u.UserName == "marko"))
+            {
+                var _appUser = context.AppUsers.FirstOrDefault(a => a.Email == "marko@yahoo.com");
+                var user = new BAIdentityUser() { Id = _appUser.Username, UserName = _appUser.Username, Email = _appUser.Email, PasswordHash = BAIdentityUser.HashPassword(_appUser.Password), AppUserId = _appUser.Id };
+                userManager.Create(user);
+                userManager.AddToRole(user.Id, "AppUser");
+            }
+            if (!context.Users.Any(u => u.UserName == "laza"))
+            {
+                var _appUser = context.AppUsers.FirstOrDefault(a => a.Email == "laza@yahoo.com");
+                var user = new BAIdentityUser() { Id = _appUser.Username, UserName = _appUser.Username, Email = _appUser.Email, PasswordHash = BAIdentityUser.HashPassword(_appUser.Password), AppUserId = _appUser.Id };
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "AppUser");
             }

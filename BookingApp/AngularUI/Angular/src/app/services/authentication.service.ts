@@ -29,7 +29,7 @@ export class AuthenticationService {
 
        return this.http.post('http://localhost:54042/oauth/token', `username=${username}&password=${password}&grant_type=password`, options)
             .map((response: Response) => {
-                
+
                     let token = response.json().access_token;
                     if (token) {
                         // set token property
@@ -37,10 +37,10 @@ export class AuthenticationService {
 
                         //set user role
                         var role = response.headers.get('role');
-
+                        var isBanned = response.headers.get('isBanned');
                         // store username and jwt token in local storage to keep user logged in between page refreshes
-                        localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token, role : role }));
-
+                        localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token, role : role, isBanned: isBanned }));
+                        localStorage.setItem('token', token);
                         // return true to indicate successful login
                         return true;
                     } else {
@@ -57,6 +57,7 @@ export class AuthenticationService {
         // clear token remove user from local storage to log user out
         this.token = null;
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('token');
     }
 
     isLoggedIn(): boolean{

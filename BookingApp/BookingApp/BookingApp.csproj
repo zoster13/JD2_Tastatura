@@ -304,6 +304,10 @@
     <Compile Include="Migrations\201706161401177_fill base.Designer.cs">
       <DependentUpon>201706161401177_fill base.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706200858372_izmjena AppUser modela.cs" />
+    <Compile Include="Migrations\201706200858372_izmjena AppUser modela.Designer.cs">
+      <DependentUpon>201706200858372_izmjena AppUser modela.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accommodation.cs" />
     <Compile Include="Models\AccommodationType.cs" />
@@ -401,6 +405,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706161401177_fill base.resx">
       <DependentUpon>201706161401177_fill base.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706200858372_izmjena AppUser modela.resx">
+      <DependentUpon>201706200858372_izmjena AppUser modela.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
