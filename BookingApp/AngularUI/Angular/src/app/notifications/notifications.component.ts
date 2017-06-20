@@ -38,15 +38,8 @@ export class NotificationsComponent implements OnInit {
   }
 
   private subscribeForNotifications () {
-    //this.notifService.notificationReceived.subscribe(e => this.onNotification(e));
     this.notifService.newAccommodationReceived.subscribe(e => this.onNewAccommodationRecived(e));
   }
-
-  // public onNotification(notif: string) {
-  //    this._ngZone.run(() => {  
-  //               this.notifications.push(notif); 
-  //   });  
-  //}
 
   public onNewAccommodationRecived(accommodationId: any) {
      this._ngZone.run(() => {  
@@ -65,6 +58,6 @@ export class NotificationsComponent implements OnInit {
   private approveAccommodation(accommodation: Accommodation): void{
     let accom: Accommodation = this.unapprovedAccommodations.find(a => a['Id'] === accommodation['Id']);
     accom.approved = true;
-    this.accommodationService.update(accom);
+    this.accommodationService.update(accom).then( x => {this.accommodationService.getAllUnapprovedAccommodations().then(x => this.unapprovedAccommodations = x);});
   }
 }
