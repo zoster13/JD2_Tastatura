@@ -23,7 +23,7 @@
 			        Accommodation Type: {{accommodation.AccommodationType.Name}} 
                 </div>
                     <ul class="accommtabmenuu">
-                        <label *ngIf="isLoggedIn()"><li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/update', accommodation.Id]" >Update</a></li>
+                        <label *ngIf="(isLoggedIn() && (currentuser == 'admin'))"><li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/update', accommodation.Id]" >Update</a></li>
                         <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/accommlist', 1]" (click)="delete(accommodation.Id)" >Delete</a></li></label>
                         <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/roomlist', 1, accommodation.Id]">Rooms</a></li>
                         <li class="left"><a class="listlinkk"  [routerLink]="['/mainpage/accommodation/commentlist', accommodation.Id]">Comments</a></li>

@@ -13,6 +13,7 @@ import {AccommodationFilterPipe} from '../../search/search.component';
 })
 
 export class AccommodationListComponent implements OnInit {
+  currentuser: string;
 
   accommodations: Accommodation[];
   accomm: Accommodation;
@@ -46,6 +47,11 @@ export class AccommodationListComponent implements OnInit {
   }
 
   ngOnInit() : void {
+    if(this.isLoggedIn()){
+        this.currentuser = JSON.parse(localStorage.getItem('currentUser'))['username'];
+    }
+    
+    
     this.getAccommodations();
 
     this.routeActive.params

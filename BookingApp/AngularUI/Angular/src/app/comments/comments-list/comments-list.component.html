@@ -19,7 +19,7 @@
         <div class="list">
             <label>Text:</label> {{comm.Text}}
             <label>Grade: </label>{{comm.Grade}}
-            <label *ngIf="isLoggedIn()"><a [routerLink]="['/mainpage/comments/update', comm.Id]" >Update</a></label>
+            <label *ngIf="isLoggedIn() && (currentuser == 'admin')"><a [routerLink]="['/mainpage/comments/update', comm.Id]" >Update</a></label>
             <!--<a [routerLink]="['/mainpage/comments/commentlist']" (click)="delete(comm.Id)">Delete</a>-->
         </div>
         <div class="listseparator">

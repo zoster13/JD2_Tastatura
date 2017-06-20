@@ -13,7 +13,7 @@ import {AuthenticationService} from '../services/authentication.service';
 
 export class MainpageComponent implements OnInit {
 
-    currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    currentuser: string;
 
     constructor(private location: Location, 
                 public router: Router,
@@ -34,6 +34,8 @@ export class MainpageComponent implements OnInit {
     }
 
     ngOnInit() : void {
-        
+        if(this.isLoggedIn()){
+            this.currentuser = JSON.parse(localStorage.getItem('currentUser'))['username'];
+        }
     }
 }

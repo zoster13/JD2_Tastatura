@@ -11,7 +11,8 @@ import {Accommodation} from '../../models/Accommodation';
   styleUrls: ['./accommodation-main.component.css'],
 })
 
-export class AccommodationMainComponent {
+export class AccommodationMainComponent implements OnInit {
+currentuser: string;
 
   constructor(private router: Router, 
   private authenticationService: AuthenticationService) {
@@ -21,4 +22,10 @@ export class AccommodationMainComponent {
    isLoggedIn(): boolean {
         return this.authenticationService.isLoggedIn();
   }
+
+  ngOnInit() : void {
+        if(this.isLoggedIn()){
+            this.currentuser = JSON.parse(localStorage.getItem('currentUser'))['username'];
+        }
+    }
 }

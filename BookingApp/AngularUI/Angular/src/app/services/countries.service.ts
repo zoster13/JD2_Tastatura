@@ -11,8 +11,16 @@ export class CountriesService {
 
     constructor(private http: Http) { }
 
-    getCountries() : Promise<Country[]> {
+    getAllCountries() : Promise<Country[]> {
         return this.http.get(this.countriesUrl)
+                    .toPromise()
+                    .then(response => response.json() as Country[])
+                    .catch(this.handleError);
+    }
+
+    getCountries(id: number) : Promise<Country[]> {
+        const url = `${this.countriesUrl}/?$top=5&$skip=${id}`;
+        return this.http.get(url)
                     .toPromise()
                     .then(response => response.json() as Country[])
                     .catch(this.handleError);

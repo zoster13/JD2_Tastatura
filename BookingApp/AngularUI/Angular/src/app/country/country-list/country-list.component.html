@@ -1,12 +1,21 @@
 <ul class="list">
       <li *ngFor="let country of countries">
-        <div class="list">
-            <label> Name: </label> {{country.Name}}
-            <label> Code: </label> {{country.Code}}
-            <a [routerLink]="['/mainpage/country/update', country.Id]" >Update</a>
-            <a [routerLink]="['/mainpage/country/countrylist']" (click)="delete(country.Id)" >Delete</a>
+        <div class="listt">
+            <div class="description">
+                <label> Name: </label> {{country.Name}}<br/>
+                <label> Code: </label> {{country.Code}}<br/>
+            </div>
+            <ul class="accommtabmenuu">
+                <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/country/update', country.Id]" >Update</a></li>
+                <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/country/countrylist']" (click)="delete(country.Id)" >Delete</a></li>
+            </ul>
         </div>
         <div class="listseparator">
         </div>
     </li>
 </ul>
+<div>
+    <ul>
+        <li *ngFor="let num of numeration"><a [routerLink]="['/mainpage/country/countrylist', num]">{{num}}</a></li>
+    </ul>
+</div>

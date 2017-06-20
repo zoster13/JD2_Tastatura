@@ -2,7 +2,8 @@
     <form #f="ngForm" (ngSubmit)="onSubmitAccomm(f.value, f)">
     <div>
       <label for="Name">Name: </label>
-      <input type="text" name="Name" [ngModel]="accommodation.Name" >
+      <input type="text" name="Name" [ngModel]="accommodation.Name" #Name="ngModel" required>
+      <div *ngIf="f.submitted && !Name.valid" class="help-block">Name is required</div>
     </div>
     <div>
       <label for="Description">Description: </label>

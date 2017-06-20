@@ -65,7 +65,7 @@ const ChildRoutesAccomm = [
 
 const ChildRoutesCountry = [
    {path: "countryform", component: CountryFormComponent},
-   {path: "countrylist", component: CountryListComponent},
+   {path: "countrylist/:id", component: CountryListComponent},
    {path: "update/:id", component: CountryFormComponent}
   ]
 

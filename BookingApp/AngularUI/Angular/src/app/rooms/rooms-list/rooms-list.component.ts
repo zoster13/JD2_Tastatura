@@ -12,6 +12,8 @@ import {AuthenticationService} from '../../services/authentication.service';
 
 export class RoomsListComponent implements OnInit {
 
+  currentuser: string;
+  
   rooms: Room[] = [];
   room: Room;
   temp: any;
@@ -38,7 +40,11 @@ export class RoomsListComponent implements OnInit {
       .then(rooms => this.rooms = rooms);
   }
 
-  ngOnInit() : void {
+  ngOnInit() : void { 
+    if(this.isLoggedIn()){
+     this.currentuser = JSON.parse(localStorage.getItem('currentUser'))['username'];
+    }
+
     this.roomsService.getAllRooms()
       .then(rooms =>{ 
         this.roomscount = rooms.length;

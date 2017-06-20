@@ -8,7 +8,7 @@
             <li class="left"><a id="appname" class="notactive" routerLink="/mainpage">Booking App</a></li>
             <li class="left"><a class="active" routerLink="/mainpage/map">Google Map</a></li>
             <li class="left"><a class="active" [routerLink]="['/mainpage/accommodation/accommlist', 1]">Accommodation</a></li>
-            <div *ngIf="isLoggedIn()">
+            <div *ngIf="isLoggedIn() && (currentuser == 'admin')">
                 <li class="left"><a class="active" routerLink="/mainpage/rooms/roomlist/1">Rooms</a></li>
                 <li class="left"><a class="active" routerLink="/mainpage/country/countrylist">Countries</a></li>   
                 <li class="left"><a class="active" routerLink="/mainpage/regions/regionlist">Regions</a></li>
@@ -25,7 +25,7 @@
             </div>
             <div *ngIf="isLoggedIn()">
                 <li class="right"><a class="active" routerLink="/mainpage" (click)="logOut()">Log Out</a></li>
-                <li class="right"><a id="ime" class="notactive">{{currentUser.username}}</a></li>
+                <li class="right"><a id="ime" class="notactive">{{currentuser}}</a></li>
             </div>
             
         </ul>

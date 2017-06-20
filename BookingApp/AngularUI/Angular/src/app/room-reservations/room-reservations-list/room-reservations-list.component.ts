@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import {RoomReservationsService} from '../../services/room-reservations.service';
+import {AuthenticationService} from '../../services/authentication.service';
 import {RoomReservations} from '../../models/RoomReservations';
 import {AppUser} from '../../models/AppUser';
 
@@ -12,6 +13,7 @@ import {AppUser} from '../../models/AppUser';
 
 export class RoomReservationsListComponent implements OnInit {
 
+  currentuser: string;
   roomReservations: RoomReservations[] = [];
 
   uriParts: string[];
@@ -20,7 +22,8 @@ export class RoomReservationsListComponent implements OnInit {
 
   constructor(private roomreservationsService:RoomReservationsService,
   private router: Router,
-  private route: ActivatedRoute) {
+  private route: ActivatedRoute,
+  private authenticationService: AuthenticationService) {
     
   }
 
@@ -29,7 +32,15 @@ export class RoomReservationsListComponent implements OnInit {
       .then(roomsres => this.roomReservations = roomsres);
   }
 
+   isLoggedIn(): boolean {
+        return this.authenticationService.isLoggedIn();
+  }
+
   ngOnInit() : void {
+
+    if(this.isLoggedIn()){
+            this.currentuser = JSON.parse(localStorage.getItem('currentUser'))['username'];
+        }
 
     this.uriParts =  this.router.url.split('/');
 
@@ -50,7 +61,6 @@ export class RoomReservationsListComponent implements OnInit {
   finishBooking(roomres: RoomReservations){
     roomres.user = new AppUser();
     roomres.user.username = JSON.parse(localStorage.getItem('currentUser'))['username'];
-    debugger
     this.roomreservationsService.delete(roomres['Id']);
     this.roomreservationsService.create(roomres);
 

@@ -33,16 +33,11 @@ export class AppComponent implements OnInit{
     this.isLoggedIn = false;
   }
 
-  getCountries() : void {
-    this.countriesService.getCountries().then(countries => this.countries= countries);
-  }
-
   getAppUsers() : void {
     this.appusersService.getAppUsers().then(appusers => this.appusers = appusers);
   }
 
   ngOnInit() : void {
-    this.getCountries();
     this.getAppUsers();
   }
 }

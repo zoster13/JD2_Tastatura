@@ -19,6 +19,7 @@ import {Accommodation} from '../../models/Accommodation';
 })
 
 export class CommentsListComponent implements OnInit {
+  currentuser: string;
 
   comments: Comment[] = [];
   comment: Comment;
@@ -52,6 +53,10 @@ export class CommentsListComponent implements OnInit {
   }
 
   ngOnInit() : void {
+    if(this.isLoggedIn()){
+            this.currentuser = JSON.parse(localStorage.getItem('currentUser'))['username'];
+        }
+    
 
     this.uriParts =  this.router.url.split('/');
 

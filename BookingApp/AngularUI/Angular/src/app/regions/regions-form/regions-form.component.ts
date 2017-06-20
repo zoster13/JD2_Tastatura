@@ -56,14 +56,13 @@ export class RegionsFormComponent {
   }
 
   getCountries() : void {
-    this.countryService.getCountries().then(countries => this.countries = countries);
+    this.countryService.getAllCountries().then(countries => this.countries = countries);
   }
 
   onSubmit(region: any, form: NgForm):void{
       this.region.name = region.Name;
       this.region.country = new Country();
       this.region.country.id = region.Country;
-      debugger
 
       if(!this.isUpdate){
           this.regionsService.create(this.region);
