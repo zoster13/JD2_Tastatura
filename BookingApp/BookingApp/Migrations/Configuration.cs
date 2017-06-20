@@ -245,7 +245,7 @@ namespace BookingApp.Migrations
 
             RoomReservations res1 = new RoomReservations() { StartDate = new DateTime(2017, 1, 1), EndDate = new DateTime(2017, 1, 10), Timestamp = DateTime.Now, User = context.AppUsers.Where(u => u.Id == 1).FirstOrDefault(), Room = room1};
             RoomReservations res2 = new RoomReservations() { StartDate = new DateTime(2017, 5, 1), EndDate = new DateTime(2017, 5, 10), Timestamp = DateTime.Now, User = context.AppUsers.Where(u => u.Id == 1).FirstOrDefault(), Room = room1};
-            RoomReservations res3 = new RoomReservations() { StartDate = new DateTime(2017, 11, 1), EndDate = new DateTime(2017, 11, 10), Timestamp = DateTime.Now, User = context.AppUsers.Where(u => u.Id == 1).FirstOrDefault(), Room = room1};
+            RoomReservations res3 = new RoomReservations() { StartDate = new DateTime(2017, 11, 1), EndDate = new DateTime(2017, 11, 10), Timestamp = DateTime.Now, User = context.AppUsers.Where(u => u.Id == 1).FirstOrDefault(), Room = room4};
             RoomReservations res4 = new RoomReservations() { StartDate = new DateTime(2017, 11, 1), EndDate = new DateTime(2017, 11, 10), Timestamp = DateTime.Now, User = context.AppUsers.Where(u => u.Id == 1).FirstOrDefault(), Room = room2};
             RoomReservations res5 = new RoomReservations() { StartDate = new DateTime(2017, 3, 1), EndDate = new DateTime(2017, 3, 10), Timestamp = DateTime.Now, User = context.AppUsers.Where(u => u.Id == 1).FirstOrDefault(), Room = room2 };
 
