@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import {RoomsService} from '../../services/rooms.service';
 import {Room} from '../../models/Room';
 import {AuthenticationService} from '../../services/authentication.service';
+import {RoomsFilterPipe} from '../../search/rooms-search.component';
 
 @Component({
   selector: 'rooms-list',

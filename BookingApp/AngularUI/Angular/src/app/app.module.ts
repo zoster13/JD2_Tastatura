@@ -52,6 +52,8 @@ import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
 
 import { AccommodationFilterPipe } from './search/search.component';
+import { RoomsFilterPipe } from './search/rooms-search.component';
+
 
 const ChildRoutesAccomm = [
    {path: "accommform", component: AccommodationFormComponent},
@@ -159,7 +161,8 @@ const Routes = [
     CommentsListComponent,
     CommentsFormComponent,
     NotificationsComponent,
-    AppUsersComponent
+    AppUsersComponent,
+    RoomsFilterPipe
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,17 @@
 <ul class="list">
+
+    <div>
+        <input type="text" [(ngModel)]="roomNumberTerm" id="search" placeholder="Search by room number">
+        <input type="text" [(ngModel)]="bedCountTerm" id="search" placeholder="Search by bed count">
+        <input type="text" [(ngModel)]="priceTerm" id="search" placeholder="Search by max price">
+    </div>
+	<br/>
+
     <div>
         <div *ngIf="caption != ''">
             <p>{{caption}}</p>
         </div>
-        <li *ngFor="let room of rooms">
+        <li *ngFor="let room of rooms | RoomsFilterPipe: [roomNumberTerm, bedCountTerm, priceTerm]">
             <div class="listt">
                 <div class="description">
                     <label> Accommodation: </label>{{room.Accommodation.Name}}.<br/>
