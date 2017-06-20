@@ -3,7 +3,9 @@
 </div>
 <ul class="tabmenu">
     <li class="left"><a class="menu active" routerLink="/mainpage/rooms/roomlist/1">List of Rooms</a></li>
-    <li class="left"><a class="menu active" routerLink="/mainpage/rooms/roomform">Add Room</a></li>
+    <div *ngIf="(isLoggedIn() && ((role == 'Admin') || (role == 'Manager' && banned == 'False')))">
+        <li class="left"><a class="menu active" routerLink="/mainpage/rooms/roomform">Add Room</a></li>
+    </div>
 </ul>
 <br/>
 <br/>
