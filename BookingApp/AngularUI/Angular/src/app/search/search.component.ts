@@ -14,7 +14,7 @@ export class AccommodationFilterPipe implements PipeTransform {
 
         let filtredAccommodations = accommodations;
 
-        if(nameTerm !== undefined)
+        if((nameTerm !== undefined) && (nameTerm !== ""))
         {
             nameTerm = nameTerm.toLowerCase();
 
@@ -24,7 +24,7 @@ export class AccommodationFilterPipe implements PipeTransform {
             })
         }
 
-        if(addressTerm !== undefined)
+        if((addressTerm !== undefined) && (addressTerm !== ""))
         {
             addressTerm = addressTerm.toLowerCase();
 
@@ -34,7 +34,7 @@ export class AccommodationFilterPipe implements PipeTransform {
             })
         }
 
-        if(placeTerm !== undefined)
+        if((placeTerm !== undefined) && (placeTerm !== ""))
         {
             placeTerm = placeTerm.toLowerCase();
 
@@ -44,7 +44,7 @@ export class AccommodationFilterPipe implements PipeTransform {
             })
         }
         
-        if(aTypeTerm !== undefined)
+        if((aTypeTerm !== undefined) && (aTypeTerm !== ""))
         {
             aTypeTerm = aTypeTerm.toLowerCase();
 
