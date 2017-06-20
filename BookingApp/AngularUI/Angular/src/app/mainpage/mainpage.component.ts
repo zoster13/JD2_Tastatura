@@ -24,6 +24,7 @@ export class MainpageComponent implements OnInit {
 
     logOut(){
         this.authenticationService.logout();
+        window.location.reload();
     }
 
     logIn(){

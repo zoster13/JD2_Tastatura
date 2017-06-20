@@ -34,8 +34,6 @@ export class LoginComponent {
                 if (result === true) {
                     this.router.navigate(['/mainpage']);
                     window.location.reload();
-
-                    
                     
                 } else {
                     alert('Username or password is incorrect');

@@ -13,21 +13,21 @@ export class RoomsFilterPipe implements PipeTransform {
         
         let filtredRooms = rooms;
 
-        if(roomNumberTerm !== undefined)
+        if((roomNumberTerm !== undefined) && (roomNumberTerm !== ""))
         {
             filtredRooms =  filtredRooms.filter(function(room:any) {
                 return ((room.RoomNumber == roomNumberTerm));
             })
         }
 
-        if(bedCountTerm !== undefined)
+        if((bedCountTerm !== undefined) && (bedCountTerm !== ""))
         {
             filtredRooms =  filtredRooms.filter(function(room:any) {
                 return ((room.BedCount == bedCountTerm));
             })
         }
         
-        if(priceTerm !== undefined)
+        if((priceTerm !== undefined) && (priceTerm !== ""))
         {
             filtredRooms =  filtredRooms.filter(function(room:any) {
                 return (room.PricePerNight < bedCountTerm);

@@ -48,7 +48,7 @@ export class NotificationsComponent implements OnInit {
   private getUnapprovedAccommodations() : void {
     this.accommodationService.getAllUnapprovedAccommodations()
       .then(accommodations =>{ 
-        this.unapprovedAccommodations = accommodations;debugger
+        this.unapprovedAccommodations = accommodations;
     });
   }
 

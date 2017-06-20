@@ -60,28 +60,31 @@ export class RoomsListComponent implements OnInit {
           }
       }
     });
-    this.route.params
-        .switchMap((params: Params) => this.roomsService.getAllRoomsByAccomm(+params['acc']))
-        .subscribe(rooms =>{  
-        this.roomscount = rooms.length;
-        if(this.roomscount%3 == 0){
-          for(this.i = 0;this.i < Math.floor(this.roomscount/3); this.i++){
-            this.numerationacc[this.i] = this.i + 1;
-          }
-      }
-      else{
-          for(this.i = 0; this.i <  Math.floor(this.roomscount/3) + 1; this.i++){
-            this.numerationacc[this.i] = this.i + 1;
-          }
-      }
-    });
 
     this.uriParts =  this.router.url.split('/');
 
     if(this.uriParts[this.uriParts.length - 3] === 'roomlist'){ 
+      this.route.params
+          .switchMap((params: Params) => this.roomsService.getAllRoomsByAccomm(+params['acc']))
+          .subscribe(rooms =>{  
+          this.roomscount = rooms.length;
+          if(this.roomscount%3 == 0){
+            for(this.i = 0;this.i < Math.floor(this.roomscount/3); this.i++){
+              this.numerationacc[this.i] = this.i + 1;
+            }
+        }
+        else{
+            for(this.i = 0; this.i <  Math.floor(this.roomscount/3) + 1; this.i++){
+              this.numerationacc[this.i] = this.i + 1;
+            }
+        }
+      });
+    }
+
+    if(this.uriParts[this.uriParts.length - 3] === 'roomlist'){ 
         this.route.params
         .switchMap((params: Params) => this.roomsService.getRoomsByAccomm((+params['id'] - 1)*3, +params['acc']))
-        .subscribe(rooms => this.rooms = rooms);
+          .subscribe(rooms => {this.rooms = rooms;});
 
         this.caption = "Rooms of selected accommodation:";
         this.accomlist = true;
