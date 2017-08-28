@@ -1,3 +1,32 @@
 div#roomformborder{
     height: 500px;
 }
+
+div.list {
+    height: 120px 
+}
+
+ul.regionsMenu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 40%;
+    position: relative;
+    left: 410px;
+    top: 10px;
+}
+
+li.left a.listlinkk {
+    display: block;
+    color:white;
+    text-align: center;
+    padding: 5px 5px;
+    text-decoration: none;
+}
+
+li.left {
+    float: left;
+}

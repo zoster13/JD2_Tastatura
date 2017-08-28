@@ -1,0 +1,23 @@
+<div class="formborder" id="appUsersformborder">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value, f)">
+        <div>
+            <label for="Name">FullName: </label>
+            <input type="text" name="FullName" [ngModel]="appUser.FullName">
+        </div>
+        <div>
+            <label for="Name">Username: </label>
+            <input type="text" name="Username" [ngModel]="appUser.Username">
+        </div>
+        <div>
+            <label for="Name">Email: </label>
+            <input type="text" name="Email" [ngModel]="appUser.Email">
+        </div>
+        <div>
+            <label for="Name">Password: </label>
+            <input type="text" name="Password" [ngModel]="appUser.Password">
+        </div>
+        <div>
+            <input type="submit" value="Add">
+        </div>
+    </form>
+</div>

@@ -36,6 +36,8 @@ export class AccommodationFormComponent implements OnInit {
   isUpdate: boolean;
   temp: any;
 
+  file : File;
+
   constructor(private placesService:PlacesService,
             private accommTypeService: AccommodationTypesService,
             private accomService: AccommodationService,
@@ -46,13 +48,13 @@ export class AccommodationFormComponent implements OnInit {
             private changeDetectorRef: ChangeDetectorRef) {
             
         this.accommodation = new Accommodation();
-        this.accommodation.rooms = [];
-        this.accommodation.owner = new AppUser();
-        this.accommodation.name = '';
-        this.accommodation.description = '';
-        this.accommodation.address = '';
-        this.accommodation.longitude = 0;
-        this.accommodation.latitude = 0;
+        //this.accommodation.Rooms = [];
+        this.accommodation.Owner = new AppUser();
+        this.accommodation.Name = '';
+        this.accommodation.Description = '';
+        this.accommodation.Address = '';
+        this.accommodation.Longitude = 0;
+        this.accommodation.Latitude = 0;
         this.owners = [];
   }
 
@@ -74,11 +76,11 @@ export class AccommodationFormComponent implements OnInit {
     else {
       this.isUpdate = false;
 
-      this.accommodation.name = '';
-      this.accommodation.description = '';
-      this.accommodation.address = '';
-      this.accommodation.longitude = 0;
-      this.accommodation.latitude = 0;
+      this.accommodation.Name = '';
+      this.accommodation.Description = '';
+      this.accommodation.Address = '';
+      this.accommodation.Longitude = 0;
+      this.accommodation.Latitude = 0;
       this.fileSrcs = [];
     }
   }
@@ -99,31 +101,42 @@ export class AccommodationFormComponent implements OnInit {
   }
 
   onSubmitAccomm(accomm: any, form: NgForm) {
-      this.accommodation.name = accomm.Name;
-      this.accommodation.description = accomm.Description;  
-      this.accommodation.address = accomm.Address;
-      this.accommodation.longitude = accomm.Longitude;
-      this.accommodation.latitude = accomm.Latitude;
-      this.accommodation.place = new Place();
-      this.accommodation.place.id = accomm.Place;
-      this.accommodation.accommodationType = new AccommodationType();
-      this.accommodation.accommodationType.id = accomm.AccommodationType;
-      this.accommodation.owner = new AppUser();
-      this.accommodation.owner.username = JSON.parse(localStorage.getItem('currentUser'))['username'];
+
+    if( accomm.Name == "" || accomm.Name == undefined ||
+        accomm.Description == "" || accomm.Description == undefined ||
+        accomm.Address == "" || accomm.Address == undefined ||
+        accomm.Longitude == "" || accomm.Longitude == undefined ||
+        accomm.Latitude == "" || accomm.Latitude == undefined ||
+        accomm.Place == "" || accomm.Place == undefined ||
+        accomm.AccommodationType == "" || accomm.AccommodationType == undefined) {
+            
+            alert("All fields must be filled!")
+    }
+    else {
+      this.accommodation.Name = accomm.Name;
+      this.accommodation.Description = accomm.Description;  
+      this.accommodation.Address = accomm.Address;
+      this.accommodation.Longitude = accomm.Longitude;
+      this.accommodation.Latitude = accomm.Latitude;
+      this.accommodation.Place = new Place();
+      this.accommodation.Place.Id = accomm.Place;
+      this.accommodation.AccommodationType = new AccommodationType();
+      this.accommodation.AccommodationType.Id = accomm.AccommodationType;
+      this.accommodation.Owner = new AppUser();
+      this.accommodation.Owner.Username = JSON.parse(localStorage.getItem('currentUser'))['username'];
 
       if(!this.isUpdate){
-          this.accomService.create(this.accommodation);
-      }
-      else{
-          this.accomService.update(this.accommodation);
-      }
-      
-      form.resetForm();
-      this.router.navigate(["mainpage/accommodation/accommlist/1"]);
+          this.accomService.create(this.accommodation, this.file);
+          form.resetForm();
     }
-
+      else{
+          this.accomService.update(this.accommodation, this.file);
+      }
+    }
+  }
     fileChange(input) {  
-      this.accommodation.imageURL = input.files[0].name;
+        debugger
+      this.accommodation.ImageURL = input.files[0].name;
       this.readFiles(input.files);  
     } 
 
@@ -196,5 +209,13 @@ export class AccommodationFormComponent implements OnInit {
             // callback with the results  
             callback(dataUrl, img.src.length, dataUrl.length);  
         };  
+    }
+
+    onImageChange(event: EventTarget) {
+        let eventObj: MSInputMethodContext = <MSInputMethodContext> event;
+        let target: HTMLInputElement = <HTMLInputElement> eventObj.target;
+        let files: FileList = target.files;
+        debugger
+        this.file = files[0];
     }
 }

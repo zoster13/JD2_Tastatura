@@ -23,16 +23,15 @@ export class RegionsFormComponent {
     isUpdate: boolean;
     temp: any;
 
-    constructor(
-      private countryService: CountriesService,
-      private regionsService: RegionsService,
-      private router: Router,
-      private routeActive: ActivatedRoute,
-      private location: Location) {
+    constructor(private countryService: CountriesService,
+                private regionsService: RegionsService,
+                private router: Router,
+                private routeActive: ActivatedRoute,
+                private location: Location) {
 
         this.region = new Region();
-        this.region.country = new Country();
-        this.region.name = '';
+        this.region.Country = new Country();
+        this.region.Name = '';
       }
 
   ngOnInit(): void {
@@ -51,7 +50,7 @@ export class RegionsFormComponent {
     else{
       this.isUpdate = false;
 
-      this.region.name = '';
+      this.region.Name = '';
     }
   }
 
@@ -60,18 +59,23 @@ export class RegionsFormComponent {
   }
 
   onSubmit(region: any, form: NgForm):void{
-      this.region.name = region.Name;
-      this.region.country = new Country();
-      this.region.country.id = region.Country;
+      
+      if(region.Name == "" || region.Name == undefined ||
+        region.Country == "" || region.Country == undefined) {
+          alert("All fields must be filled!");
+        }
+      else {
+        this.region.Name = region.Name;
+        this.region.Country = new Country();
+        this.region.Country.Id = region.Country;
 
-      if(!this.isUpdate){
+        if(!this.isUpdate){
           this.regionsService.create(this.region);
-      }
-      else{
+          form.resetForm();
+        }
+        else{
           this.regionsService.update(this.region);
+        }
       }
-
-      form.resetForm();
-      this.router.navigate(["mainpage/regions/regionlist"]);
   }
 }

@@ -2,9 +2,18 @@
     <div>
         <li *ngFor="let region of regions">
             <div class="list">
-                <label> Name: </label> {{region.Name}}
-                <label> Country: </label> {{region.Country.Name}}
-                <a [routerLink]="['/mainpage/regions/update', region.Id]" >Update</a>
+
+                <!--Regions Details-->
+                <b><i> Id: </i></b> {{region.Id}} <br/>
+                <b><i> Name: </i></b> {{region.Name}} <br/>
+                <b><i> Country: </i></b> {{region.Country.Name}}
+
+                <!--Regions Menu-->
+                <ul class="regionsMenu">
+                    <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/regions/update', region.Id]" >Update</a> </li>
+                    <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/regions/regionlist']" (click)="delete(region.Id)">Delete</a> </li>
+                </ul>
+
             </div>
             <div class="listseparator">
             </div>

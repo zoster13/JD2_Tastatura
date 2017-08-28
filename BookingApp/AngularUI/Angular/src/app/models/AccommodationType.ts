@@ -1,7 +1,7 @@
     import {Accommodation} from './Accommodation';
     
     export class AccommodationType {
-        id: number;
-        name: string;
-        accommodations: Accommodation[];
+        Id: number;
+        Name: string;
+        //Accommodations: Accommodation[];
     }

@@ -6,61 +6,64 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AccommodationMainComponent } from './accommodation/accommodation-main/accommodation-main.component';
-import { AccommodationDetailsComponent } from './accommodation/accommodation-details/accommodation-details.component';
 import { RoomsFormComponent } from './rooms/rooms-form/rooms-form.component';
 import { RoomsMainComponent } from './rooms/rooms-main/rooms-main.component';
 import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
 import { LoginComponent } from './login/login.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
-import {AccommodationFormComponent} from './accommodation/accommodation-form/accommodation-form.component';
-import {AccommodationListComponent} from './accommodation/accommodation-list/accommodation-list.component';
-import {RegionsFormComponent} from './regions/regions-form/regions-form.component';
-import {RegionsListComponent} from './regions/regions-list/regions-list.component';
-import {RegionsMainComponent} from './regions/regions-main/regions-main.component';
-import {PlacesListComponent} from './places/places-list/places-list.component';
-import {PlacesMainComponent} from './places/places-main/places-main.component';
-import {PlacesFormComponent} from './places/places-form/places-form.component';
-import {AccommodationTypesListComponent} from './accommodation-types/accommodation-types-list/accommodation-types-list.component';
-import {AccommodationTypesMainComponent} from './accommodation-types/accommodation-types-main/accommodation-types-main.component';
-import {AccommodationTypesFormComponent} from './accommodation-types/accommodation-types-form/accommodation-types-form.component';
-import {CountryFormComponent} from './country/country-form/country-form.component';
-import {CountryMainComponent} from './country/country-main/country-main.component';
-import {CountryListComponent} from './country/country-list/country-list.component';
-import {RoomReservationsMainComponent} from './room-reservations/room-reservations-main/room-reservations-main.component';
-import {RoomReservationsListComponent} from './room-reservations/room-reservations-list/room-reservations-list.component';
-import {RoomReservationsFormComponent} from './room-reservations/room-reservations-form/room-reservations-form.component';
-import {CommentsMainComponent} from './comments/comments-main/comments-main.component';
-import {CommentsListComponent} from './comments/comments-list/comments-list.component';
-import {CommentsFormComponent} from './comments/comments-form/comments-form.component';
-import {NotificationsComponent} from './notifications/notifications.component';
-import {AppUsersComponent} from './users/users.component';
+import { AccommodationFormComponent } from './accommodation/accommodation-form/accommodation-form.component';
+import { AccommodationListComponent } from './accommodation/accommodation-list/accommodation-list.component';
+import { RegionsFormComponent } from './regions/regions-form/regions-form.component';
+import { RegionsListComponent } from './regions/regions-list/regions-list.component';
+import { RegionsMainComponent } from './regions/regions-main/regions-main.component';
+import { PlacesListComponent } from './places/places-list/places-list.component';
+import { PlacesMainComponent } from './places/places-main/places-main.component';
+import { PlacesFormComponent } from './places/places-form/places-form.component';
+import { AccommodationTypesListComponent } from './accommodation-types/accommodation-types-list/accommodation-types-list.component';
+import { AccommodationTypesMainComponent } from './accommodation-types/accommodation-types-main/accommodation-types-main.component';
+import { AccommodationTypesFormComponent } from './accommodation-types/accommodation-types-form/accommodation-types-form.component';
+import { CountryFormComponent } from './country/country-form/country-form.component';
+import { CountryMainComponent } from './country/country-main/country-main.component';
+import { CountryListComponent } from './country/country-list/country-list.component';
+import { RoomReservationsMainComponent } from './room-reservations/room-reservations-main/room-reservations-main.component';
+import { RoomReservationsListComponent } from './room-reservations/room-reservations-list/room-reservations-list.component';
+import { RoomReservationsFormComponent } from './room-reservations/room-reservations-form/room-reservations-form.component';
+import { CommentsMainComponent } from './comments/comments-main/comments-main.component';
+import { CommentsListComponent } from './comments/comments-list/comments-list.component';
+import { CommentsFormComponent } from './comments/comments-form/comments-form.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { AppUsersMainComponent } from './users/app-users-main/app-users-main.component';
+import { AppUsersListComponent } from './users/app-users-list/app-users-list.component';
+import { AppUsersFormComponent } from './users/app-users-form/app-users-form.component';
 
-import {CountriesService} from './services/countries.service';
-import {AccommodationService} from './services/accommodation.service';
-import {RoomsService} from './services/rooms.service';
-import {CommentsService} from './services/comments.service';
-import {PlacesService} from './services/places.service';
-import {AccommodationTypesService} from './services/accommodation-types.service';
-import {AuthenticationService} from './services/authentication.service';
-import {AppUsersService} from './services/appuser.service';
-import {RegionsService} from './services/regions.service';
-import {RoomReservationsService} from './services/room-reservations.service';
+
+//Services
+import { CountriesService } from './services/countries.service';
+import { AccommodationService } from './services/accommodation.service';
+import { RoomsService } from './services/rooms.service';
+import { CommentsService } from './services/comments.service';
+import { PlacesService } from './services/places.service';
+import { AccommodationTypesService } from './services/accommodation-types.service';
+import { AuthenticationService } from './services/authentication.service';
+import { AppUsersService } from './services/appuser.service';
+import { RegionsService } from './services/regions.service';
+import { RoomReservationsService } from './services/room-reservations.service';
 import { NotificationService } from "./services/notifications.service";
-
+import { ConfigurationManager } from "./services/configuration-manager.service";
 //Maps
 import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
 
+//FilterPipe
 import { AccommodationFilterPipe } from './search/search.component';
 import { RoomsFilterPipe } from './search/rooms-search.component';
 
-
+//ChildRoutes
 const ChildRoutesAccomm = [
    {path: "accommform", component: AccommodationFormComponent},
    {path: "accommlist/:id", component: AccommodationListComponent},
    {path: "update/:id", component: AccommodationFormComponent},
    {path: "roomlist/:id/:acc", component: RoomsListComponent},
-   {path: "details/:id", component: AccommodationDetailsComponent},
    {path: "reservationlist/:id", component: RoomReservationsListComponent},
    {path: "commentlist/:id", component: CommentsListComponent},
   ]
@@ -107,8 +110,14 @@ const ChildRoutesComments = [
    {path: "update/:id", component: CommentsFormComponent}
   ]
 
+const ChildRoutesAppUsers = [
+   {path: "appuserslist", component: AppUsersListComponent},
+   {path: "appusersform", component: AppUsersFormComponent},
+   {path: "update/:id", component: AppUsersFormComponent}
+  ]
+
 const ChildRoutesMain = [
-   {path: "appusers", component: AppUsersComponent},
+   {path: "appusers", component: AppUsersMainComponent, children: ChildRoutesAppUsers},
    {path: "notifications", component: NotificationsComponent},
    {path: "map", component: MapComponent},
    {path: "accommodation", component: AccommodationMainComponent, children: ChildRoutesAccomm},
@@ -133,7 +142,6 @@ const Routes = [
     AppComponent,
     MapComponent,
     AccommodationMainComponent,
-    AccommodationDetailsComponent,
     LoginComponent,
     MainpageComponent, 
     AccommodationFormComponent,
@@ -161,7 +169,9 @@ const Routes = [
     CommentsListComponent,
     CommentsFormComponent,
     NotificationsComponent,
-    AppUsersComponent,
+    AppUsersMainComponent,
+    AppUsersListComponent,
+    AppUsersFormComponent,
     RoomsFilterPipe
   ],
   imports: [
@@ -173,7 +183,8 @@ const Routes = [
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'}),
     JsonpModule
   ],
-  providers: [CountriesService, 
+  providers: [
+    CountriesService, 
     AccommodationService,
     RoomsService,
     CommentsService,
@@ -183,7 +194,8 @@ const Routes = [
     AppUsersService,
     RegionsService,
     RoomReservationsService,
-    NotificationService
+    NotificationService,
+    ConfigurationManager
     ],
   bootstrap: [
     AppComponent

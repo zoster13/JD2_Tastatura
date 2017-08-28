@@ -23,16 +23,15 @@ export class PlacesFormComponent {
     isUpdate: boolean;
     temp: any;
 
-    constructor(
-      private placesService: PlacesService,
-      private regionsService: RegionsService,
-      private router: Router,
-      private routeActive: ActivatedRoute,
-      private location: Location) {
+    constructor(private placesService: PlacesService,
+                private regionsService: RegionsService,
+                private router: Router,
+                private routeActive: ActivatedRoute,
+                private location: Location) {
 
         this.place = new Place();
-        this.place.region = new Region();
-        this.place.name = '';
+        this.place.Region = new Region();
+        this.place.Name = '';
       }
 
   ngOnInit(): void {
@@ -50,7 +49,7 @@ export class PlacesFormComponent {
     else{
       this.isUpdate = false;
 
-      this.place.name = '';
+      this.place.Name = '';
     }
   }
 
@@ -59,18 +58,25 @@ export class PlacesFormComponent {
   }
 
   onSubmit(place: any, form: NgForm):void{
-      this.place.name = place.Name;
-      this.place.region = new Region();
-      this.place.region.id = place.Region;
+
+    if(place.Name == "" || place.Name == undefined ||
+      place.Region == "" || place.Region == undefined) {
+
+        alert("All fields must be filled!");
+      }
+      else {
+
+      this.place.Name = place.Name;
+      this.place.Region = new Region();
+      this.place.Region.Id = place.Region;
 
       if(!this.isUpdate){
           this.placesService.create(this.place);
+          form.resetForm();
       }
       else{
           this.placesService.update(this.place);
       }
-      form.resetForm();
-
-      this.router.navigate(["mainpage/places/placelist"]);
+    }
   }
 }

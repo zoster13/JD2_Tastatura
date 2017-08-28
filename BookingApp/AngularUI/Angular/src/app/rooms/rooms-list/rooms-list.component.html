@@ -13,19 +13,27 @@
         </div>
         <li *ngFor="let room of rooms | RoomsFilterPipe: [roomNumberTerm, bedCountTerm, priceTerm]">
             <div class="listt">
+
+                <!--Room Details-->
                 <div class="description">
-                    <label> Accommodation: </label>{{room.Accommodation.Name}}.<br/>
-                <label> Room number: </label>{{room.RoomNumber}}.<br/>
-                <label> Bed count: </label> {{room.BedCount}}.<br/>
-                <label> Description: </label> {{room.Description}}.<br/><br/><br/>
-                <label> Price per night: </label>
-                <div class="price">{{room.PricePerNight}}$</div>
+                    <b><i> Accommodation: </i></b> {{room.Accommodation.Name}}.<br/>
+                    <b><i> Room number: </i></b> {{room.RoomNumber}}.<br/>
+                    <b><i> Bed count: </i></b> {{room.BedCount}}.<br/>
+                    <b><i> Description: </i></b> {{room.Description}}.<br/><br/><br/>
+                    <b><i> Price per night: </i></b>
+                        <div class="price"> {{room.PricePerNight}}$ </div>
                 </div>
-               <label *ngIf="isLoggedIn()"> <ul class="accommtabmenuu">
-                    <label *ngIf="(role == 'Admin')"><li class="left"><a class="listlinkk" [routerLink]="['/mainpage/rooms/update', room.Id]" >Update</a></li>
-                    <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/rooms/roomlist', 1]" (click)="delete(room.Id)" >Delete</a></li></label>
-                    <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/reservationlist', room.Id]">Book</a></li>
-                </ul></label>
+
+                <!--Room Menu-->
+               <label *ngIf="isLoggedIn()"> 
+                   <ul class="accommtabmenuu">
+                        <label *ngIf="(role == 'Admin')">
+                            <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/rooms/update', room.Id]" >Update</a></li>
+                            <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/rooms/roomlist', 1]" (click)="delete(room.Id)" >Delete</a></li>
+                        </label>
+                        <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/reservationlist', room.Id]">Book</a></li>
+                    </ul>
+                </label>
             </div>
             <div class="listseparator">
             </div>

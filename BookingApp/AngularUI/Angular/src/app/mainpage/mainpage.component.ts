@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location }                 from '@angular/common';
 
@@ -19,13 +19,17 @@ export class MainpageComponent implements OnInit {
 
     constructor(private location: Location, 
                 public router: Router,
+                private _ngZone: NgZone,
                 private authenticationService: AuthenticationService) {
 
     }
 
     logOut(){
         this.authenticationService.logout();
-        window.location.reload();
+        this.role = "";
+        this.currentuser = "";
+        
+        this.router.navigate(["mainpage"]);
     }
 
     logIn(){
@@ -37,9 +41,18 @@ export class MainpageComponent implements OnInit {
     }
 
     ngOnInit() : void {
-        if(this.isLoggedIn()){
+        this.subscribeForLoggedIn();
+    }
+
+    private subscribeForLoggedIn () {
+        this.authenticationService.loggedInEvent.subscribe(e => this.onLoggedIn());
+  }
+
+  public onLoggedIn() {
+     this._ngZone.run(() => {  
             this.role = JSON.parse(localStorage.getItem('currentUser'))['role'];
             this.currentuser = JSON.parse(localStorage.getItem('currentUser'))['username'];
-        }
-    }
+    });
+  }
+
 }

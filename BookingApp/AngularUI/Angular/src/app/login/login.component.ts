@@ -20,7 +20,9 @@ export class LoginComponent {
 
     constructor(
         private router: Router,
-        private authenticationService: AuthenticationService) { }
+        private authenticationService: AuthenticationService) {
+
+         }
 
     ngOnInit() {
         // reset login status
@@ -29,16 +31,16 @@ export class LoginComponent {
 
     login() {
         this.loading = true;
+
         this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(result => {
                 if (result === true) {
-                    this.router.navigate(['/mainpage']);
-                    window.location.reload();
                     
+                    this.router.navigate(['/mainpage']);
                 } else {
+                    this.loading = false;
                     alert('Username or password is incorrect');
                     this.router.navigate(['mainpage/login']);
-                    this.loading = false;
                 }
             });
     }

@@ -1,16 +1,20 @@
-import {Injectable} from '@angular/core';
-import {Accommodation} from '../models/Accommodation';
-import {Headers, Http, RequestOptions} from '@angular/http';
+import { Injectable, EventEmitter } from '@angular/core';
+import { Accommodation } from '../models/Accommodation';
+import { Headers, Http, RequestOptions } from '@angular/http';
+import { ConfigurationManager } from './configuration-manager.service';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AccommodationService {
     
     private headers = new Headers({'Content-Type': 'application/json'});
-    private accommodationsUrl = 'http://localhost:54042/api/Accommodations';  // URL to web api
-
+    private accommodationsUrl = `http://${ConfigurationManager.Host}/api/Accommodations`;  // URL to web api
+    public accommodationUpdatedEvent: EventEmitter < string >;
+    
     constructor(private http: Http) { 
-
+        
+        this.accommodationUpdatedEvent = new EventEmitter < any > (); 
     }
 
     getAllAccommodations() : Promise<Accommodation[]> {
@@ -61,37 +65,62 @@ export class AccommodationService {
         .catch(this.handleError);
     }
 
-    create(accommodation: Accommodation): Promise<Accommodation> {
+    create(accommodation: Accommodation, file: File): Promise<Accommodation> {
 
+        let formData: FormData = new FormData();
+        formData.append('accommodation', JSON.stringify(accommodation));
+        
+        if(file != null)   
+        {
+            formData.append('uploadFile', file, file.name);
+        }
+        
         let token=localStorage.getItem("token");
         let header = new Headers();
-        header.append('Content-Type', 'application/json');
+        header.append('Accept', 'application/json');
         header.append('Authorization', 'Bearer '+ token);
+        header.append('enctype', 'multipart/form-data');
         let options = new RequestOptions();
         options.headers = header;
 
         return this.http
-        .post(this.accommodationsUrl, JSON.stringify(accommodation), options)
+        .post(this.accommodationsUrl, formData, options)
         .toPromise()
         .then(res => res.json() as Accommodation)
         .catch(this.handleError);
     }
 
-    update(accommodation: Accommodation): Promise<Accommodation> {
+    update(accommodation: Accommodation, file: File): Promise<Accommodation> {
+
+        let formData: FormData = new FormData();
+        formData.append('accommodation', JSON.stringify(accommodation));
+        
+        if(file != null)   
+        {
+            formData.append('uploadFile', file, file.name);
+        }
 
         let token=localStorage.getItem("token");
         let header = new Headers();
-        header.append('Content-Type', 'application/json');
+        header.append('Accept', 'application/json');
         header.append('Authorization', 'Bearer '+ token);
+        header.append('enctype', 'multipart/form-data');
         let options = new RequestOptions();
         options.headers = header;
 
         const url = `${this.accommodationsUrl}/${accommodation["Id"]}`;
-        return this.http
-        .put(url, JSON.stringify(accommodation), options)
+        let myResponse = this.http
+        .put(url, formData, options)
         .toPromise()
         .then(() => accommodation)
         .catch(this.handleError);
+    
+        //if(myResponse == ResponseType.)
+        {
+            //this.accommodationUpdatedEvent.emit();  
+        }
+
+        return myResponse;
     }
 
     private handleError(error: any): Promise<any> {

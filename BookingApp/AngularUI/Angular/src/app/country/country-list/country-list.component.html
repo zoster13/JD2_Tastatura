@@ -2,8 +2,9 @@
       <li *ngFor="let country of countries">
         <div class="listt">
             <div class="description">
-                <label> Name: </label> {{country.Name}}<br/>
-                <label> Code: </label> {{country.Code}}<br/>
+                <b><i> Id: </i></b> {{country.Id}}<br/>
+                <b><i> Name: </i></b> {{country.Name}}<br/>
+                <b><i> Code: </i></b> {{country.Code}}<br/>
             </div>
             <ul class="accommtabmenuu">
                 <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/country/update', country.Id]" >Update</a></li>

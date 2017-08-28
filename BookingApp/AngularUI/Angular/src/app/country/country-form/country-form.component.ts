@@ -19,11 +19,12 @@ export class CountryFormComponent implements OnInit {
   temp: any;
 
   constructor(private countriesService: CountriesService,
-  private router: Router,
-  private routeActive: ActivatedRoute) {
+              private router: Router,
+              private routeActive: ActivatedRoute) {
+                
       this.country = new Country();
-      this.country.name = '';
-      this.country.code = 0;
+      this.country.Name = '';
+      this.country.Code = 0;
   }
 
   ngOnInit(): void {
@@ -40,23 +41,29 @@ export class CountryFormComponent implements OnInit {
       this.isUpdate = false;
 
       this.country = new Country();
-      this.country.name = '';
-      this.country.code = 0;
+      this.country.Name = '';
+      this.country.Code = 0;
     }
   }
 
   onSubmit(country: any, form: NgForm) {
-    this.country.name = country.Name;
-    this.country.code = country.Code;
+    
+    if(country.Name == "" || country.Name == undefined ||
+       country.Code == "" || country.Code == undefined) {
 
-    if(!this.isUpdate){
+      alert("All fields must be filled!");
+    }
+    else {
+      this.country.Name = country.Name;
+      this.country.Code = country.Code;
+
+      if(!this.isUpdate){
         this.countriesService.create(this.country);
-    }
-    else{
+        form.resetForm();
+      }
+      else{
         this.countriesService.update(this.country);
+      }
     }
-    form.resetForm();
-
-    this.router.navigate(["mainpage/country/countrylist/1"]);
-    }
+  }
 }

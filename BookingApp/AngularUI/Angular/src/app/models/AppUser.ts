@@ -2,12 +2,13 @@
     import {RoomReservations} from './RoomReservations';
     
     export class AppUser {
-        id: number;
-        fullName: string;
-        username: string;
-        email: string;
-        password: string;
-        roomReservationss: RoomReservations[];
-        comments: Comment[];
-        accommodations: Accommodation[];
+        Id: number;
+        FullName: string;
+        Username: string;
+        Email: string;
+        Password: string;
+        //RoomReservationss: RoomReservations[];
+        //Comments: Comment[];
+        //Accommodations: Accommodation[];
+        IsBanned: boolean;
     }

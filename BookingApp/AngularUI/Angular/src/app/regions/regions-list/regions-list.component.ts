@@ -16,7 +16,7 @@ export class RegionsListComponent implements OnInit {
   temp: any;
 
   constructor(private regionsService:RegionsService,
-  private router: Router) {
+              private router: Router) {
     
   }
 
@@ -27,10 +27,20 @@ export class RegionsListComponent implements OnInit {
 
   ngOnInit() : void {
     this.getRegions();
+
+    this.subscribeForRegionEvent();
   }
 
   delete(id: number){ 
-    this.regionsService.delete(id);
-    window.location.reload();
+    this.regionsService.delete(id)
+    .then( x => { this.regionsService.getRegions().then(x => this.regions = x);});
+  }
+
+  private subscribeForRegionEvent () {
+    this.regionsService.regionEvent.subscribe(e => this.onRegionEvent(e));
+  }
+
+  public onRegionEvent(message : string) {
+    alert(message);              
   }
 }

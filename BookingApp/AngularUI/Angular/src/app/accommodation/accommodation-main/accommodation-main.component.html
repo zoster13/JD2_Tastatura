@@ -1,9 +1,15 @@
 <div id="accommtabheader" class="tabheader">
     <h1>Accommodation</h1>
 </div>
+
 <ul class="tabmenu">
-    <li class="left"><a class="menu active" routerLink="/mainpage/accommodation/accommlist/1">List of Accommodation</a></li>
-    <label *ngIf="(isLoggedIn() && ((role == 'Admin') || (role == 'Manager' && banned == 'False')))"><li class="left"><a class="menu active" routerLink="/mainpage/accommodation/accommform">Add Accommodation</a></li></label>
+    <li class="left">
+        <a class="menu active" routerLink="/mainpage/accommodation/accommlist/1">List of Accommodation</a>
+    </li>
+    <label *ngIf="(isLoggedIn() && ((role == 'Admin') || (role == 'Manager' && banned == 'False')))">
+        <li class="left"><a class="menu active" routerLink="/mainpage/accommodation/accommform">Add Accommodation</a></li>
+        <li class="left"><a class="menu active" routerLink="/mainpage/rooms/roomform">Add Room</a></li>
+    </label>
 </ul>
 <br/>
 <br/>

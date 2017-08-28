@@ -1,15 +1,20 @@
-import {Injectable} from '@angular/core';
-import {Region} from '../models/Region';
-import {Headers, Http, RequestOptions} from '@angular/http';
+import { Injectable, EventEmitter } from '@angular/core';
+import { Region } from '../models/Region';
+import { Headers, Http, RequestOptions } from '@angular/http';
+import { ConfigurationManager } from './configuration-manager.service';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class RegionsService {
     
     private headers = new Headers({'Content-Type': 'application/json'});
-    private regionsUrl = 'http://localhost:54042/api/Regions';  // URL to web api
+    private regionsUrl = `http://${ConfigurationManager.Host}/api/Regions`;  // URL to web api
+    public regionEvent : EventEmitter<string>;
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) { 
+
+        this.regionEvent = new EventEmitter<string>();
+    }
 
     getRegions() : Promise<Region[]> {
         return this.http.get(this.regionsUrl)
@@ -51,6 +56,8 @@ export class RegionsService {
         let options = new RequestOptions();
         options.headers = header;
 
+        //this.regionEvent.emit("Region is successfully created.");
+
         return this.http
         .post(this.regionsUrl, JSON.stringify(region), options)
         .toPromise()
@@ -67,7 +74,10 @@ export class RegionsService {
         let options = new RequestOptions();
         options.headers = header;
 
+        //this.regionEvent.emit("Region is successfully modified.");
+
         const url = `${this.regionsUrl}/${region["Id"]}`;
+        
         return this.http
         .put(url, JSON.stringify(region), options)
         .toPromise()

@@ -35,10 +35,10 @@ export class CommentsFormComponent {
       private location: Location) {
 
         this.comment = new Comment();
-        this.comment.text = '';
-        this.comment.grade = 0;
-        this.comment.accommodation = new Accommodation();
-        this.comment.user = new AppUser();
+        this.comment.Text = '';
+        this.comment.Grade = 0;
+        this.comment.Accommodation = new Accommodation();
+        this.comment.User = new AppUser();
       }
 
   ngOnInit(): void {
@@ -58,10 +58,10 @@ export class CommentsFormComponent {
       this.isUpdate = false;
 
       this.comment = new Comment();
-        this.comment.text = '';
-        this.comment.grade = 0;
-        this.comment.accommodation = new Accommodation();
-        this.comment.user = new AppUser();
+        this.comment.Text = '';
+        this.comment.Grade = 0;
+        this.comment.Accommodation = new Accommodation();
+        this.comment.User = new AppUser();
     }
   }
 
@@ -74,12 +74,12 @@ export class CommentsFormComponent {
   }
 
   onSubmit(comment: any, form: NgForm):void{
-      this.comment.text = comment.Text;
-        this.comment.grade = comment.Grade;
-        this.comment.accommodation = new Accommodation();
-        this.comment.accommodation.id = comment.Accommodation;
-        this.comment.user = new AppUser();
-        this.comment.user.id = comment.User;
+      this.comment.Text = comment.Text;
+        this.comment.Grade = comment.Grade;
+        this.comment.Accommodation = new Accommodation();
+        this.comment.Accommodation.Id = comment.Accommodation;
+        this.comment.User = new AppUser();
+        this.comment.User.Id = comment.User;
 
       if(!this.isUpdate){
           this.commentService.create(this.comment);

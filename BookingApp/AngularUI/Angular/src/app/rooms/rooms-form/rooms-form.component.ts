@@ -31,12 +31,12 @@ export class RoomsFormComponent {
       private location: Location) {
 
         this.room = new Room();
-        this.room.bedCount = 0;
-        this.room.roomNumber = 0;
-        this.room.pricePerNight = 0;
-        this.room.description = '';
-        this.room.accommodation = new Accommodation();
-        this.room.roomReservationss = [];
+        this.room.BedCount = 0;
+        this.room.RoomNumber = 0;
+        this.room.PricePerNight = 0;
+        this.room.Description = '';
+        this.room.Accommodation = new Accommodation();
+        //this.room.RoomReservationss = [];
       }
 
   ngOnInit(): void {
@@ -56,12 +56,12 @@ export class RoomsFormComponent {
       this.isUpdate = false;
 
       this.room = new Room();
-      this.room.bedCount = 0;
-      this.room.roomNumber = 0;
-      this.room.pricePerNight = 0;
-      this.room.description = '';
-      this.room.accommodation = new Accommodation();
-      this.room.roomReservationss = [];
+      this.room.BedCount = 0;
+      this.room.RoomNumber = 0;
+      this.room.PricePerNight = 0;
+      this.room.Description = '';
+      this.room.Accommodation = new Accommodation();
+      //this.room.RoomReservationss = [];
     }
   }
 
@@ -70,22 +70,30 @@ export class RoomsFormComponent {
   }
 
   onSubmit(room: any, form: NgForm):void{
-      this.room.roomNumber = room.RoomNumber;
-      this.room.bedCount = room.BedCount;
-      this.room.description = room.Description;
-      this.room.pricePerNight = room.PricePerNight;
-      this.room.accommodation = new Accommodation();
-      this.room.accommodation.id = room.Accommodation;
 
-      if(!this.isUpdate){
+    if(room.RoomNumber == "" || room.RoomNumber == undefined ||
+      room.BedCount == "" || room.BedCount == undefined ||
+      room.Description == "" || room.Description == undefined ||
+      room.PricePerNight == "" || room.PricePerNight == undefined ||
+      room.Accommodation == "" || room.Accommodation == undefined) {
+
+        alert("All fields must be filled.");
+      } 
+      else {
+        this.room.RoomNumber = room.RoomNumber;
+        this.room.BedCount = room.BedCount;
+        this.room.Description = room.Description;
+        this.room.PricePerNight = room.PricePerNight;
+        this.room.Accommodation = new Accommodation();
+        this.room.Accommodation.Id = room.Accommodation;
+
+        if(!this.isUpdate){
           this.roomsService.create(this.room);
+          form.resetForm();
+        }
+        else{
+            this.roomsService.update(this.room);
+        }
       }
-      else{
-          this.roomsService.update(this.room);
-      }
-
-      form.resetForm();
-
-      this.router.navigate(["mainpage/rooms/roomlist/1"]);
   }
 }

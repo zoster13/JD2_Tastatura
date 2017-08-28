@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BookingApp.Models;
@@ -20,7 +17,7 @@ namespace BookingApp.Controllers
         [HttpGet]
         public IQueryable<Region> GetRegions()
         {
-            return db.Regions;
+            return db.Regions.Include("Country");
         }
 
         // GET: api/Regions/5
@@ -43,6 +40,11 @@ namespace BookingApp.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutRegion(int id, Region region)
         {
+            Country countryInDB = db.Countries.Where(c => c.Id == region.Country.Id).FirstOrDefault();
+            Region regionInDB = db.Regions.Where(r => r.Id == region.Id).FirstOrDefault();
+            regionInDB.Country = countryInDB;
+            regionInDB.Name = region.Name;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -53,7 +55,7 @@ namespace BookingApp.Controllers
                 return BadRequest();
             }
 
-            db.Entry(region).State = EntityState.Modified;
+            db.Entry(regionInDB).State = EntityState.Modified;
 
             try
             {
@@ -81,7 +83,6 @@ namespace BookingApp.Controllers
         public IHttpActionResult PostRegion(Region region)
         {
             Country country = db.Countries.Where(c => c.Id == region.Country.Id).FirstOrDefault();
-
             region.Country = country;
 
             if (!ModelState.IsValid)

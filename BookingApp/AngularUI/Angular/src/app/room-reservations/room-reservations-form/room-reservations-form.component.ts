@@ -32,10 +32,10 @@ export class RoomReservationsFormComponent {
       private location: Location) {
 
         this.reservation = new RoomReservations();
-        this.reservation.startDate = new Date();
-        this.reservation.endDate = new Date();
-        this.reservation.room = new Room();
-        this.reservation.user = new AppUser();
+        this.reservation.StartDate = new Date();
+        this.reservation.EndDate = new Date();
+        this.reservation.Room = new Room();
+        this.reservation.User = new AppUser();
         
     }
 
@@ -55,16 +55,16 @@ export class RoomReservationsFormComponent {
       this.isUpdate = false;
 
         this.reservation = new RoomReservations();
-        this.reservation.startDate = new Date();
-      this.reservation.startDate.setFullYear(0);
-      this.reservation.startDate.setMonth(0);
-      this.reservation.startDate.setDate(0);
-      this.reservation.endDate = new Date();
-      this.reservation.endDate.setFullYear(0);
-      this.reservation.endDate.setMonth(0);
-      this.reservation.endDate.setDate(0);
-        this.reservation.room = new Room();
-        this.reservation.user = new AppUser();
+        this.reservation.StartDate = new Date();
+      this.reservation.StartDate.setFullYear(0);
+      this.reservation.StartDate.setMonth(0);
+      this.reservation.StartDate.setDate(0);
+      this.reservation.EndDate = new Date();
+      this.reservation.EndDate.setFullYear(0);
+      this.reservation.EndDate.setMonth(0);
+      this.reservation.EndDate.setDate(0);
+        this.reservation.Room = new Room();
+        this.reservation.User = new AppUser();
     }
   }
 
@@ -73,21 +73,21 @@ export class RoomReservationsFormComponent {
   }
 
   onSubmit(reservation: any, form: NgForm):void{
-      this.reservation.startDate = new Date();
-      this.reservation.startDate.setFullYear(reservation.Syear);
-      this.reservation.startDate.setMonth(reservation.Smonth);
-      this.reservation.startDate.setDate(reservation.Sday);
+      this.reservation.StartDate = new Date();
+      this.reservation.StartDate.setFullYear(reservation.Syear);
+      this.reservation.StartDate.setMonth(reservation.Smonth);
+      this.reservation.StartDate.setDate(reservation.Sday);
 
-      this.reservation.endDate = new Date();
-      this.reservation.endDate.setFullYear(reservation.Eyear);
-      this.reservation.endDate.setMonth(reservation.Emonth);
-      this.reservation.endDate.setDate(reservation.Eday);
+      this.reservation.EndDate = new Date();
+      this.reservation.EndDate.setFullYear(reservation.Eyear);
+      this.reservation.EndDate.setMonth(reservation.Emonth);
+      this.reservation.EndDate.setDate(reservation.Eday);
 
-      this.reservation.timestamp = new Date();
-      this.reservation.room = new Room();
-      this.reservation.room.id = reservation.Room;
-      this.reservation.user = new AppUser();
-        this.reservation.user.id = 1;
+      this.reservation.Timestamp = new Date();
+      this.reservation.Room = new Room();
+      this.reservation.Room.Id = reservation.Room;
+      this.reservation.User = new AppUser();
+        this.reservation.User.Id = 1;
 
       if(!this.isUpdate){
           this.reservationService.create(this.reservation);

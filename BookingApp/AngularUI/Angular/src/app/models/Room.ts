@@ -2,11 +2,11 @@
     import {RoomReservations} from './RoomReservations';
     
     export class Room {
-        id: number;
-        roomNumber: number;
-        bedCount: number;
-        description: string;
-        pricePerNight: number;
-        accommodation: Accommodation;
-        roomReservationss: RoomReservations[];
+        Id: number;
+        RoomNumber: number;
+        BedCount: number;
+        Description: string;
+        PricePerNight: number;
+        Accommodation: Accommodation;
+        //RoomReservationss: RoomReservations[];
     }

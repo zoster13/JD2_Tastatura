@@ -19,10 +19,11 @@ export class AccommodationTypesFormComponent implements OnInit {
   temp: any;
 
   constructor(private accommTypesService: AccommodationTypesService,
-  private routeActive: ActivatedRoute,
-  private router: Router,) {
+              private routeActive: ActivatedRoute,
+              private router: Router) {
+                  
       this.accommtype = new AccommodationType();
-      this.accommtype.name = '';
+      this.accommtype.Name = '';
   }
 
   ngOnInit(): void {
@@ -34,30 +35,30 @@ export class AccommodationTypesFormComponent implements OnInit {
         this.routeActive.params
         .switchMap((params: Params) => this.accommTypesService.getAccommodationType(+params['id']))
         .subscribe(accommtype => this.accommtype = accommtype);
-      
-      // this.temp = JSON.parse(localStorage.getItem('updateAccommodation'));
-      // this.accommtype.id = this.temp.id;
-      // this.accommtype.name = this.temp.name;
     }
     else{
       this.isUpdate = false;
 
-      this.accommtype.name = '';
+      this.accommtype.Name = '';
     }
   }
 
   onSubmit(accommtype: any, form: NgForm) {
-      this.accommtype.name = accommtype.Name;
-
-      if(!this.isUpdate){
-          this.accommTypesService.create(this.accommtype);
+      
+      if(accommtype.Name == "" || accommtype.Name == undefined) {
+        
+        alert("All fields must be filled!");
       }
-      else{
-          this.accommTypesService.update(this.accommtype);
+      else {
+        this.accommtype.Name = accommtype.Name;
+
+        if(!this.isUpdate) {
+            this.accommTypesService.create(this.accommtype);
+            form.resetForm();
+        }
+        else {
+            this.accommTypesService.update(this.accommtype);
+        }
       }
-
-      form.resetForm();
-
-      this.router.navigate(["mainpage/accommtypes/accommtypeslist"]);
     }
 }

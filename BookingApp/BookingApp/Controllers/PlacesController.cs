@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BookingApp.Models;
-using System.Data.Entity.Migrations;
 
 namespace BookingApp.Controllers
 {
@@ -21,7 +17,7 @@ namespace BookingApp.Controllers
         [HttpGet]
         public IQueryable<Place> GetPlaces()
         {
-            return db.Places;
+            return db.Places.Include("Region");
         }
 
         // GET: api/Places/5
@@ -44,8 +40,13 @@ namespace BookingApp.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPlace(int id, Place place)
         {
-            Region region = db.Regions.Where(r => r.Id == place.Region.Id).Include("Country").FirstOrDefault();
-            place.Region = region;
+            Place placeInDB = db.Places.Where(p => p.Id == place.Id)
+                .Include("Region")
+                .FirstOrDefault();
+
+            Region regionInDB = db.Regions.Where(r => r.Id == place.Region.Id).Include("Country").FirstOrDefault();
+            placeInDB.Region = regionInDB;
+            placeInDB.Name = place.Name;
 
             if (!ModelState.IsValid)
             {
@@ -57,28 +58,7 @@ namespace BookingApp.Controllers
                 return BadRequest();
             }
 
-            db.Entry(place).State = EntityState.Modified;
-            db.Entry(place.Region).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PlaceExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-
-            region.Places.Add(place);
-            db.Entry(place.Region).State = EntityState.Modified;
+            db.Entry(placeInDB).State = EntityState.Modified;
 
             try
             {
@@ -106,7 +86,6 @@ namespace BookingApp.Controllers
         public IHttpActionResult PostPlace(Place place)
         {
             Region region = db.Regions.Where(r => r.Id == place.Region.Id).Include("Country").FirstOrDefault();
-
             place.Region = region;
 
             if (!ModelState.IsValid)
@@ -126,7 +105,8 @@ namespace BookingApp.Controllers
         [ResponseType(typeof(Place))]
         public IHttpActionResult DeletePlace(int id)
         {
-            Place place = db.Places.Find(id);
+            Place place = db.Places.Where(p => p.Id == id).Include("Region").FirstOrDefault();
+
             if (place == null)
             {
                 return NotFound();

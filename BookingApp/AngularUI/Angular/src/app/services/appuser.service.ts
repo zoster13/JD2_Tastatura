@@ -1,13 +1,14 @@
-import {Injectable} from '@angular/core';
-import {AppUser} from '../models/AppUser';
-import {Headers, Http, RequestOptions} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { AppUser } from '../models/AppUser';
+import { Headers, Http, RequestOptions } from '@angular/http';
+import { ConfigurationManager } from './configuration-manager.service';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AppUsersService {
     
     private headers = new Headers({'Content-Type': 'application/json'});
-    private appUsersUrl = 'http://localhost:54042/api/AppUsers';  // URL to web api
+    private appUsersUrl = `http://${ConfigurationManager.Host}/api/AppUsers`;  // URL to web api
 
     constructor(private http: Http) { 
         
@@ -28,28 +29,12 @@ export class AppUsersService {
             .catch(this.handleError);
     }
 
-    delete(id: number): Promise<void> {
-
-        let token=localStorage.getItem("token");
-        let header = new Headers();
-        header.append('Content-Type', 'application/json');
-        header.append('Authorization', 'Bearer '+ JSON.parse(token).token);
-        let options = new RequestOptions();
-        options.headers = header;
-
-        const url = `${this.appUsersUrl}/${id}`;
-        return this.http.delete(url, options)
-        .toPromise()
-        .then(() => null)
-        .catch(this.handleError);
-    }
-
     create(appUser: AppUser): Promise<AppUser> {
 
         let token=localStorage.getItem("token");
         let header = new Headers();
         header.append('Content-Type', 'application/json');
-        header.append('Authorization', 'Bearer '+ JSON.parse(token).token);
+        header.append('Authorization', 'Bearer '+ token);
         let options = new RequestOptions();
         options.headers = header;
 
@@ -57,23 +42,6 @@ export class AppUsersService {
         .post(this.appUsersUrl, JSON.stringify(appUser), options)
         .toPromise()
         .then(res => res.json() as AppUser)
-        .catch(this.handleError);
-    }
-
-    update(appUser: AppUser): Promise<AppUser> {
-
-        let token=localStorage.getItem("token");
-        let header = new Headers();
-        header.append('Content-Type', 'application/json');
-        header.append('Authorization', 'Bearer '+ JSON.parse(token).token);
-        let options = new RequestOptions();
-        options.headers = header;
-
-        const url = `${this.appUsersUrl}/${appUser.id}`;
-        return this.http
-        .put(url, JSON.stringify(appUser), options)
-        .toPromise()
-        .then(() => appUser)
         .catch(this.handleError);
     }
 
@@ -86,7 +54,8 @@ export class AppUsersService {
         let options = new RequestOptions();
         options.headers = header;
         
-        return this.http.put(`http://localhost:54042/api/UserBan/${id}`, "", options);
+        const url = `${this.appUsersUrl}/${id}`;
+        return this.http.put(url, "", options);
     }
 
     unban(id: number) {
@@ -98,7 +67,8 @@ export class AppUsersService {
         let options = new RequestOptions();
         options.headers = header;
 
-        return this.http.put(`http://localhost:54042/api/UserUnban/${id}`, "", options);
+        const url = `${this.appUsersUrl}/${id}`;
+        return this.http.put(url, "", options);
     }
 
     private handleError(error: any): Promise<any> {

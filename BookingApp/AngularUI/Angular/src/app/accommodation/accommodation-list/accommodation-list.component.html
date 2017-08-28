@@ -1,4 +1,6 @@
 <ul class="list">
+
+    <!--Search-->
     <div>
         <input type="text" [(ngModel)]="nameTerm" id="search" placeholder="Search by Name">
         <input type="text" [(ngModel)]="addressTerm" id="search" placeholder="Search by Address">
@@ -7,40 +9,48 @@
     </div>
 
 	<br/>
+    
+    <!--List Of Accommodations-->
     <div >
         <li *ngFor="let accommodation of accommodations | AccommodationFilterPipe: [nameTerm,addressTerm,placeTerm,aTypeTerm]">
             <div class="list">
-                <div class="topmarg">&nbsp;
+                <div class="topmarg">
+                    &nbsp;
                 </div>
                 <div class="accommname">
                     {{accommodation.Name}}  
                 </div>
-                <div class="accommimage"> <img alt="" /> </div>
-                <div class="description">
-                    Description:  {{accommodation.Description}}   <br/>
-                    Address:  {{accommodation.Address}}   <br/>
-                    Place:  {{accommodation.Place.Name}}   <br/>
-			        Accommodation Type: {{accommodation.AccommodationType.Name}} 
+                <div class="accommimage"> 
+                    <img src="{{accommodation.ImageURL}}" width="150" height="150" />
                 </div>
-                    <ul class="accommtabmenuu">
-                        <label *ngIf="(isLoggedIn() && (role == 'Admin'))"><li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/update', accommodation.Id]" >Update</a></li>
-                        <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/accommlist', 1]" (click)="delete(accommodation.Id)" >Delete</a></li></label>
-                        <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/roomlist', 1, accommodation.Id]">Rooms</a></li>
-                        <li class="left"><a class="listlinkk"  [routerLink]="['/mainpage/accommodation/commentlist', accommodation.Id]">Comments</a></li>
-                    </ul>
-                    <div class="grade" *ngIf="accommodation.AverageGrade < 2.5">
-                        Average grade: <label class="gradecolorred"> {{accommodation.AverageGrade}}</label> <br/>
-                    </div>
-                    <div class="grade" *ngIf="(accommodation.AverageGrade == 2.5) && (accommodation.AverageGrade <= 3.5)">
-                        Average grade: <label class="gradecoloryellow"> {{accommodation.AverageGrade}}</label> <br/>
-                    </div>
-                    <div class="grade" *ngIf="accommodation.AverageGrade > 3.5">
-                        Average grade: <label class="gradecolorgreen"> {{accommodation.AverageGrade}}</label> <br/>
-                    </div>
+                <div class="description">
+                    <b><i>Accommodation Type:</i></b> {{accommodation.AccommodationType.Name}} <br/>
+                    <b><i>Address:</i></b> {{accommodation.Address}}   <br/>
+                    <b><i>Place:</i></b> {{accommodation.Place.Name}}   <br/>
+			        <b><i>Description:</i></b> {{accommodation.Description}}   <br/>
+                </div>
+
+                <!--Menu: Update,Delete,Rooms,Comments-->    
+                <ul class="accommtabmenuu">
+                    <label *ngIf="(isLoggedIn() && (role == 'Admin'))"><li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/update', accommodation.Id]" >Update</a></li>
+                    <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/accommlist', 1]" (click)="delete(accommodation.Id)" >Delete</a></li></label>
+                    <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommodation/roomlist', 1, accommodation.Id]">Rooms</a></li>
+                    <li class="left"><a class="listlinkk"  [routerLink]="['/mainpage/accommodation/commentlist', accommodation.Id]">Comments</a></li>
+                </ul>
+
+                <!--Avarage Grade Color-->
+                <div class="grade" *ngIf="accommodation.AverageGrade < 2.5">
+                    <b><i>Average grade:</i></b> <label class="gradecolorred"> {{accommodation.AverageGrade}}</label> <br/>
+                </div>
+                <div class="grade" *ngIf="(accommodation.AverageGrade >= 2.5) && (accommodation.AverageGrade <= 3.5)">
+                    <b><i>Average grade:</i></b> <label class="gradecoloryellow"> {{accommodation.AverageGrade}}</label> <br/>
+                </div>
+                <div class="grade" *ngIf="accommodation.AverageGrade > 3.5">
+                    <b><i>Average grade:</i></b> <label class="gradecolorgreen"> {{accommodation.AverageGrade}}</label> <br/>
+                </div>
             </div>
             <div class="listseparator">
             </div>
-            
         </li>
     </div>
 </ul>

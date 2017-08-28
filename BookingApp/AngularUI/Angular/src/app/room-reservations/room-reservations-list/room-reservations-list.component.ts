@@ -59,8 +59,8 @@ export class RoomReservationsListComponent implements OnInit {
   }
 
   finishBooking(roomres: RoomReservations){
-    roomres.user = new AppUser();
-    roomres.user.username = JSON.parse(localStorage.getItem('currentUser'))['username'];
+    roomres.User = new AppUser();
+    roomres.User.Username = JSON.parse(localStorage.getItem('currentUser'))['username'];
     this.roomreservationsService.delete(roomres['Id']);
     this.roomreservationsService.create(roomres);
 

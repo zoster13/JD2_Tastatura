@@ -1,13 +1,14 @@
-import {Injectable} from '@angular/core';
-import {RoomReservations} from '../models/RoomReservations';
-import {Headers, Http, RequestOptions} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { RoomReservations } from '../models/RoomReservations';
+import { Headers, Http, RequestOptions } from '@angular/http';
+import { ConfigurationManager } from './configuration-manager.service';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class RoomReservationsService {
     
     private headers = new Headers({'Content-Type': 'application/json'});
-    private roomReservationsUrl = 'http://localhost:54042/api/RoomReservations';  // URL to web api
+    private roomReservationsUrl = `http://${ConfigurationManager.Host}/api/RoomReservations`;  // URL to web api
 
     constructor(private http: Http) { 
         

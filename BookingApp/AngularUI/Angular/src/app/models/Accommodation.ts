@@ -5,18 +5,18 @@
     import {Comment} from './Comment';
     
     export class Accommodation {
-        id: number;
-        name: string;
-        description: string;
-        address: string;
-        averageGrade: number;
-        longitude: number;
-        latitude: number;
-        imageURL: string;
-        approved: boolean;
-        place: Place;
-        accommodationType: AccommodationType;
-        rooms: Room[];
-        comments: Comment[];
-        owner: AppUser;
+        Id: number;
+        Name: string;
+        Description: string;
+        Address: string;
+        AverageGrade: number;
+        Longitude: number;
+        Latitude: number;
+        ImageURL: string;
+        Approved: boolean;
+        Place: Place;
+        AccommodationType: AccommodationType;
+        //Rooms: Room[];
+        //Comments: Comment[];
+        Owner: AppUser;
     }

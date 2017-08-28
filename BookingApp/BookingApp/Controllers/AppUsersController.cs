@@ -9,6 +9,10 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BookingApp.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
+using System.Web;
+using Newtonsoft.Json;
 
 namespace BookingApp.Controllers
 {
@@ -40,6 +44,82 @@ namespace BookingApp.Controllers
             return Ok(appUser);
         }
 
+        // PUT: api/AppUsers/5
+        [HttpPut]
+        [Route("AppUsers")]
+        [Authorize(Roles = "Admin")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutAppUser(int id, AppUser appUser)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != appUser.Id)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(appUser).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AppUserExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // POST: api/AppUsers
+        [HttpPost]
+        [Route("AppUsers")]
+        [Authorize(Roles = "Admin")]
+        [ResponseType(typeof(AppUser))]
+        public IHttpActionResult PostAppUser(AppUser appUser)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.AppUsers.Add(appUser);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = appUser.Id }, appUser);
+        }
+
+        // DELETE: api/AppUsers/5
+        [HttpDelete]
+        [Route("AppUsers/{id}")]
+        [Authorize(Roles = "Admin")]
+        [ResponseType(typeof(AppUser))]
+        public IHttpActionResult DeleteAppUser(int id)
+        {
+            AppUser appUser = db.AppUsers.Find(id);
+            if (appUser == null)
+            {
+                return NotFound();
+            }
+
+            db.AppUsers.Remove(appUser);
+            db.SaveChanges();
+
+            return Ok(appUser);
+        }
+
+        //BAN
         [HttpPut]
         [Route("UserBan/{id}")]
         [Authorize(Roles = "Admin")]
@@ -91,6 +171,7 @@ namespace BookingApp.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        //UNBAN
         [HttpPut]
         [Route("UserUnban/{id}")]
         [Authorize(Roles = "Admin")]

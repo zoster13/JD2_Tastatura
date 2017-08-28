@@ -1,0 +1,32 @@
+Projekat Bachelor:
+	- edit, srediti reference: Resservations, Users, Comments
+		*accomm, accommType, countries, regions, places SREDJENO!!!
+
+	- setovati reference prilikom updatea
+	
+	- page reload izbaciti (login.component)
+
+	- dodavanje komentara provjeriti, greska vjerovatno bila u authorizaciji, sakriti onima koji ne mogu dodavati
+
+	- search
+
+	- paginacija
+
+	- u Room Menu dodati opciju za menadzera (room-list.component)
+
+	- Admin ima 2 razlicita taba koja rutiraju na istu adresu(Notification & Unapproved Accomm.)
+
+	-alert samo kada je stavrno izvrseno, provjeriti response pa na osnovu njega ispisati alert za sve entitete
+
+	-notifikacije, istestirati i srediti(subscribe...)
+
+	-room delete, nakon delete prikaze sve sobe, treba prikazati filtrirano po smjestaju
+
+	-CRUD Users (izbor role za usera)
+
+	-Izgled (log in, message box, rezolucija, authorization: ispis o gresci dodati message boxove
+
+DONE:
+	- file upload
+	- ukloniti sledece tabove: Rooms, Comments (do njih se dolazi preko Accommodation)
+	- popuniti seed

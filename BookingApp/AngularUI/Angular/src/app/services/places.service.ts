@@ -1,16 +1,19 @@
-import {Injectable} from '@angular/core';
-import {Place} from '../models/Place';
-import {Headers, Http, RequestOptions} from '@angular/http';
+import { Injectable, EventEmitter } from '@angular/core';
+import { Place } from '../models/Place';
+import { Headers, Http, RequestOptions } from '@angular/http';
+import { ConfigurationManager } from './configuration-manager.service';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class PlacesService {
     
     private headers = new Headers({'Content-Type': 'application/json'});
-    private placesUrl = 'http://localhost:54042/api/Places';  // URL to web api
+    private placesUrl = `http://${ConfigurationManager.Host}/api/Places`;  // URL to web api
+    public placeEvent : EventEmitter<string>;
 
     constructor(private http: Http) { 
         
+        this.placeEvent = new EventEmitter<string>();
     }
 
     getPlaces() : Promise<Place[]> {
@@ -53,6 +56,8 @@ export class PlacesService {
         let options = new RequestOptions();
         options.headers = header;
 
+        //this.placeEvent.emit("Place is successfully created.");
+
         return this.http
         .post(this.placesUrl, JSON.stringify(place), options)
         .toPromise()
@@ -69,7 +74,10 @@ export class PlacesService {
         let options = new RequestOptions();
         options.headers = header;
 
+        //this.placeEvent.emit("Place is successfully modified.");
+
         const url = `${this.placesUrl}/${place["Id"]}`;
+        
         return this.http
         .put(url, JSON.stringify(place), options)
         .toPromise()

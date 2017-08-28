@@ -1,16 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
+import { ConfigurationManager } from './configuration-manager.service';
+import { Router } from '@angular/router';
 import 'rxjs/add/operator/map'
-import {Router} from '@angular/router';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class AuthenticationService {
     
     public token: string;
-
     private headers = new Headers();
+    public loggedInEvent: EventEmitter < any >;  
         
     constructor(private http: Http, public router:Router) {
         // set token if saved in local storage
@@ -19,6 +20,7 @@ export class AuthenticationService {
         {
             this.token = currentUser.token;
         }
+        this.loggedInEvent = new EventEmitter <any>();
     }
 
     login(username: string, password: string): Observable<boolean> {
@@ -27,7 +29,7 @@ export class AuthenticationService {
         var options = new RequestOptions();
         options.headers = this.headers;
 
-       return this.http.post('http://localhost:54042/oauth/token', `username=${username}&password=${password}&grant_type=password`, options)
+        return this.http.post(`http://${ConfigurationManager.Host}/oauth/token`, `username=${username}&password=${password}&grant_type=password`, options)
             .map((response: Response) => {
 
                     let token = response.json().access_token;
@@ -44,6 +46,8 @@ export class AuthenticationService {
                         localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token, role : role, isBanned: isBanned, userId:userId }));
                         localStorage.setItem('token', token);
                         // return true to indicate successful login
+                        
+                        this.loggedInEvent.emit(); 
                         return true;
                     } else {
                         // return false to indicate failed login

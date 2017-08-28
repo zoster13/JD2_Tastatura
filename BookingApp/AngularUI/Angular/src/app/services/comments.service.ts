@@ -1,13 +1,14 @@
-import {Injectable} from '@angular/core';
-import {Comment} from '../models/Comment';
-import {Headers, Http, RequestOptions} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Comment } from '../models/Comment';
+import { Headers, Http, RequestOptions } from '@angular/http';
+import { ConfigurationManager } from './configuration-manager.service';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class CommentsService {
     
     private headers = new Headers({'Content-Type': 'application/json'});
-    private commentsUrl = 'http://localhost:54042/api/Comments';  // URL to web api
+    private commentsUrl = `http://${ConfigurationManager.Host}/api/Comments`;  // URL to web api
 
     constructor(private http: Http) { 
         
@@ -77,7 +78,7 @@ export class CommentsService {
         let options = new RequestOptions();
         options.headers = header;
 
-        const url = `${this.commentsUrl}/${comment.id}`;
+        const url = `${this.commentsUrl}/${comment.Id}`;
         return this.http
         .put(url, JSON.stringify(comment), options)
         .toPromise()

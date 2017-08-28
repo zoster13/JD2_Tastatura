@@ -113,12 +113,12 @@ isLoggedIn(): boolean {
 
  onSubmit(comment: any, form: NgForm):void{
       this.comment = new Comment();
-      this.comment.text = comment.Text;
-      this.comment.grade = comment.Grade;
-      this.comment.accommodation = new Accommodation();
-      this.comment.accommodation.id = this.accomid;
-      this.comment.user = new AppUser();
-      this.comment.user.username = JSON.parse(localStorage.getItem('currentUser'))['username'];
+      this.comment.Text = comment.Text;
+      this.comment.Grade = comment.Grade;
+      this.comment.Accommodation = new Accommodation();
+      this.comment.Accommodation.Id = this.accomid;
+      this.comment.User = new AppUser();
+      this.comment.User.Username = JSON.parse(localStorage.getItem('currentUser'))['username'];
       debugger
       this.commentsService.create(this.comment);
       

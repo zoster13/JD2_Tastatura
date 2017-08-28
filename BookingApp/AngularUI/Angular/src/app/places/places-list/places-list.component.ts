@@ -27,10 +27,19 @@ export class PlacesListComponent implements OnInit {
 
   ngOnInit() : void {
     this.getPlaces();
+    this.subscribeForPlaceEvent();
   }
 
   delete(id: number){
-    this.placesService.delete(id);
-    window.location.reload();
+    this.placesService.delete(id)
+    .then( x => { this.placesService.getPlaces().then(x => this.places = x);});
+  }
+
+  private subscribeForPlaceEvent () {
+    this.placesService.placeEvent.subscribe(e => this.onPlaceEvent(e));
+  }
+
+  public onPlaceEvent(message : string) {
+    alert(message);              
   }
 }

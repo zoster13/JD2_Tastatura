@@ -2,9 +2,16 @@
     <div>
         <li *ngFor="let accommtype of accommtypes">
             <div class="list">
-                <label> Name: </label> {{accommtype.Name}}
-                <a [routerLink]="['/mainpage/accommtypes/update', accommtype.Id]" >Update</a>
-                <a [routerLink]="['/mainpage/accommtypes/accommtypelist']" (click)="delete(accommtype.Id)">Delete</a>
+                
+                <!--AT Details-->
+                <b><i> Id: </i></b> {{accommtype.Id}} <br/>
+                <b><i> Name: </i></b> {{accommtype.Name}}
+
+                <!--Menu-->
+                <ul class="accommTypeMenu">
+                    <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommtypes/update', accommtype.Id]" >Update</a> </li>
+                    <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/accommtypes/accommtypelist']" (click)="delete(accommtype.Id)">Delete</a> </li>
+                </ul>
             </div>
             <div class="listseparator">
             </div>

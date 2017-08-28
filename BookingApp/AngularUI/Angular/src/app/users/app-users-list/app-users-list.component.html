@@ -1,0 +1,23 @@
+<ul class="list">
+    <div>
+        <li *ngFor="let user of allUsers">
+            <div class="list">
+
+                <!--Users Details-->
+                <b><i> FullName: </i></b> {{user.FullName}} <br/>
+                <b><i> Username: </i></b> {{user.Username}} <br/>
+                <b><i> Email: </i></b> {{user.Email}} <br/>
+                <b><i> IsBanned: </i></b> {{user.IsBanned}} <br/>
+            
+                <!--Users Menu-->
+                <ul class="usersMenu">
+                    <li class="left"> <button class="listlinkk" *ngIf="!user.IsBanned" (click)="ban(user.Id)"> Ban User </button> </li>
+                    <li class="left"> <button class="listlinkk" *ngIf="user.IsBanned" (click)="unban(user.Id)"> Unban User </button> </li>
+                </ul>
+            </div>
+            
+            <div class="listseparator">
+            </div>
+        </li>
+    </div>
+</ul>

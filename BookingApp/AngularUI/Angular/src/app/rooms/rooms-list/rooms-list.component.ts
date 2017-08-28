@@ -29,11 +29,15 @@ export class RoomsListComponent implements OnInit {
   numerationacc: number[] = [];
   accomlist: boolean = false;
 
+  roomNumberTerm: string;
+  bedCountTerm: string;
+  priceTerm: string;
+
   constructor(private roomsService:RoomsService,
-  private router: Router,
-  private route: ActivatedRoute,
-  private authenticationService: AuthenticationService) {
-    
+              private router: Router,
+              private route: ActivatedRoute,
+              private authenticationService: AuthenticationService) {
+                
   }
 
   getAllRooms() : void {
@@ -42,68 +46,91 @@ export class RoomsListComponent implements OnInit {
   }
 
   ngOnInit() : void { 
+    
     if(this.isLoggedIn()){
-     this.role = JSON.parse(localStorage.getItem('currentUser'))['role'];
+      this.role = JSON.parse(localStorage.getItem('currentUser'))['role'];
     }
 
-    this.roomsService.getAllRooms()
-      .then(rooms =>{ 
-        this.roomscount = rooms.length;
-      if(this.roomscount%3 == 0){
-          for(this.i = 0;this.i < Math.floor(this.roomscount/3); this.i++){
-            this.numeration[this.i] = this.i + 1;
-          }
-      }
-      else{
-          for(this.i = 0; this.i <  Math.floor(this.roomscount/3) + 1; this.i++){
-            this.numeration[this.i] = this.i + 1;
-          }
-      }
-    });
+    // //Numeracija stranica
+    // this.roomsService.getAllRooms()
+    //   .then(rooms =>
+    //   { 
+    //     this.roomscount = rooms.length;
+        
+    //     if(this.roomscount%3 == 0){
+    //       for(this.i = 0;this.i < Math.floor(this.roomscount/3); this.i++) {
+    //         this.numeration[this.i] = this.i + 1;
+    //       }
+    //   }
+    //   else {
+    //       for(this.i = 0; this.i <  Math.floor(this.roomscount/3) + 1; this.i++){
+    //         this.numeration[this.i] = this.i + 1;
+    //       }
+    //   }
+    // });
 
     this.uriParts =  this.router.url.split('/');
 
-    if(this.uriParts[this.uriParts.length - 3] === 'roomlist'){ 
+    if(this.uriParts[this.uriParts.length - 3] === 'roomlist') { 
+      
       this.route.params
           .switchMap((params: Params) => this.roomsService.getAllRoomsByAccomm(+params['acc']))
-          .subscribe(rooms =>{  
-          this.roomscount = rooms.length;
-          if(this.roomscount%3 == 0){
-            for(this.i = 0;this.i < Math.floor(this.roomscount/3); this.i++){
-              this.numerationacc[this.i] = this.i + 1;
+          .subscribe(rooms =>
+          {  
+            this.roomscount = rooms.length;
+            
+            //Numeracija stranica
+            if(this.roomscount%3 == 0) {
+              for(this.i = 0;this.i < Math.floor(this.roomscount/3); this.i++){
+                this.numerationacc[this.i] = this.i + 1;
+              }
             }
-        }
-        else{
-            for(this.i = 0; this.i <  Math.floor(this.roomscount/3) + 1; this.i++){
-              this.numerationacc[this.i] = this.i + 1;
+            else{
+              for(this.i = 0; this.i <  Math.floor(this.roomscount/3) + 1; this.i++){
+                this.numerationacc[this.i] = this.i + 1;
+              }
             }
-        }
-      });
+          });
     }
 
-    if(this.uriParts[this.uriParts.length - 3] === 'roomlist'){ 
+    if(this.uriParts[this.uriParts.length - 3] === 'roomlist') { 
         this.route.params
-        .switchMap((params: Params) => this.roomsService.getRoomsByAccomm((+params['id'] - 1)*3, +params['acc']))
-          .subscribe(rooms => {this.rooms = rooms;});
+          .switchMap((params: Params) => this.roomsService.getRoomsByAccomm((+params['id'] - 1)*3, + params['acc']))
+          .subscribe(rooms => 
+          {
+            this.rooms = rooms;
+          });
 
-        this.caption = "Rooms of selected accommodation:";
-        this.accomlist = true;
+          this.caption = "Rooms of selected accommodation:";
+          this.accomlist = true;
     }
     else{
         this.route.params
-        .switchMap((params: Params) => this.roomsService.getRooms((+params['id'] - 1)*3))
-        .subscribe(rooms => {this.rooms = rooms;});
+          .switchMap((params: Params) => this.roomsService.getRooms((+params['id'] - 1)*3))
+          .subscribe(rooms => {
+            this.rooms = rooms;
+          });
 
-        this.accomlist = false;
+          this.accomlist = false;
     }
+
+    this.subscribeForRoomEvent();
   }
 
   delete(id: number){
     this.roomsService.delete(id);
-    window.location.reload();
+    this.router.navigate(["mainpage/accommodation/accommlist/1"]);
   }
 
   isLoggedIn(): boolean {
         return this.authenticationService.isLoggedIn();
+  }
+
+  private subscribeForRoomEvent () {
+    this.roomsService.roomEvent.subscribe(e => this.onRoomEvent(e));
+  }
+
+  public onRoomEvent(message : string) {
+    alert(message);              
   }
 }

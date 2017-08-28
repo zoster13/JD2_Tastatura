@@ -21,8 +21,8 @@ namespace BookingApp.Models
         public Place Place { get; set; }
         [Required]
         public AccommodationType AccommodationType { get; set; }
-        public ICollection<Room> Rooms { get; set; }
-        public ICollection<Comment> Comments { get; set; }
+        //public ICollection<Room> Rooms { get; set; }
+       // public ICollection<Comment> Comments { get; set; }
         [Required]
         public AppUser Owner { get; set; }
 
@@ -34,8 +34,8 @@ namespace BookingApp.Models
             this.ImageURL = string.Empty;
             this.Place = new Place();
             this.AccommodationType = new AccommodationType();
-            this.Rooms = new List<Room>();
-            this.Comments = new List<Comment>();
+            //this.Rooms = new List<Room>();
+            //this.Comments = new List<Comment>();
             this.Owner = new AppUser();
         }
 
@@ -53,8 +53,8 @@ namespace BookingApp.Models
             this.Place = place;
             this.AccommodationType = accommodationType;
             this.Owner = owner;
-            this.Rooms = new List<Room>();
-            this.Comments = new List<Comment>();
+            //this.Rooms = new List<Room>();
+            //this.Comments = new List<Comment>();
         }
     }
 }

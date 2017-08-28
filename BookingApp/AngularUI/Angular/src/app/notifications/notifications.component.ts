@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { NotificationService } from '../services/notifications.service';
-import {Accommodation} from '../models/Accommodation';
-import {AccommodationService} from '../services/accommodation.service';
+import { Accommodation } from '../models/Accommodation';
+import { AccommodationService } from '../services/accommodation.service';
 
 @Component({
   selector: 'notifications',
@@ -13,9 +13,8 @@ export class NotificationsComponent implements OnInit {
   isConnected: Boolean;
   notifications: string[];
   role : string;
-
   unapprovedAccommodations: Accommodation[];
-
+  numeration: any[] = [];
 
   constructor(private notifService: NotificationService, 
               private _ngZone: NgZone,
@@ -66,7 +65,8 @@ export class NotificationsComponent implements OnInit {
 
   private approveAccommodation(accommodation: Accommodation): void{
     let accom: Accommodation = this.unapprovedAccommodations.find(a => a['Id'] === accommodation['Id']);
-    accom.approved = true;
-    this.accommodationService.update(accom).then( x => {this.accommodationService.getAllUnapprovedAccommodations().then(x => this.unapprovedAccommodations = x);});
+    accom.Approved = true;
+    this.accommodationService.update(accom, null)
+      .then( x => { this.accommodationService.getAllUnapprovedAccommodations().then(x => this.unapprovedAccommodations = x);});
   }
 }

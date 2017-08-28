@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import {AccommodationTypesService} from '../../services/accommodation-types.service';
-import {AccommodationType} from '../../models/AccommodationType';
+import { AccommodationTypesService} from '../../services/accommodation-types.service';
+import { AccommodationType} from '../../models/AccommodationType';
 
 @Component({
   selector: 'accomm-types-list',
@@ -16,7 +16,8 @@ export class AccommodationTypesListComponent implements OnInit {
   temp: any;
 
   constructor(private accommTypesService:AccommodationTypesService,
-  private router: Router) {
+              private _ngZone: NgZone,
+              private router: Router) {
     
   }
 
@@ -27,10 +28,19 @@ export class AccommodationTypesListComponent implements OnInit {
 
   ngOnInit() : void {
     this.getAccomTypes();
+    this.subscribeForAccommodationTypeCreate();
   }
 
   delete(id: number){ 
-    this.accommTypesService.delete(id);
-    window.location.reload();
+    this.accommTypesService.delete(id)
+      .then( x => { this.accommTypesService.getAccommodationTypes().then(x => this.accommtypes = x);});
+  }
+
+  private subscribeForAccommodationTypeCreate () {
+    this.accommTypesService.accommodationTypeEvent.subscribe(e => this.onAccommodationTypeEvent(e));
+  }
+
+  public onAccommodationTypeEvent(message : string) {
+    alert(message);              
   }
 }

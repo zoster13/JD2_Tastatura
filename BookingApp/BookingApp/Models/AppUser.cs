@@ -12,9 +12,9 @@ namespace BookingApp.Models
         public string Username { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public ICollection<RoomReservations> RoomReservationss { get; set; }
-        public ICollection<Comment> Comments { get; set; }
-        public ICollection<Accommodation> Accommodations { get; set; }
+        //public ICollection<RoomReservations> RoomReservationss { get; set; }
+        //public ICollection<Comment> Comments { get; set; }
+        //public ICollection<Accommodation> Accommodations { get; set; }
         public bool IsBanned { get; set; }
 
         public AppUser()
@@ -23,9 +23,9 @@ namespace BookingApp.Models
             this.Username = string.Empty;
             this.Email = string.Empty;
             this.Password = string.Empty;
-            this.RoomReservationss = new List<RoomReservations>();
-            this.Comments = new List<Comment>();
-            this.Accommodations = new List<Accommodation>();
+            //this.RoomReservationss = new List<RoomReservations>();
+            //this.Comments = new List<Comment>();
+            //this.Accommodations = new List<Accommodation>();
             this.IsBanned = false;
         }
 
@@ -36,9 +36,9 @@ namespace BookingApp.Models
             this.Username = username;
             this.Email = email;
             this.Password = password;
-            this.RoomReservationss = new List<RoomReservations>();
-            this.Comments = new List<Comment>();
-            this.Accommodations = new List<Accommodation>();
+            //this.RoomReservationss = new List<RoomReservations>();
+            //this.Comments = new List<Comment>();
+            //this.Accommodations = new List<Accommodation>();
             this.IsBanned = false;
         }
     }

@@ -1,16 +1,19 @@
-import {Injectable} from '@angular/core';
-import {AccommodationType} from '../models/AccommodationType';
-import {Headers, Http, RequestOptions} from '@angular/http';
+import { Injectable, EventEmitter } from '@angular/core';
+import { AccommodationType } from '../models/AccommodationType';
+import { Headers, Http, RequestOptions } from '@angular/http';
+import { ConfigurationManager } from './configuration-manager.service';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AccommodationTypesService {
     
     private headers = new Headers({'Content-Type': 'application/json'});
-    private accommodationTypesUrl = 'http://localhost:54042/api/AccommodationTypes';  // URL to web api
-
+    private accommodationTypesUrl = `http://${ConfigurationManager.Host}/api/AccommodationTypes`;  // URL to web api
+    public accommodationTypeEvent: EventEmitter < any >;
+    
     constructor(private http: Http) { 
         
+        this.accommodationTypeEvent = new EventEmitter<any>();
     }
 
     getAccommodationTypes() : Promise<AccommodationType[]> {        
@@ -53,6 +56,8 @@ export class AccommodationTypesService {
         let options = new RequestOptions();
         options.headers = header;
 
+        //this.accommodationTypeEvent.emit("AccommodationType is successfully created.");
+
         return this.http
         .post(this.accommodationTypesUrl, JSON.stringify(accommodationType), options)
         .toPromise()
@@ -69,7 +74,10 @@ export class AccommodationTypesService {
         let options = new RequestOptions();
         options.headers = header;
 
+        //this.accommodationTypeEvent.emit("AccommodationType is successfully modified.");
+
         const url = `${this.accommodationTypesUrl}/${accommodationType["Id"]}`;
+        
         return this.http
         .put(url, JSON.stringify(accommodationType), options)
         .toPromise()

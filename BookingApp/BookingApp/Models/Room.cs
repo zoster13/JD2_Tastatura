@@ -15,13 +15,13 @@ namespace BookingApp.Models
         public double PricePerNight { get; set; }
         [Required]
         public Accommodation Accommodation { get; set; }
-        public ICollection<RoomReservations> RoomReservationss { get; set; }
+        //public ICollection<RoomReservations> RoomReservationss { get; set; }
 
         public Room()
         {
             this.Description = string.Empty;
             this.Accommodation = new Accommodation();
-            this.RoomReservationss = new List<RoomReservations>();
+            //this.RoomReservationss = new List<RoomReservations>();
         }
 
         public Room(int roomNumber, int bedCount, string description, double pricePerNight, Accommodation accommodation)
@@ -31,7 +31,7 @@ namespace BookingApp.Models
             this.Description = description;
             this.PricePerNight = pricePerNight;
             this.Accommodation = accommodation;
-            this.RoomReservationss = new List<RoomReservations>();
+            //this.RoomReservationss = new List<RoomReservations>();
         }
     }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router, Params, ActivatedRoute } from '@angular/router';
 import {CountriesService} from '../../services/countries.service';
 import {Country} from '../../models/Country';
@@ -19,9 +19,10 @@ export class CountryListComponent implements OnInit {
   countrycount: number = 0;
 
   constructor(private countryService:CountriesService,
-  private router: Router,
-  private routeActive: ActivatedRoute) {
-    
+              private router: Router,
+              private _ngZone: NgZone,
+              private routeActive: ActivatedRoute) {
+                
   }
 
   getAllCountries() : void {
@@ -49,10 +50,20 @@ export class CountryListComponent implements OnInit {
     this.routeActive.params
         .switchMap((params: Params) => this.countryService.getCountries(((+params['id'])-1)*5))
         .subscribe(country => this.countries = country);
+
+    this.subscribeForCountryEvent();
   }
 
   delete(id: number){
-    this.countryService.delete(id);
-    window.location.reload();
+    this.countryService.delete(id)
+    .then( x => { this.countryService.getAllCountries().then(x => this.countries = x);});
+  }
+
+  private subscribeForCountryEvent () {
+    this.countryService.countryEvent.subscribe(e => this.onCountryEvent(e));
+  }
+
+  public onCountryEvent(message : string) {
+    alert(message);              
   }
 }

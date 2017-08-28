@@ -1,9 +1,14 @@
 <ul class="list">
       <li *ngFor="let place of places">
         <div class="list">
-            <label> Name: </label> {{place.Name}}
-            <label> Region: </label> {{place.Region.Name}}
-            <a [routerLink]="['/mainpage/places/update', place.Id]" >Update</a>
+            <b><i> Id: </i></b> {{place.Id}} <br/>
+            <b><i> Name: </i></b> {{place.Name}} <br/>
+            <b><i> Region: </i></b> {{place.Region.Name}}
+
+            <ul class="placesMenu">
+                 <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/places/update', place.Id]" >Update</a></li>
+                 <li class="left"><a class="listlinkk" [routerLink]="['/mainpage/places/placelist']" (click)="delete(place.Id)">Delete</a></li>
+            </ul>
         </div>
         <div class="listseparator">
         </div>

@@ -1,17 +1,20 @@
-import {Injectable} from '@angular/core';
-import {Country} from '../models/Country';
-import {Headers, Http, RequestOptions} from '@angular/http';
+import { Injectable, EventEmitter } from '@angular/core';
+import { Country } from '../models/Country';
+import { Headers, Http, RequestOptions } from '@angular/http';
+import { ConfigurationManager } from './configuration-manager.service';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class CountriesService {
     
     private headers = new Headers({'Content-Type': 'application/json'});
-    private countriesUrl = 'http://localhost:54042/api/Countries';  // URL to web api
+    private countriesUrl = `http://${ConfigurationManager.Host}/api/Countries`;  // URL to web api
+    public countryEvent: EventEmitter < string >;
 
     constructor(private http: Http) {
         
-     }
+        this.countryEvent = new EventEmitter<string>();
+    }
 
     getAllCountries() : Promise<Country[]> {
         return this.http.get(this.countriesUrl)
@@ -61,6 +64,8 @@ export class CountriesService {
         let options = new RequestOptions();
         options.headers = header;
 
+        //this.countryEvent.emit("Country is successfully created.");
+
         return this.http
         .post(this.countriesUrl, JSON.stringify(country), options)
         .toPromise()
@@ -77,7 +82,10 @@ export class CountriesService {
         let options = new RequestOptions();
         options.headers = header;
 
+        //this.countryEvent.emit("Country is successfully modified.");
+
         const url = `${this.countriesUrl}/${country["Id"]}`;
+        
         return this.http
         .put(url, JSON.stringify(country), options)
         .toPromise()

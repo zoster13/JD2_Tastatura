@@ -1,16 +1,19 @@
-import {Injectable} from '@angular/core';
-import {Room} from '../models/Room';
-import {Headers, Http, RequestOptions} from '@angular/http';
+import { Injectable, EventEmitter } from '@angular/core';
+import { Room } from '../models/Room';
+import { Headers, Http, RequestOptions } from '@angular/http';
+import { ConfigurationManager } from './configuration-manager.service';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class RoomsService {
     
     private headers = new Headers({'Content-Type': 'application/json'});
-    private roomsUrl = 'http://localhost:54042/api/Rooms';  // URL to web api
+    private roomsUrl = `http://${ConfigurationManager.Host}/api/Rooms`;  // URL to web api
+    public roomEvent : EventEmitter<string>;
 
     constructor(private http: Http) {
         
+        this.roomEvent = new EventEmitter<string>();
      }
 
     getAllRooms() : Promise<Room[]> {
@@ -77,6 +80,8 @@ export class RoomsService {
         let options = new RequestOptions();
         options.headers = header;
 
+        //this.roomEvent.emit("Room is successfully created.");
+
         return this.http
         .post(this.roomsUrl, JSON.stringify(room), options)
         .toPromise()
@@ -92,6 +97,8 @@ export class RoomsService {
         header.append('Authorization', 'Bearer '+ token);
         let options = new RequestOptions();
         options.headers = header;
+
+        //this.roomEvent.emit("Room is successfully modified.");
 
         const url = `${this.roomsUrl}/${room["Id"]}`;
         return this.http

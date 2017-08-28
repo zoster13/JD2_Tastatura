@@ -3,9 +3,9 @@
     
     
     export class Comment {
-        id: number;
-        grade: number;
-        text: string;
-        accommodation: Accommodation;
-        user: AppUser;
+        Id: number;
+        Grade: number;
+        Text: string;
+        Accommodation: Accommodation;
+        User: AppUser;
     }

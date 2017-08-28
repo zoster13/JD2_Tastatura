@@ -1,5 +1,6 @@
 // import the packages  
 import { Injectable, EventEmitter } from '@angular/core';
+import { ConfigurationManager } from './configuration-manager.service';
 
 // declare the global variables  
 declare var $: any;  
@@ -26,7 +27,7 @@ export class NotificationService {
         this.accommodationApproved = new EventEmitter <string>();
         this.connectionExists = false;  
         // create hub connection  
-        this.connection = $.hubConnection("http://localhost:54042/");  
+        this.connection = $.hubConnection(`http://${ConfigurationManager.Host}/`);  
         // create new proxy as name already given in top  
         this.proxy = this.connection.createHubProxy(this.proxyName);  
         // register on server events  
